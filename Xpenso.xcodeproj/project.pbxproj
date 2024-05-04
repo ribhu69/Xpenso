@@ -19,6 +19,7 @@
 		A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEB32BE604E80054D092 /* ExpenseListView.swift */; };
 		A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEB52BE6478D0054D092 /* FilterView.swift */; };
 		A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEB72BE647E00054D092 /* FilterCategory.swift */; };
+		A27DFEBF2BE650620054D092 /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEBE2BE650620054D092 /* Readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		A27DFEB32BE604E80054D092 /* ExpenseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListView.swift; sourceTree = "<group>"; };
 		A27DFEB52BE6478D0054D092 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		A27DFEB72BE647E00054D092 /* FilterCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCategory.swift; sourceTree = "<group>"; };
+		A27DFEBE2BE650620054D092 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		A27DFE8F2BE5EAB20054D092 = {
 			isa = PBXGroup;
 			children = (
+				A27DFEBE2BE650620054D092 /* Readme.md */,
 				A27DFE9A2BE5EAB20054D092 /* Xpenso */,
 				A27DFE992BE5EAB20054D092 /* Products */,
 			);
@@ -192,6 +195,7 @@
 				A27DFEAA2BE5EADB0054D092 /* AddExpense.swift in Sources */,
 				A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */,
 				A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */,
+				A27DFEBF2BE650620054D092 /* Readme.md in Sources */,
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,
 				A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */,
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
