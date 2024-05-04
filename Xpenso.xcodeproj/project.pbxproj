@@ -67,18 +67,13 @@
 		A27DFE9A2BE5EAB20054D092 /* Xpenso */ = {
 			isa = PBXGroup;
 			children = (
+				A27DFEBD2BE64DD00054D092 /* Views */,
+				A27DFEBA2BE64DAB0054D092 /* Categories */,
+				A27DFEB92BE64DA20054D092 /* Models */,
 				A27DFE9B2BE5EAB20054D092 /* XpensoApp.swift */,
-				A27DFE9D2BE5EAB20054D092 /* ContentView.swift */,
-				A27DFEA92BE5EADB0054D092 /* AddExpense.swift */,
 				A27DFE9F2BE5EAB40054D092 /* Assets.xcassets */,
 				A27DFEA12BE5EAB40054D092 /* Preview Content */,
-				A27DFEAB2BE5EAE90054D092 /* ExpenseCategory.swift */,
-				A27DFEAD2BE5ED9B0054D092 /* ExpenseCategoryView.swift */,
-				A27DFEAF2BE5EDB10054D092 /* Expense.swift */,
 				A27DFEB12BE5EF820054D092 /* Localizable.xcstrings */,
-				A27DFEB32BE604E80054D092 /* ExpenseListView.swift */,
-				A27DFEB52BE6478D0054D092 /* FilterView.swift */,
-				A27DFEB72BE647E00054D092 /* FilterCategory.swift */,
 			);
 			path = Xpenso;
 			sourceTree = "<group>";
@@ -89,6 +84,35 @@
 				A27DFEA22BE5EAB40054D092 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A27DFEB92BE64DA20054D092 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A27DFEAF2BE5EDB10054D092 /* Expense.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A27DFEBA2BE64DAB0054D092 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A27DFEAB2BE5EAE90054D092 /* ExpenseCategory.swift */,
+				A27DFEB72BE647E00054D092 /* FilterCategory.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		A27DFEBD2BE64DD00054D092 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A27DFEB32BE604E80054D092 /* ExpenseListView.swift */,
+				A27DFE9D2BE5EAB20054D092 /* ContentView.swift */,
+				A27DFEAD2BE5ED9B0054D092 /* ExpenseCategoryView.swift */,
+				A27DFEB52BE6478D0054D092 /* FilterView.swift */,
+				A27DFEA92BE5EADB0054D092 /* AddExpense.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
