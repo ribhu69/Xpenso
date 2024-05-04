@@ -3,12 +3,6 @@
 
 A Swift UI based Personal Expense Tracker Application
 
-
-# Project Title
-
-A Swift UI Expense Tracker Application
-
-
 ## Features
 
 - Category Based Expense addition
