@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A27DFE9C2BE5EAB20054D092 /* XpensoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoApp.swift */; };
+		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
 		A27DFEA02BE5EAB40054D092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27DFE9F2BE5EAB40054D092 /* Assets.xcassets */; };
 		A27DFEA32BE5EAB40054D092 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27DFEA22BE5EAB40054D092 /* Preview Assets.xcassets */; };
@@ -23,11 +23,17 @@
 		A27DFEC22BE65F6C0054D092 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEC12BE65F6C0054D092 /* RadioButton.swift */; };
 		A27DFEC42BE677A50054D092 /* ComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEC32BE677A50054D092 /* ComparisonView.swift */; };
 		A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEC52BE677C50054D092 /* Comparison.swift */; };
+		A27DFEC92BE6B7730054D092 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = A27DFEC82BE6B7730054D092 /* SQLite */; };
+		A27DFED02BE6BA440054D092 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */; };
+		A27DFED22BE6BBFD0054D092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED12BE6BBFD0054D092 /* AppDelegate.swift */; };
+		A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED32BE6BC160054D092 /* SceneDelegate.swift */; };
+		A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED52BE6BC530054D092 /* Startpoint.swift */; };
+		A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED72BE6BC7E0054D092 /* AppDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A27DFE9B2BE5EAB20054D092 /* XpensoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoApp.swift; sourceTree = "<group>"; };
+		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
 		A27DFE9D2BE5EAB20054D092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A27DFE9F2BE5EAB40054D092 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A27DFEA22BE5EAB40054D092 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -43,6 +49,12 @@
 		A27DFEC12BE65F6C0054D092 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		A27DFEC32BE677A50054D092 /* ComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonView.swift; sourceTree = "<group>"; };
 		A27DFEC52BE677C50054D092 /* Comparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparison.swift; sourceTree = "<group>"; };
+		A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		A27DFED12BE6BBFD0054D092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A27DFED32BE6BC160054D092 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A27DFED52BE6BC530054D092 /* Startpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startpoint.swift; sourceTree = "<group>"; };
+		A27DFED72BE6BC7E0054D092 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		A2F170E52BE6C3750000E321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27DFEC92BE6B7730054D092 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,14 +89,20 @@
 		A27DFE9A2BE5EAB20054D092 /* Xpenso */ = {
 			isa = PBXGroup;
 			children = (
+				A2F170E52BE6C3750000E321 /* Info.plist */,
+				A27DFECE2BE6BA360054D092 /* Database */,
 				A27DFEC02BE65F570054D092 /* Components */,
 				A27DFEBD2BE64DD00054D092 /* Views */,
 				A27DFEBA2BE64DAB0054D092 /* Categories */,
 				A27DFEB92BE64DA20054D092 /* Models */,
-				A27DFE9B2BE5EAB20054D092 /* XpensoApp.swift */,
+				A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */,
 				A27DFE9F2BE5EAB40054D092 /* Assets.xcassets */,
 				A27DFEA12BE5EAB40054D092 /* Preview Content */,
 				A27DFEB12BE5EF820054D092 /* Localizable.xcstrings */,
+				A27DFED12BE6BBFD0054D092 /* AppDelegate.swift */,
+				A27DFED32BE6BC160054D092 /* SceneDelegate.swift */,
+				A27DFED52BE6BC530054D092 /* Startpoint.swift */,
+				A27DFED72BE6BC7E0054D092 /* AppDefaults.swift */,
 			);
 			path = Xpenso;
 			sourceTree = "<group>";
@@ -135,6 +154,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A27DFECE2BE6BA360054D092 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,6 +178,9 @@
 			dependencies = (
 			);
 			name = Xpenso;
+			packageProductDependencies = (
+				A27DFEC82BE6B7730054D092 /* SQLite */,
+			);
 			productName = Xpenso;
 			productReference = A27DFE982BE5EAB20054D092 /* Xpenso.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +210,9 @@
 				hi,
 			);
 			mainGroup = A27DFE8F2BE5EAB20054D092;
+			packageReferences = (
+				A27DFEC72BE6B7730054D092 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = A27DFE992BE5EAB20054D092 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -208,18 +241,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27DFEC22BE65F6C0054D092 /* RadioButton.swift in Sources */,
+				A27DFED02BE6BA440054D092 /* DatabaseHandler.swift in Sources */,
 				A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */,
+				A27DFED22BE6BBFD0054D092 /* AppDelegate.swift in Sources */,
 				A27DFEC42BE677A50054D092 /* ComparisonView.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,
 				A27DFEAE2BE5ED9B0054D092 /* ExpenseCategoryView.swift in Sources */,
+				A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */,
 				A27DFEAA2BE5EADB0054D092 /* AddExpense.swift in Sources */,
 				A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */,
 				A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */,
+				A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */,
 				A27DFEBF2BE650620054D092 /* Readme.md in Sources */,
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,
+				A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */,
 				A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */,
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
-				A27DFE9C2BE5EAB20054D092 /* XpensoApp.swift in Sources */,
+				A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +394,7 @@
 				DEVELOPMENT_TEAM = K69VJUNC55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Xpenso/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -385,7 +423,7 @@
 				DEVELOPMENT_TEAM = K69VJUNC55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Xpenso/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -425,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A27DFEC72BE6B7730054D092 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A27DFEC82BE6B7730054D092 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A27DFEC72BE6B7730054D092 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A27DFE902BE5EAB20054D092 /* Project object */;
 }
