@@ -46,7 +46,7 @@ struct ExpenseListView : View {
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
                         Text("No Entries Found for applied filter")
-                            .font(.title2)
+                            .font(.body)
                     }
                     
                     else {
@@ -73,7 +73,7 @@ struct ExpenseListView : View {
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
                         Text("No Entries Found")
-                            .font(.title2)
+                            .font(.body)
                         
                         Button(action: {
                             addExpense = true
@@ -214,8 +214,7 @@ struct ExpenseListView : View {
                                 return comparison.amount == Double(comparisonValue)!
                             }
                         }
-                        print("Comparison value: \(comparisonValue)")
-                        print(newValues.count)
+        
                         
                         if expenseType != .none {
                             newValues = newValues.filter {
@@ -249,17 +248,20 @@ struct ExpenseListView : View {
                                 }
                             }
                             
-                            print("Comparison value: \(comparisonValue)")
-                            print(newValues.count)
                         }
                         else {
-                            newValues = expenses.filter {
-                                item in
-                                
-                                item.category == expenseType
+                        
+                            if expenseType != .none {
+                                newValues = expenses.filter {
+                                    item in
+                                    
+                                    item.category == expenseType
+                                }
+                            }
+                            else {
+                                newValues = expenses
                             }
                             
-                            print("Expense Type value: \(expenseType.rawValue)")
                             print(newValues.count)
                         }
                         filteredExpenses = newValues
