@@ -134,6 +134,9 @@
     "No Entries Found" : {
 
     },
+    "No Entries Found for applied filter" : {
+
+    },
     "none" : {
       "extractionState" : "manual",
       "localizations" : {

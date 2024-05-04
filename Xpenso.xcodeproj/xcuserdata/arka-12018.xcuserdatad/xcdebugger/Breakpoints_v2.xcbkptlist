@@ -71,33 +71,190 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9CA2E164-0412-4809-AA18-337499DE6D3F"
+            uuid = "E15849CD-600B-4F7B-A67B-94B185C3D639"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Xpenso/Views/ExpenseListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E15849CD-600B-4F7B-A67B-94B185C3D639 - 2dc5b75a36acb55a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "2272">
+               </Location>
+               <Location
+                  uuid = "E15849CD-600B-4F7B-A67B-94B185C3D639 - 2dc5b75a36acb55a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "2284">
+               </Location>
+               <Location
+                  uuid = "E15849CD-600B-4F7B-A67B-94B185C3D639 - 2dc5b75a36acb55a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "2264">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED0EB183-1306-4B51-947C-AAE0A48E9AC2"
+            uuid = "F8559DE5-878B-483D-B014-0917C18C17FE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Xpenso/Views/ExpenseListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "F8559DE5-878B-483D-B014-0917C18C17FE - 2dc5b75a36acb490"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "263"
+                  endingLineNumber = "263"
+                  offsetFromSymbolStart = "2980">
+               </Location>
+               <Location
+                  uuid = "F8559DE5-878B-483D-B014-0917C18C17FE - 2dc5b75a36acb490"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "263"
+                  endingLineNumber = "263"
+                  offsetFromSymbolStart = "2984">
+               </Location>
+               <Location
+                  uuid = "F8559DE5-878B-483D-B014-0917C18C17FE - 2dc5b75a36acb490"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "263"
+                  endingLineNumber = "263"
+                  offsetFromSymbolStart = "2972">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F19CF59-B6E0-4824-B029-9C2FB857CCB7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Xpenso/Views/ExpenseListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "4F19CF59-B6E0-4824-B029-9C2FB857CCB7 - 2dc5b75a36acb32e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "3112">
+               </Location>
+               <Location
+                  uuid = "4F19CF59-B6E0-4824-B029-9C2FB857CCB7 - 2dc5b75a36acb32e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "3116">
+               </Location>
+               <Location
+                  uuid = "4F19CF59-B6E0-4824-B029-9C2FB857CCB7 - 2dc5b75a36acb32e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool, Swift.Bool) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in Xpenso.ExpenseListView.body.getter : some"
+                  moduleName = "Xpenso"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arka-12018/Desktop/Arka&apos;s%20Garage/Xpenso/Xpenso/Views/ExpenseListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "3104">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

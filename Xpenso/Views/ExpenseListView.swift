@@ -33,73 +33,103 @@ struct ExpenseListView : View {
         Expense(amount: 10000, category: .housing, description: "Bike Petrol", date: Date())
         
     ]
+    @State var filteredExpenses : [Expense] = []
     var body: some View {
         NavigationView {
             VStack {
-                if expenses.isEmpty {
-                    Image("emptyView", bundle: nil)
-                        .resizable()
-                        .renderingMode(.template)
-                        .frame(width: 50, height: 50)
-                    Text("No Entries Found")
-                        .font(.title2)
+                
+                if filterCount > 0 {
                     
-                    Button(action: {
-                        addExpense = true
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle")
-                            Text("Add Expense")
-                        }
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
-                                .foregroundStyle(Color.clear)
-                                
-                        }
+                    if filteredExpenses.isEmpty {
+                        Image("emptyView", bundle: nil)
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 50, height: 50)
+                        Text("No Entries Found for applied filter")
+                            .font(.title2)
                     }
-                    .sheet(isPresented: $addExpense, content: {
-                        NavigationView {
-                            
-                            AddExpenseView(isAddExpense: $addExpense) { newExpense in
-                                expenses.append(newExpense)
-                            }
-                            .navigationTitle("Add Expense")
-                        }
-                    })
+                    
+                    else {
+                        
+                        List {
+                            ForEach(filteredExpenses, id: \.id) { expense in
+                                ExpenseRow(expense: expense)
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            deleteExpense(expense)
+                                        } label: {
+                                            Image("delete", bundle: nil)
+                                                .renderingMode(.template) // Apply rendering mode
+                                        }
+                                    }
+                            } .listRowSeparator(.hidden)
+                        }.listStyle(.plain)
+                    }
                 }
                 else {
-                    List {
-                        ForEach(expenses, id: \.id) { expense in
-                            ExpenseRow(expense: expense)
-                                .swipeActions {
-                                    Button(role: .destructive) {
-                                        deleteExpense(expense)
-                                    } label: {
-                                        Image("delete", bundle: nil)
-                                            .renderingMode(.template) // Apply rendering mode
-                                    }
-                                }
+                    if expenses.isEmpty {
+                        Image("emptyView", bundle: nil)
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 50, height: 50)
+                        Text("No Entries Found")
+                            .font(.title2)
+                        
+                        Button(action: {
+                            addExpense = true
+                        }) {
+                            HStack {
+                                Image(systemName: "plus.circle")
+                                Text("Add Expense")
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
+                                    .foregroundStyle(Color.clear)
+                                
+                            }
                         }
-                        //.onDelete(perform: deleteExpense)
-                        .listRowSeparator(.hidden)
-                    }  .listStyle(.plain)
+                        .sheet(isPresented: $addExpense, content: {
+                            NavigationView {
+                                
+                                AddExpenseView(isAddExpense: $addExpense) { newExpense in
+                                    expenses.append(newExpense)
+                                }
+                                .navigationTitle("Add Expense")
+                            }
+                        })
+                    }
+                    else {
+                        List {
+                            ForEach(expenses, id: \.id) { expense in
+                                ExpenseRow(expense: expense)
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            deleteExpense(expense)
+                                        } label: {
+                                            Image("delete", bundle: nil)
+                                                .renderingMode(.template) // Apply rendering mode
+                                        }
+                                    }
+                            } .listRowSeparator(.hidden)
+                        }.listStyle(.plain)
+                    }
                     
                     VStack {
                         Divider()
-                          .background(.gray)
-//                        Rectangle()
-//                            .frame(width: .infinity, height: 1)
-//                            .foregroundStyle(Color.gray)
+                            .background(.gray)
+                        //                        Rectangle()
+                        //                            .frame(width: .infinity, height: 1)
+                        //                            .foregroundStyle(Color.gray)
                         HStack {
                             Text("Total:")
                                 .font(.title2)
                             Text(expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
                                 .font(.title2)
                                 .padding(.leading, 8)
-                              
+                            
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -121,13 +151,13 @@ struct ExpenseListView : View {
                                     Image("filter")
                                         .renderingMode(.template)
                                 }
-                               
+                                
                             }
                             Button(action: {
                                 addExpense = true
                             }) {
-                                    Image("plus")
-                                        .renderingMode(.template)
+                                Image("plus")
+                                    .renderingMode(.template)
                                 
                             }
                         }
@@ -161,21 +191,101 @@ struct ExpenseListView : View {
                     )
                     .navigationTitle("Filter By")
                     
-//                    FilterView(appliedFilters: $filterCount)
-//                        .navigationTitle("Filter By")
+                    //                    FilterView(appliedFilters: $filterCount)
+                    //                        .navigationTitle("Filter By")
                 }
             })
+            .onChange(of: addFilter) { oldValue, newValue in
+                if newValue == false {
+                    if filterCount == 2{
+                        var newValues = [Expense]()
+                        
+                        newValues = expenses.filter { comparison in
+                            switch comparisonType {
+                            case .greaterThan:
+                                return comparison.amount > Double(comparisonValue)!
+                            case .greaterThanEqualTo:
+                                return comparison.amount >= Double(comparisonValue)!
+                            case .lessThan:
+                                return comparison.amount < Double(comparisonValue)!
+                            case .lessThanEqualTo:
+                                return comparison.amount <= Double(comparisonValue)!
+                            case .equalTo:
+                                return comparison.amount == Double(comparisonValue)!
+                            }
+                        }
+                        print("Comparison value: \(comparisonValue)")
+                        print(newValues.count)
+                        
+                        if expenseType != .none {
+                            newValues = newValues.filter {
+                                item in
+                                
+                                item.category == expenseType
+                            }
+                        }
+                        
+                        filteredExpenses = newValues
+                        
+                        
+                    }
+                    else if filterCount == 1 {
+                        var newValues = [Expense]()
+                        if filterByExpense && !comparisonValue.isEmpty {
+                            
+                            
+                            newValues = expenses.filter { comparison in
+                                switch comparisonType {
+                                case .greaterThan:
+                                    return comparison.amount > Double(comparisonValue)!
+                                case .greaterThanEqualTo:
+                                    return comparison.amount >= Double(comparisonValue)!
+                                case .lessThan:
+                                    return comparison.amount < Double(comparisonValue)!
+                                case .lessThanEqualTo:
+                                    return comparison.amount <= Double(comparisonValue)!
+                                case .equalTo:
+                                    return comparison.amount == Double(comparisonValue)!
+                                }
+                            }
+                            
+                            print("Comparison value: \(comparisonValue)")
+                            print(newValues.count)
+                        }
+                        else {
+                            newValues = expenses.filter {
+                                item in
+                                
+                                item.category == expenseType
+                            }
+                            
+                            print("Expense Type value: \(expenseType.rawValue)")
+                            print(newValues.count)
+                        }
+                        filteredExpenses = newValues
+                    }
+                    else {
+                        filteredExpenses.removeAll()
+                    }
+                }
+            }
         }
-    }
-    
-    func deleteExpense(at offsets: IndexSet) {
-        expenses.remove(atOffsets: offsets)
     }
     
     func deleteExpense(_ expense: Expense) {
         withAnimation {
-            if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                expenses.remove(at: index)
+            if filterCount > 0 {
+                if let index = filteredExpenses.firstIndex(where: { $0.id == expense.id }) {
+                    filteredExpenses.remove(at: index)
+                }
+                if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                    expenses.remove(at: index)
+                }
+            }
+            else {
+                if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                    expenses.remove(at: index)
+                }
             }
         }
     }

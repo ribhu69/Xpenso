@@ -144,17 +144,25 @@ struct FilterView : View {
                             if filterByCategory && filterByExpense {
                                 if !comparisonValue.isEmpty {
                                     isFilterViewVisible = false
+                                    filterCount = (filterByExpense && filterByCategory) ? 2 : (!filterByExpense && !filterByCategory) ? 0 : 1
+
                                 }
                             }
                             else if !filterByCategory && !filterByExpense {
                                 isFilterViewVisible = false
+                                filterCount = (filterByExpense && filterByCategory) ? 2 : (!filterByExpense && !filterByCategory) ? 0 : 1
+
                             }
                             else if filterByExpense, !comparisonValue.isEmpty {
                                 isFilterViewVisible = false
+                                filterCount = (filterByExpense && filterByCategory) ? 2 : (!filterByExpense && !filterByCategory) ? 0 : 1
+
                             }
                             else {
                                 if filterByCategory  {
                                     isFilterViewVisible = false
+                                    filterCount = (filterByExpense && filterByCategory) ? 2 : (!filterByExpense && !filterByCategory) ? 0 : 1
+
                                 }
                             }
 
