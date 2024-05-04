@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct ExpenseListView : View {
+    
+    
+    @State var filterByCategory = false
+    @State var isCategorySelectorVisible = false
+    @State var expenseType : ExpenseCategory = .none
+    
+    @State var filterByExpense = false
+    @State var isExpenseComparatorVisible = false
+    @State var comparisonType : Comparison = .equalTo
+    @State var comparisonValue : String = ""
+    
+    
+    
     @State var addExpense : Bool = false
-    @State var addFilter : Bool = true
+    @State var addFilter : Bool = false
+    @State var filterCount : Int = 0
     @State var expenses : [Expense] = [
         Expense(amount: 100, category: .miscellaneous, description: "Bike Petrol", date: Date()),
         Expense(amount: 3000, category: .education, description: "DSA Books Purchased."),
@@ -99,8 +113,9 @@ struct ExpenseListView : View {
                             Button(action: {
                                 addFilter = true
                             }) {
-                                if addFilter {
-                                    CustomLabel( badgeCount: 5)
+                                
+                                if filterCount > 0 {
+                                    CustomLabel( badgeCount: filterCount)
                                 }
                                 else {
                                     Image("filter")
@@ -126,6 +141,28 @@ struct ExpenseListView : View {
                         expenses.append(newExpense)
                     }
                     .navigationTitle("Add Expense")
+                }
+            })
+            
+            .sheet(isPresented: $addFilter,
+                   content: {
+                NavigationView {
+                    
+                    FilterView(
+                        isFilterViewVisible: $addFilter,
+                        filterByCategory: $filterByCategory,
+                        isCategorySelectorVisible: $isCategorySelectorVisible,
+                        expenseType: $expenseType,
+                        filterByExpense: $filterByExpense,
+                        isExpenseComparatorVisible: $isExpenseComparatorVisible,
+                        comparisonType: $comparisonType,
+                        comparisonValue: $comparisonValue,
+                        filterCount: $filterCount
+                    )
+                    .navigationTitle("Filter By")
+                    
+//                    FilterView(appliedFilters: $filterCount)
+//                        .navigationTitle("Filter By")
                 }
             })
         }

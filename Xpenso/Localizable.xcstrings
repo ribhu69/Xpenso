@@ -13,6 +13,9 @@
     "Amount" : {
 
     },
+    "Category" : {
+
+    },
     "clothing" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -60,6 +63,21 @@
         }
       }
     },
+    "Equal To" : {
+
+    },
+    "Expense" : {
+
+    },
+    "Filter By" : {
+
+    },
+    "Greater Than" : {
+
+    },
+    "Greater Than Or Equal To" : {
+
+    },
     "groceries" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -95,6 +113,12 @@
           }
         }
       }
+    },
+    "Less Than" : {
+
+    },
+    "Less Than Or Equal To" : {
+
     },
     "miscellaneous" : {
       "extractionState" : "manual",
@@ -176,6 +200,9 @@
           }
         }
       }
+    },
+    "Value" : {
+
     }
   },
   "version" : "1.0"
