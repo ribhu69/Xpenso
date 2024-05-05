@@ -98,23 +98,6 @@ class DatabaseHelper {
                 t.column(ExpenseDB.date)
                 t.column(ExpenseDB.category)
             })
-            
-//            let users = Table("users")
-//            let id = Expression<Int64>("id")
-//            let email = Expression<String>("email")
-//            let balance = Expression<Double>("balance")
-//            let verified = Expression<Bool>("verified")
-//            let name = Expression<String?>("name")
-//
-//            
-//            try database.run(users.create { t in     // CREATE TABLE "users" (
-//                t.column(id, primaryKey: true) //     "id" INTEGER PRIMARY KEY NOT NULL,
-//                t.column(email, unique: true)  //     "email" TEXT UNIQUE NOT NULL,
-//                t.column(name)                 //     "name" TEXT
-//            })                                 // )
-//            
-//            let alice = users.filter(id == 1)
-
         }
         catch {
             Logger.log(.error, "Error Creating Users Table")

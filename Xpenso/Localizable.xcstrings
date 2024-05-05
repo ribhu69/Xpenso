@@ -8,13 +8,34 @@
 
     },
     "Add Expense" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ख़र्च जोड़ें"
+          }
+        }
+      }
     },
     "Amount" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "राशि"
+          }
+        }
+      }
     },
     "Category" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "श्रेणी"
+          }
+        }
+      }
     },
     "clothing" : {
       "extractionState" : "manual",
@@ -24,11 +45,24 @@
             "state" : "translated",
             "value" : "Clothing"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वस्त्र"
+          }
         }
       }
     },
     "Description" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        }
+      }
     },
     "diningOut" : {
       "extractionState" : "manual",
@@ -37,6 +71,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dineout"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भोजन"
           }
         }
       }
@@ -49,6 +89,12 @@
             "state" : "translated",
             "value" : "Education"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शिक्षा"
+          }
         }
       }
     },
@@ -60,23 +106,64 @@
             "state" : "translated",
             "value" : "Entertainment"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मनोरंजन"
+          }
         }
       }
     },
     "Equal To" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "के समान"
+          }
+        }
+      }
     },
     "Expense" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ख़र्च"
+          }
+        }
+      }
     },
     "Filter By" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसके अनुसार फ़िल्टर करें"
+          }
+        }
+      }
     },
     "Greater Than" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "से अधिक"
+          }
+        }
+      }
     },
     "Greater Than Or Equal To" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "से अधिक या उसके बराबर"
+          }
+        }
+      }
     },
     "groceries" : {
       "extractionState" : "manual",
@@ -85,6 +172,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grocery"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "किराना"
           }
         }
       }
@@ -96,6 +189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Healthcare"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्वास्थ्य सेवा"
           }
         }
       }
@@ -111,14 +210,34 @@
             "state" : "translated",
             "value" : "Housing"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आवास खर्च"
+          }
         }
       }
     },
     "Less Than" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "से कम"
+          }
+        }
+      }
     },
     "Less Than Or Equal To" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "से कम या बराबर"
+          }
+        }
+      }
     },
     "miscellaneous" : {
       "extractionState" : "manual",
@@ -128,14 +247,34 @@
             "state" : "translated",
             "value" : "Miscellanuous"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिश्रित"
+          }
         }
       }
     },
-    "No Entries Found" : {
-
+    "No Expenses Found" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई खर्च नहीं मिला"
+          }
+        }
+      }
     },
-    "No Entries Found for applied filter" : {
-
+    "No Expenses Found for Applied Filter" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एप्लाइड फ़िल्टर के लिए कोई व्यय नहीं मिला"
+          }
+        }
+      }
     },
     "none" : {
       "extractionState" : "manual",
@@ -144,6 +283,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "None"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नहीं"
           }
         }
       }
@@ -154,6 +299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिवर्तन सहेजें"
           }
         }
       }
@@ -166,6 +317,12 @@
             "state" : "translated",
             "value" : "Savings"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जमा पूंजी"
+          }
         }
       }
     },
@@ -176,11 +333,24 @@
             "state" : "translated",
             "value" : "Select Expense Type"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "व्यय प्रकार चुनें"
+          }
         }
       }
     },
     "Total:" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुल:"
+          }
+        }
+      }
     },
     "transportation" : {
       "extractionState" : "manual",
@@ -189,6 +359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transportation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिवहन"
           }
         }
       }
@@ -201,11 +377,24 @@
             "state" : "translated",
             "value" : "Utility"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोगिता"
+          }
         }
       }
     },
     "Value" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीमत"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

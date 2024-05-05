@@ -40,7 +40,7 @@ struct ExpenseListView : View {
                             .resizable()
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
-                        Text("No Entries Found for applied filter")
+                        Text("No Expenses Found for Applied Filter")
                             .font(.body)
                     }
                     
@@ -67,7 +67,7 @@ struct ExpenseListView : View {
                             .resizable()
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
-                        Text("No Entries Found")
+                        Text("No Expenses Found")
                             .font(.body)
                         
                         Button(action: {
@@ -110,24 +110,22 @@ struct ExpenseListView : View {
                                     }
                             } .listRowSeparator(.hidden)
                         }.listStyle(.plain)
-                    }
+                        
+                        VStack {
+                            Divider()
+                                .background(.gray)
                     
-                    VStack {
-                        Divider()
-                            .background(.gray)
-                        //                        Rectangle()
-                        //                            .frame(width: .infinity, height: 1)
-                        //                            .foregroundStyle(Color.gray)
-                        HStack {
-                            Text("Total:")
-                                .font(.title2)
-                            Text(viewModel.expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
-                                .font(.title2)
-                                .padding(.leading, 8)
-                            
+                            HStack {
+                                Text("Total:")
+                                    .font(.title2)
+                                Text(viewModel.expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
+                                    .font(.title2)
+                                    .padding(.leading, 8)
+                                
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
                     }
                 }
             }
@@ -272,17 +270,34 @@ struct ExpenseListView : View {
     func deleteExpense(_ expense: Expense) {
         withAnimation {
             if filterCount > 0 {
-                if let index = filteredExpenses.firstIndex(where: { $0.id == expense.id }) {
-                    filteredExpenses.remove(at: index)
+                
+                if viewModel.deleteExpense(expense: expense) {
+                    if let index = filteredExpenses.firstIndex(where: { $0.id == expense.id }) {
+                        filteredExpenses.remove(at: index)
+                    }
+                    if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
+                        viewModel.expenses.remove(at: index)
+                    }
+                    
+                    if viewModel.expenses.isEmpty {
+                        filterByCategory = false
+                        filterByExpense = false
+                        comparisonType = .equalTo
+                        comparisonValue = ""
+                    }
                 }
-                if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
-                    viewModel.expenses.remove(at: index)
-                }
+                
             }
             else {
                 if viewModel.deleteExpense(expense: expense) {
                     if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
                         viewModel.expenses.remove(at: index)
+                    }
+                    if viewModel.expenses.isEmpty {
+                        filterByCategory = false
+                        filterByExpense = false
+                        comparisonType = .equalTo
+                        comparisonValue = ""
                     }
                 }
             }
