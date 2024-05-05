@@ -18,7 +18,8 @@ struct AddExpenseView : View{
     
     @State var expenseType : ExpenseCategory = .none
     var onSave: (Expense) -> Void
-
+    var expenseService : ExpenseService = ExpenseServiceImpl()
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -29,7 +30,7 @@ struct AddExpenseView : View{
                         .padding()
                         .keyboardType(.decimalPad)
                 }
-                  
+                
                 HStack {
                     Image("notes", bundle: nil)
                         .renderingMode(.template)
@@ -37,7 +38,7 @@ struct AddExpenseView : View{
                         .padding()
                 }
                 
-                    
+                
                 HStack {
                     Image("category", bundle: nil)
                         .renderingMode(.template)
@@ -49,9 +50,9 @@ struct AddExpenseView : View{
                     }
                     .padding()
                     .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 2)
-                        )
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 2)
+                    )
                     .onTapGesture {
                         self.presentingModal = true
                     }
@@ -69,10 +70,10 @@ struct AddExpenseView : View{
                     Image("date", bundle: nil)
                         .renderingMode(.template)
                     TextField(getFormattedDate(), text: .constant(""))
-                                   .onTapGesture {
-                                       self.presentingDatePicker.toggle()
-                                   }
-                                   .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onTapGesture {
+                            self.presentingDatePicker.toggle()
+                        }
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 .padding(.vertical)
                 if presentingDatePicker {
@@ -86,33 +87,36 @@ struct AddExpenseView : View{
                         
                     }
                 }
-                    Spacer()
-                    
-                        .navigationBarItems(trailing: Button("Save") {
-                            let newExpense = Expense(amount: Double(amount) ?? 0, category: expenseType, description: description.isEmpty ? nil : description, date: selectedDate) // Assuming description is not implemented in the UI
-                                        onSave(newExpense) // Call the closure to save the expense
-                                        isAddExpense = false // Dismiss the AddExpenseView
-                                    })
-                    
-                }
-                .padding(.horizontal, 8)
-                .navigationBarTitleDisplayMode(.inline)
+                Spacer()
+                
+                    .navigationBarItems(trailing: Button("Save") {
+                        let newExpense = Expense(amount: Double(amount) ?? 0, category: expenseType, description: description.isEmpty ? nil : description, date: selectedDate) // Assuming description is not implemented in the UI
+                        
+                        expenseService.addExpense(expense: newExpense) { int in
+                            onSave(newExpense) // Call the closure to save the expense
+                            isAddExpense = false // Dismiss the AddExpenseView
+                        }
+                    })
+                
+            }
+            .padding(.horizontal, 8)
+            .navigationBarTitleDisplayMode(.inline)
         }
         .padding()
     }
     
     private func getFormattedDate() -> String {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            return formatter.string(from: selectedDate)
-        }
-}
-
-struct AddExpense_PV : PreviewProvider {
-    static var previews: some View
-    {
-        AddExpenseView(isAddExpense: .constant(true)) {_ in 
-            
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: selectedDate)
     }
 }
+
+//struct AddExpense_PV : PreviewProvider {
+//    static var previews: some View
+//    {
+//        AddExpenseView(isAddExpense: .constant(true)) {_ in
+//
+//        }
+//    }
+//}

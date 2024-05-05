@@ -50,3 +50,36 @@ enum ExpenseCategory : String, CaseIterable, Identifiable{
     case utilities
     case none
 }
+
+extension ExpenseCategory {
+    init?(stringValue: String) {
+            switch stringValue {
+            case ExpenseCategory.clothing.rawValue:
+                self = .clothing
+            case ExpenseCategory.diningOut.rawValue:
+                self = .diningOut
+            case ExpenseCategory.education.rawValue:
+                self = .education
+            case ExpenseCategory.entertainment.rawValue:
+                self = .entertainment
+            case ExpenseCategory.groceries.rawValue:
+                self = .groceries
+            case ExpenseCategory.healthcare.rawValue:
+                self = .healthcare
+            case ExpenseCategory.housing.rawValue:
+                self = .housing
+            case ExpenseCategory.miscellaneous.rawValue:
+                self = .miscellaneous
+            case ExpenseCategory.savings.rawValue:
+                self = .savings
+            case ExpenseCategory.transportation.rawValue:
+                self = .transportation
+            case ExpenseCategory.utilities.rawValue:
+                self = .utilities
+            case ExpenseCategory.none.rawValue:
+                self = .none
+            default:
+                return nil
+            }
+        }
+}

@@ -24,15 +24,10 @@ struct ExpenseListView : View {
     @State var addExpense : Bool = false
     @State var addFilter : Bool = false
     @State var filterCount : Int = 0
-    @State var expenses : [Expense] = [
-        Expense(amount: 100, category: .miscellaneous, description: "Bike Petrol", date: Date()),
-        Expense(amount: 3000, category: .education, description: "DSA Books Purchased."),
-        Expense(amount: 100, category: .miscellaneous, description: nil),
-        Expense(amount: 37.63, category: .healthcare, description: "Paracetamol"),
-        Expense(amount: 200, category: .transportation, description: "Fuel"),
-        Expense(amount: 10000, category: .housing, description: "Bike Petrol", date: Date())
-        
-    ]
+    
+    @ObservedObject var viewModel : ExpenseListViewModel
+    
+    
     @State var filteredExpenses : [Expense] = []
     var body: some View {
         NavigationView {
@@ -67,7 +62,7 @@ struct ExpenseListView : View {
                     }
                 }
                 else {
-                    if expenses.isEmpty {
+                    if viewModel.expenses.isEmpty {
                         Image("emptyView", bundle: nil)
                             .resizable()
                             .renderingMode(.template)
@@ -95,7 +90,7 @@ struct ExpenseListView : View {
                             NavigationView {
                                 
                                 AddExpenseView(isAddExpense: $addExpense) { newExpense in
-                                    expenses.append(newExpense)
+                                    viewModel.expenses.append(newExpense)
                                 }
                                 .navigationTitle("Add Expense")
                             }
@@ -103,7 +98,7 @@ struct ExpenseListView : View {
                     }
                     else {
                         List {
-                            ForEach(expenses, id: \.id) { expense in
+                            ForEach(viewModel.expenses, id: \.id) { expense in
                                 ExpenseRow(expense: expense)
                                     .swipeActions {
                                         Button(role: .destructive) {
@@ -126,7 +121,7 @@ struct ExpenseListView : View {
                         HStack {
                             Text("Total:")
                                 .font(.title2)
-                            Text(expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
+                            Text(viewModel.expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
                                 .font(.title2)
                                 .padding(.leading, 8)
                             
@@ -137,7 +132,7 @@ struct ExpenseListView : View {
                 }
             }
             .toolbar {
-                if !expenses.isEmpty {
+                if !viewModel.expenses.isEmpty {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
                             Button(action: {
@@ -168,7 +163,7 @@ struct ExpenseListView : View {
             .sheet(isPresented: $addExpense, content: {
                 NavigationView {
                     AddExpenseView(isAddExpense: $addExpense) { newExpense in
-                        expenses.append(newExpense)
+                        viewModel.expenses.append(newExpense)
                     }
                     .navigationTitle("Add Expense")
                 }
@@ -200,7 +195,7 @@ struct ExpenseListView : View {
                     if filterCount == 2{
                         var newValues = [Expense]()
                         
-                        newValues = expenses.filter { comparison in
+                        newValues = viewModel.expenses.filter { comparison in
                             switch comparisonType {
                             case .greaterThan:
                                 return comparison.amount > Double(comparisonValue)!
@@ -233,7 +228,7 @@ struct ExpenseListView : View {
                         if filterByExpense && !comparisonValue.isEmpty {
                             
                             
-                            newValues = expenses.filter { comparison in
+                            newValues = viewModel.expenses.filter { comparison in
                                 switch comparisonType {
                                 case .greaterThan:
                                     return comparison.amount > Double(comparisonValue)!
@@ -252,14 +247,14 @@ struct ExpenseListView : View {
                         else {
                         
                             if expenseType != .none {
-                                newValues = expenses.filter {
+                                newValues = viewModel.expenses.filter {
                                     item in
                                     
                                     item.category == expenseType
                                 }
                             }
                             else {
-                                newValues = expenses
+                                newValues = viewModel.expenses
                             }
                             
                             print(newValues.count)
@@ -280,13 +275,13 @@ struct ExpenseListView : View {
                 if let index = filteredExpenses.firstIndex(where: { $0.id == expense.id }) {
                     filteredExpenses.remove(at: index)
                 }
-                if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                    expenses.remove(at: index)
+                if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
+                    viewModel.expenses.remove(at: index)
                 }
             }
             else {
-                if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                    expenses.remove(at: index)
+                if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
+                    viewModel.expenses.remove(at: index)
                 }
             }
         }
@@ -329,21 +324,13 @@ struct ExpenseRow : View {
             }
         }
     }
-    
-    func formattedDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-
-        return dateFormatter.string(from: date)
-    }
-    
 }
 
-struct ExpenseListView_PV : PreviewProvider {
-    static var previews: some View {
-        ExpenseListView()
-    }
-}
+//struct ExpenseListView_PV : PreviewProvider {
+//    static var previews: some View {
+//        ExpenseListView()
+//    }
+//}
 
 
 struct CustomLabel: View {

@@ -32,11 +32,8 @@ class StartPoint {
 
         }
         
-
-        DatabaseHelper.createOrUseExistingSQLiteFile()
-        let contentView = ExpenseListView()
-        
-        return contentView
+        DatabaseHelper.shared.createOrUseExistingSQLiteFile()
+        return ExpenseAssembler.getExpenseListView()
     }
     
 //    static func configureHomeNotesListPage() -> NotesListView {

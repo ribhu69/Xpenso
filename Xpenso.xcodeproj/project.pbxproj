@@ -24,11 +24,19 @@
 		A27DFEC42BE677A50054D092 /* ComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEC32BE677A50054D092 /* ComparisonView.swift */; };
 		A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFEC52BE677C50054D092 /* Comparison.swift */; };
 		A27DFEC92BE6B7730054D092 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = A27DFEC82BE6B7730054D092 /* SQLite */; };
-		A27DFED02BE6BA440054D092 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */; };
+		A27DFED02BE6BA440054D092 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFECF2BE6BA440054D092 /* DatabaseHelper.swift */; };
 		A27DFED22BE6BBFD0054D092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED12BE6BBFD0054D092 /* AppDelegate.swift */; };
 		A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED32BE6BC160054D092 /* SceneDelegate.swift */; };
 		A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED52BE6BC530054D092 /* Startpoint.swift */; };
 		A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFED72BE6BC7E0054D092 /* AppDefaults.swift */; };
+		A2F170E82BE76F520000E321 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170E72BE76F520000E321 /* Logger.swift */; };
+		A2F170ED2BE773FE0000E321 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EC2BE773FE0000E321 /* ExpenseService.swift */; };
+		A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EF2BE774790000E321 /* AddExpensePresenter.swift */; };
+		A2F170F42BE775820000E321 /* ExpenseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170F32BE775820000E321 /* ExpenseDB.swift */; };
+		A2F170F72BE785860000E321 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170F62BE785860000E321 /* DateExtensions.swift */; };
+		A2F170FA2BE7CFA40000E321 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */; };
+		A2F170FD2BE7CFE90000E321 /* ExpenseAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170FC2BE7CFE90000E321 /* ExpenseAssembler.swift */; };
+		A2F170FF2BE7D0C50000E321 /* ExpenseListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,12 +57,20 @@
 		A27DFEC12BE65F6C0054D092 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		A27DFEC32BE677A50054D092 /* ComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonView.swift; sourceTree = "<group>"; };
 		A27DFEC52BE677C50054D092 /* Comparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparison.swift; sourceTree = "<group>"; };
-		A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		A27DFECF2BE6BA440054D092 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		A27DFED12BE6BBFD0054D092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A27DFED32BE6BC160054D092 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A27DFED52BE6BC530054D092 /* Startpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startpoint.swift; sourceTree = "<group>"; };
 		A27DFED72BE6BC7E0054D092 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		A2F170E52BE6C3750000E321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A2F170E72BE76F520000E321 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		A2F170EC2BE773FE0000E321 /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
+		A2F170EF2BE774790000E321 /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
+		A2F170F32BE775820000E321 /* ExpenseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDB.swift; sourceTree = "<group>"; };
+		A2F170F62BE785860000E321 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
+		A2F170FC2BE7CFE90000E321 /* ExpenseAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAssembler.swift; sourceTree = "<group>"; };
+		A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +105,12 @@
 		A27DFE9A2BE5EAB20054D092 /* Xpenso */ = {
 			isa = PBXGroup;
 			children = (
+				A2F170FB2BE7CFD90000E321 /* Assemblers */,
+				A2F170F82BE7CF970000E321 /* ViewModels */,
+				A2F170F52BE7857D0000E321 /* Extensions */,
+				A2F170EE2BE7746C0000E321 /* Presenter */,
+				A2F170EB2BE773F00000E321 /* Backend */,
+				A2F170E62BE76F4A0000E321 /* Logger */,
 				A2F170E52BE6C3750000E321 /* Info.plist */,
 				A27DFECE2BE6BA360054D092 /* Database */,
 				A27DFEC02BE65F570054D092 /* Components */,
@@ -157,9 +179,67 @@
 		A27DFECE2BE6BA360054D092 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				A27DFECF2BE6BA440054D092 /* DatabaseHandler.swift */,
+				A2F170F22BE775750000E321 /* Models */,
+				A27DFECF2BE6BA440054D092 /* DatabaseHelper.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		A2F170E62BE76F4A0000E321 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170E72BE76F520000E321 /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		A2F170EB2BE773F00000E321 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170EC2BE773FE0000E321 /* ExpenseService.swift */,
+				A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		A2F170EE2BE7746C0000E321 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170EF2BE774790000E321 /* AddExpensePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2F170F22BE775750000E321 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170F32BE775820000E321 /* ExpenseDB.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A2F170F52BE7857D0000E321 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170F62BE785860000E321 /* DateExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A2F170F82BE7CF970000E321 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A2F170FB2BE7CFD90000E321 /* Assemblers */ = {
+			isa = PBXGroup;
+			children = (
+				A2F170FC2BE7CFE90000E321 /* ExpenseAssembler.swift */,
+			);
+			path = Assemblers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2F170FF2BE7D0C50000E321 /* ExpenseListService.swift in Sources */,
+				A2F170F72BE785860000E321 /* DateExtensions.swift in Sources */,
+				A2F170ED2BE773FE0000E321 /* ExpenseService.swift in Sources */,
+				A2F170E82BE76F520000E321 /* Logger.swift in Sources */,
 				A27DFEC22BE65F6C0054D092 /* RadioButton.swift in Sources */,
-				A27DFED02BE6BA440054D092 /* DatabaseHandler.swift in Sources */,
+				A27DFED02BE6BA440054D092 /* DatabaseHelper.swift in Sources */,
 				A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */,
 				A27DFED22BE6BBFD0054D092 /* AppDelegate.swift in Sources */,
 				A27DFEC42BE677A50054D092 /* ComparisonView.swift in Sources */,
@@ -249,12 +333,16 @@
 				A27DFEAE2BE5ED9B0054D092 /* ExpenseCategoryView.swift in Sources */,
 				A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */,
 				A27DFEAA2BE5EADB0054D092 /* AddExpense.swift in Sources */,
+				A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */,
+				A2F170FA2BE7CFA40000E321 /* ExpenseListViewModel.swift in Sources */,
 				A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */,
 				A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */,
 				A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */,
+				A2F170FD2BE7CFE90000E321 /* ExpenseAssembler.swift in Sources */,
 				A27DFEBF2BE650620054D092 /* Readme.md in Sources */,
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,
 				A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */,
+				A2F170F42BE775820000E321 /* ExpenseDB.swift in Sources */,
 				A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */,
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
 				A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */,
