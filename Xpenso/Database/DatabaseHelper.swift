@@ -91,7 +91,7 @@ class DatabaseHelper {
                 Logger.log(.info, "Database Connection found to be nil.")
                 return
             }
-            try database.run(ExpenseDB.users.create { t in
+            try database.run(ExpenseDB.table.create { t in
                 t.column(ExpenseDB.id, primaryKey: true)
                 t.column(ExpenseDB.amount)
                 t.column(ExpenseDB.description)
@@ -99,6 +99,21 @@ class DatabaseHelper {
                 t.column(ExpenseDB.category)
             })
             
+//            let users = Table("users")
+//            let id = Expression<Int64>("id")
+//            let email = Expression<String>("email")
+//            let balance = Expression<Double>("balance")
+//            let verified = Expression<Bool>("verified")
+//            let name = Expression<String?>("name")
+//
+//            
+//            try database.run(users.create { t in     // CREATE TABLE "users" (
+//                t.column(id, primaryKey: true) //     "id" INTEGER PRIMARY KEY NOT NULL,
+//                t.column(email, unique: true)  //     "email" TEXT UNIQUE NOT NULL,
+//                t.column(name)                 //     "name" TEXT
+//            })                                 // )
+//            
+//            let alice = users.filter(id == 1)
 
         }
         catch {

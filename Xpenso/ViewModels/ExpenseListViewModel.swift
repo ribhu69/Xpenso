@@ -12,6 +12,7 @@ class ExpenseListViewModel : ObservableObject {
     
     var expenseListService: ExpenseListService
     @Published var expenses : [Expense] = []
+    @Published var filteredExpenses : [Expense] = []
     
     init(expenseListService: ExpenseListService) {
         self.expenseListService = expenseListService
@@ -22,5 +23,9 @@ class ExpenseListViewModel : ObservableObject {
         if let expenseList = expenseListService.getExpenses() {
            expenses = expenseList
         }
+    }
+    
+    func deleteExpense(expense: Expense) -> Bool {
+        expenseListService.deleteExpense(expense: expense)
     }
 }

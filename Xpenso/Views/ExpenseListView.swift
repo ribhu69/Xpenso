@@ -280,8 +280,10 @@ struct ExpenseListView : View {
                 }
             }
             else {
-                if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
-                    viewModel.expenses.remove(at: index)
+                if viewModel.deleteExpense(expense: expense) {
+                    if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
+                        viewModel.expenses.remove(at: index)
+                    }
                 }
             }
         }

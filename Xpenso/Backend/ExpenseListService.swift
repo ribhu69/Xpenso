@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SQLite
 
 protocol ExpenseListService : AnyObject {
     func getExpenses() -> [Expense]?
+    func deleteExpense(expense: Expense) -> Bool
 }
 
 final class ExpenseListServiceImpl : ExpenseListService {
@@ -38,5 +40,32 @@ final class ExpenseListServiceImpl : ExpenseListService {
             Logger.log(.fault, "Issue with fetch")
             return nil
         }
+    }
+    
+    func deleteExpense(expense: Expense) -> Bool {
+        guard let connection = DatabaseHelper.shared.getDatabaseInstance() else {
+            Logger.log(.fault, "Connection Failed")
+            return false
+        }
+        
+        do {
+            let table = ExpenseDB.table
+            let filter = ExpenseDB.table.filter(ExpenseDB.id == expense.id.uuidString)
+            
+            if try connection.run(filter.delete()) > 0 {
+                Logger.log(.info, "Delete successful")
+                return true
+            }
+            else {
+                Logger.log(.error, "Delete not successful")
+                return false
+            }
+        }
+        catch {
+            Logger.log(.error, "Error deleting expense")
+            return false
+        }
+        
+       
     }
 }

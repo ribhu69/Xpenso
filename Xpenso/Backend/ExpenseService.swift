@@ -27,7 +27,7 @@ class ExpenseServiceImpl : ExpenseService {
         }
         
         do {
-            let rowid = try connection.run(ExpenseDB.users.insert(
+            let rowid = try connection.run(ExpenseDB.table.insert(
                 ExpenseDB.amount <- expense.amount,
                 ExpenseDB.id <- "\(expense.id)",
                 ExpenseDB.description <- expense.description ?? "", // Use nil coalescing to handle nil description
