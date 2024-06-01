@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct AddExpenseView : View{
     
@@ -84,19 +85,22 @@ struct AddExpenseView : View{
                             .onChange(of: selectedDate, { _, _ in
                                 presentingDatePicker.toggle()
                             })
-                        
+                            
                     }
                 }
                 Spacer()
                 
                     .navigationBarItems(trailing: Button("Save") {
+                        
                         let newExpense = Expense(amount: Double(amount) ?? 0, category: expenseType, description: description.isEmpty ? nil : description, date: selectedDate) // Assuming description is not implemented in the UI
                         
                         expenseService.addExpense(expense: newExpense) { int in
                             onSave(newExpense) // Call the closure to save the expense
                             isAddExpense = false // Dismiss the AddExpenseView
                         }
-                    })
+                    }
+                        .disabled(amount.isEmpty)
+                    )
                 
             }
             .padding(.horizontal, 8)
@@ -112,11 +116,15 @@ struct AddExpenseView : View{
     }
 }
 
-//struct AddExpense_PV : PreviewProvider {
-//    static var previews: some View
-//    {
+struct AddExpense_PV : PreviewProvider {
+    static var previews: some View
+    {
 //        AddExpenseView(isAddExpense: .constant(true)) {_ in
-//
+//            
 //        }
-//    }
-//}
+        
+        AddExpenseView(isAddExpense: .constant(true), presentingModal: true) { _ in
+            //
+        }
+    }
+}

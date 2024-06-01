@@ -16,9 +16,13 @@ func formattedDate(date: Date) -> String {
 }
 
 func dateFromString(_ dateString: String) -> Date? {
+    
+    
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMM d, yyyy"
-    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Set locale to ensure consistent date parsing
-
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    dateFormatter.timeZone = TimeZone.current
+    dateFormatter.locale = Locale.current
     return dateFormatter.date(from: dateString)
 }
+
+

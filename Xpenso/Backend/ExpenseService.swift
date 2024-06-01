@@ -27,12 +27,17 @@ class ExpenseServiceImpl : ExpenseService {
         }
         
         do {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = expense.date ?? Date()
+            
+            
             let rowid = try connection.run(ExpenseDB.table.insert(
                 ExpenseDB.amount <- expense.amount,
                 ExpenseDB.id <- "\(expense.id)",
-                ExpenseDB.description <- expense.description ?? "", // Use nil coalescing to handle nil description
-                ExpenseDB.category <- expense.category.rawValue, // Use nil coalescing to handle nil description
-                ExpenseDB.date <- formattedDate(date: expense.date ?? Date()) // Use nil coalescing and default value for date
+                ExpenseDB.description <- expense.description ?? "",
+                ExpenseDB.category <- expense.category.rawValue,
+                ExpenseDB.date <- dateFormatter.string(from: date)
             ))
             Logger.log(.info, "Expense Added SuccesFully")
             completion(rowid)
@@ -40,9 +45,38 @@ class ExpenseServiceImpl : ExpenseService {
         catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("constraint failed: \(message), in \(String(describing: statement))")
         } catch let error {
-            Logger.log(.error, "ExpenseServiceImpl issue in Add Expense ")
+            Logger.log(.error, "ExpenseServiceImpl issue in Add Expense -> \(error)")
             completion(nil)
         }
     }
-
+    
+    func getExpenses() async throws -> [Expense] {
+        guard let connection = DatabaseHelper.shared.getDatabaseInstance() else {
+            Logger.log(.error, "Connection Missing")
+            return []
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        var expenses = [Expense]()
+        
+        do {
+            for expense in try connection.prepare(ExpenseDB.table) {
+                expenses.append(
+                    Expense(
+                        id: UUID(uuidString: try expense.get(ExpenseDB.id))!,
+                        amount: try expense.get(ExpenseDB.amount),
+                        category: ExpenseCategory(rawValue: try expense.get(ExpenseDB.category))!,
+                        description: try expense.get(ExpenseDB.description),
+                        date: dateFormatter.date(from: try expense.get(ExpenseDB.date)) ?? Date()
+                    )
+                )
+            }
+            return expenses
+        }
+        catch{
+            throw error
+        }
+    }
 }

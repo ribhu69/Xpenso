@@ -85,6 +85,7 @@ struct ExpenseListView : View {
                                     .foregroundStyle(Color.clear)
                                 
                             }
+                            
                         }
                         .sheet(isPresented: $addExpense, content: {
                             NavigationView {
@@ -144,6 +145,7 @@ struct ExpenseListView : View {
                                     Image("filter")
                                         .renderingMode(.template)
                                 }
+                            
                                 
                             }
                             Button(action: {
