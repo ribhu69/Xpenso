@@ -23,6 +23,7 @@ struct ExpenseListView : View {
     
     @State var addExpense : Bool = false
     @State var addFilter : Bool = false
+    @State var showGraph : Bool = false
     @State var filterCount : Int = 0
     
     @ObservedObject var viewModel : ExpenseListViewModel
@@ -134,6 +135,17 @@ struct ExpenseListView : View {
                 if !viewModel.expenses.isEmpty {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
+                            
+                            Button(action: {
+                                showGraph = true
+                            }) {
+                                
+                                    Image("charts")
+                                        .renderingMode(.template)
+                                
+                            }
+                            
+                            
                             Button(action: {
                                 addFilter = true
                             }) {
@@ -145,8 +157,6 @@ struct ExpenseListView : View {
                                     Image("filter")
                                         .renderingMode(.template)
                                 }
-                            
-                                
                             }
                             Button(action: {
                                 addExpense = true
@@ -159,6 +169,12 @@ struct ExpenseListView : View {
                     }
                 }
             }
+            
+            .sheet(isPresented: $showGraph, content: {
+                NavigationView {
+                    ChartView(expenses: viewModel.expenses)
+                }
+            })
             
             .sheet(isPresented: $addExpense, content: {
                 NavigationView {

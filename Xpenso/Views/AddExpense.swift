@@ -82,11 +82,22 @@ struct AddExpenseView : View{
                         DatePicker("", selection: $selectedDate, displayedComponents: .date)
                             .datePickerStyle(.graphical)
                             .transition(.move(edge: .bottom))
+                            
                             .onChange(of: selectedDate, { _, _ in
                                 presentingDatePicker.toggle()
                             })
                             
                     }
+                }
+                
+                HStack {
+                    Image("date", bundle: nil)
+                        .renderingMode(.template)
+                    TextField(getFormattedDate(), text: .constant(""))
+                        .onTapGesture {
+                            self.presentingDatePicker.toggle()
+                        }
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 Spacer()
                 
@@ -123,7 +134,7 @@ struct AddExpense_PV : PreviewProvider {
 //            
 //        }
         
-        AddExpenseView(isAddExpense: .constant(true), presentingModal: true) { _ in
+        AddExpenseView(isAddExpense: .constant(true), presentingModal: false) { _ in
             //
         }
     }

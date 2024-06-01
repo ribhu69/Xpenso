@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Charts
 
 enum ExpenseCategory : String, CaseIterable, Identifiable{
     var id: String { return self.rawValue }
@@ -82,4 +83,8 @@ extension ExpenseCategory {
                 return nil
             }
         }
+}
+
+extension ExpenseCategory : Plottable {
+    
 }

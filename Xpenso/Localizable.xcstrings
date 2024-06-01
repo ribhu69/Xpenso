@@ -135,6 +135,16 @@
         }
       }
     },
+    "Expense Chart" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "व्यय चार्ट"
+          }
+        }
+      }
+    },
     "Filter By" : {
       "localizations" : {
         "hi" : {
@@ -326,6 +336,12 @@
         }
       }
     },
+    "Search" : {
+
+    },
+    "Search Something" : {
+
+    },
     "Select Expense Type" : {
       "localizations" : {
         "en" : {
@@ -338,6 +354,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "व्यय प्रकार चुनें"
+          }
+        }
+      }
+    },
+    "The following data shows category based segregation of your expenses" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निम्नलिखित डेटा आपके व्यय का श्रेणी आधारित पृथक्करण दर्शाता है"
           }
         }
       }

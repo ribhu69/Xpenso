@@ -11,6 +11,7 @@ import Combine
 class ExpenseListViewModel : ObservableObject {
     
     var expenseListService: ExpenseListService
+//    @Published var expenses : [Expense] = []
     @Published var expenses : [Expense] = []
     @Published var filteredExpenses : [Expense] = []
     
@@ -20,9 +21,10 @@ class ExpenseListViewModel : ObservableObject {
     }
     
     func getExpenses() {
-        if let expenseList = expenseListService.getExpenses() {
-           expenses = expenseList
-        }
+//        if let expenseList = expenseListService.getExpenses() {
+//           expenses = expenseList
+//        }
+        expenses = Expense.sampleExpenses
     }
     
     func deleteExpense(expense: Expense) -> Bool {
