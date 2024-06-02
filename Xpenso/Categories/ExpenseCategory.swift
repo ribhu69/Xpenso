@@ -7,6 +7,7 @@
 
 import Foundation
 import Charts
+import SwiftUI
 
 enum ExpenseCategory : String, CaseIterable, Identifiable{
     var id: String { return self.rawValue }
@@ -37,6 +38,38 @@ enum ExpenseCategory : String, CaseIterable, Identifiable{
         case .none:
             return "none"
         }
+    }
+    var dynamicColor: DynamicColor {
+            switch self {
+            case .clothing:
+                return DynamicColor(lightHex: "#FF5733", darkHex: "#CC4626") // Orange / Darker Orange
+            case .diningOut:
+                return DynamicColor(lightHex: "#C70039", darkHex: "#99002B") // Red / Darker Red
+            case .education:
+                return DynamicColor(lightHex: "#900C3F", darkHex: "#70082F") // Dark Red / Darker Dark Red
+            case .entertainment:
+                return DynamicColor(lightHex: "#FFC300", darkHex: "#CC9A00") // Yellow / Darker Yellow
+            case .groceries:
+                return DynamicColor(lightHex: "#DAF7A6", darkHex: "#A9D98B") // Light Green / Darker Light Green
+            case .healthcare:
+                return DynamicColor(lightHex: "#FF5733", darkHex: "#CC4626") // Coral / Darker Coral
+            case .housing:
+                return DynamicColor(lightHex: "#581845", darkHex: "#3F1133") // Dark Purple / Darker Dark Purple
+            case .miscellaneous:
+                return DynamicColor(lightHex: "#2ECC71", darkHex: "#27A55A") // Green / Darker Green
+            case .savings:
+                return DynamicColor(lightHex: "#1ABC9C", darkHex: "#12897E") // Teal / Darker Teal
+            case .transportation:
+                return DynamicColor(lightHex: "#3498DB", darkHex: "#2874A6") // Blue / Darker Blue
+            case .utilities:
+                return DynamicColor(lightHex: "#9B59B6", darkHex: "#784796") // Purple / Darker Purple
+            case .none:
+                return DynamicColor(lightHex: "#BDC3C7", darkHex: "#8A9A9F") // Silver / Darker Silver
+            }
+        }
+        
+    func color(for scheme: ColorScheme) -> Color {
+        return dynamicColor.color(for: scheme)
     }
     case clothing
     case diningOut

@@ -12,7 +12,7 @@ class StartPoint {
     
     
 //    static func initialize() -> NotesListView {
-    static func initialize() -> ExpenseListView {
+    static func initialize() -> ExpenseTabBar {
         
         guard let currentAppVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             fatalError("App Version or build version does not exist.")
@@ -33,7 +33,7 @@ class StartPoint {
         }
         
         DatabaseHelper.shared.createOrUseExistingSQLiteFile()
-        return ExpenseAssembler.getExpenseListView()
+        return ExpenseAssembler.getTabBar()
     }
     
 //    static func configureHomeNotesListPage() -> NotesListView {

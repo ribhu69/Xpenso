@@ -89,16 +89,7 @@ struct AddExpenseView : View{
                             
                     }
                 }
-                
-                HStack {
-                    Image("date", bundle: nil)
-                        .renderingMode(.template)
-                    TextField(getFormattedDate(), text: .constant(""))
-                        .onTapGesture {
-                            self.presentingDatePicker.toggle()
-                        }
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+              
                 Spacer()
                 
                     .navigationBarItems(trailing: Button("Save") {

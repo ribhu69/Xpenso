@@ -33,11 +33,14 @@ struct ExpenseCategoryView : View {
 }
 
 struct ExpenseCategoryRow : View {
+    @Environment(\.colorScheme) var colorScheme
+
     var expense: ExpenseCategory
     var body: some View {
         HStack {
             Image(expense.rawValue, bundle: nil)
                 .renderingMode(.template)
+                .foregroundStyle(expense.color(for: colorScheme))
             Text(expense.itemName)
         }
         .padding(.vertical, 8)

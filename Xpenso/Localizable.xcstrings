@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%@" : {
-
-    },
     "Add Expense" : {
       "localizations" : {
         "hi" : {
@@ -191,6 +188,9 @@
           }
         }
       }
+    },
+    "Hang in there slick!! Our devs are working on this :)" : {
+
     },
     "healthcare" : {
       "extractionState" : "manual",

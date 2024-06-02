@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ExpenseListView : View {
-    
+    @Environment(\.colorScheme) var colorScheme
+
     
     @State var filterByCategory = false
     @State var isCategorySelectorVisible = false
@@ -324,48 +325,61 @@ struct ExpenseListView : View {
 }
 
 struct ExpenseRow : View {
+    @Environment(\.colorScheme) var colorScheme
+
     var expense: Expense
     var body: some View {
-        VStack(alignment: .leading) {
-            if let date = expense.date {
-                HStack {
-                    Text(expense.amount, format: .currency(code: "INR"))
-                        .font(.title2)
-                    Spacer()
-                    Text(formattedDate(date: date))
-                        .font(.body)
-                    
-                }
-            }
-            else {
-                Text(expense.amount, format: .currency(code: "INR"))
-                    .font(.title2)
-            }
-            
-            HStack {
-                Image(expense.category.rawValue, bundle: nil)
-                    .renderingMode(.template)
-                Text("\(expense.category.itemName)")
-                    .lineLimit(2)
-                    .font(.title2)
-                    .foregroundStyle(Color(uiColor: .lightGray))
+        
+        HStack {
+            VStack(alignment: .leading) {
                 
+                Text(expense.amount, format: .currency(code: "INR"))
+                    .font(.title)
+                if let description = expense.description {
+                    Text(description)
+                        .font(.body)
+                        .foregroundStyle(Color(uiColor: .lightGray))
+                }
+                if let date = expense.date {
+            
+                    HStack {
+                      
+                        Image(expense.category.rawValue, bundle: nil)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                            .foregroundStyle(expense.category.color(for: colorScheme))
+                        
+                        Image("dot", bundle:nil)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .rotationEffect(.degrees(90))
+                            .foregroundStyle(Color.secondary)
+                        
+                        Image("calender", bundle: nil)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                            .foregroundStyle(Color.secondary)
+                        
+                        Text(formattedDate(date: date))
+                            .font(.body)
+                            .foregroundStyle(Color.secondary)
+                      
+
+                    }
+               }
             }
-            .padding(.bottom, 8)
-            if let description = expense.description {
-                Text(description)
-                    .font(.body)
-                    .foregroundStyle(Color(uiColor: .systemGray2))
-            }
+                Spacer()
         }
     }
 }
 
-//struct ExpenseListView_PV : PreviewProvider {
-//    static var previews: some View {
-//        ExpenseListView()
-//    }
-//}
+#Preview {
+    ExpenseRow(expense: Expense.sampleExpenses[0])
+}
+
 
 
 struct CustomLabel: View {
