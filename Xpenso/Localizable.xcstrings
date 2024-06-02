@@ -190,7 +190,14 @@
       }
     },
     "Hang in there slick!! Our devs are working on this :)" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चुपचाप वहीं डटे रहो!! हमारे डेवलपर इस पर काम कर रहे हैं :)"
+          }
+        }
+      }
     },
     "healthcare" : {
       "extractionState" : "manual",
