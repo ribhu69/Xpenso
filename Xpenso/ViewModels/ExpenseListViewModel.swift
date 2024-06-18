@@ -1,5 +1,5 @@
 //
-//  ExpenseListViewModel.swift
+//  BudgetViewModel.swift
 //  Xpenso
 //
 //  Created by Arkaprava Ghosh on 05/05/24.
@@ -8,26 +8,25 @@
 import Foundation
 import Combine
 
-class ExpenseListViewModel : ObservableObject {
+class BudgetViewModel : ObservableObject {
     
-    var expenseListService: ExpenseListService
-//    @Published var expenses : [Expense] = []
-    @Published var expenses : [Expense] = []
-    @Published var filteredExpenses : [Expense] = []
+    var budgetService: BudgetService
+    @Published var budget : [Budget] = []
     
-    init(expenseListService: ExpenseListService) {
-        self.expenseListService = expenseListService
-        getExpenses()
+    init(budgetService: BudgetService) {
+        self.budgetService = budgetService
+        getBudgets()
     }
     
-    func getExpenses() {
-//        if let expenseList = expenseListService.getExpenses() {
-//           expenses = expenseList
-//        }
-        expenses = Expense.sampleExpenses
+    func getBudgets() {
+        budget = budgetService.getBudgets()
     }
     
-    func deleteExpense(expense: Expense) -> Bool {
-        expenseListService.deleteExpense(expense: expense)
+    func addBudget(budget: Budget) {
+        budgetService.addBudget(budget: budget)
     }
+    
+//    func deleteExpense(expense: Expense) -> Bool {
+//        expenseListService.deleteExpense(expense: expense)
+//    }
 }

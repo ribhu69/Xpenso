@@ -33,7 +33,9 @@
 		A2C1A3E02C0B8311001E976C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3DF2C0B8311001E976C /* ChartView.swift */; };
 		A2C1A3E22C0C57BF001E976C /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E12C0C57BF001E976C /* ColorExtensions.swift */; };
 		A2C1A3E42C0CD8B7001E976C /* ExpenseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */; };
-		A2C1A3E62C0CD9E8001E976C /* Kalimba.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E52C0CD9E8001E976C /* Kalimba.swift */; };
+		A2C1A3E62C0CD9E8001E976C /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */; };
+		A2C1A3E92C0CEA29001E976C /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */; };
+		A2F04ADD2C1232880014BB05 /* AddBudgetViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F04ADC2C1232880014BB05 /* AddBudgetViewX.swift */; };
 		A2F170E82BE76F520000E321 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170E72BE76F520000E321 /* Logger.swift */; };
 		A2F170ED2BE773FE0000E321 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EC2BE773FE0000E321 /* ExpenseService.swift */; };
 		A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EF2BE774790000E321 /* AddExpensePresenter.swift */; };
@@ -42,6 +44,11 @@
 		A2F170FA2BE7CFA40000E321 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */; };
 		A2F170FD2BE7CFE90000E321 /* ExpenseAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170FC2BE7CFE90000E321 /* ExpenseAssembler.swift */; };
 		A2F170FF2BE7D0C50000E321 /* ExpenseListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */; };
+		A2F192F12C1D871500477014 /* AddMonthlyBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F192F02C1D871500477014 /* AddMonthlyBudgetView.swift */; };
+		A2F193312C21E6C800477014 /* BudgetDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193302C21E6C800477014 /* BudgetDB.swift */; };
+		A2F193332C21E73100477014 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193322C21E73100477014 /* Budget.swift */; };
+		A2F193352C21EA8300477014 /* BudgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193342C21EA8300477014 /* BudgetService.swift */; };
+		A2F193372C22022800477014 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193362C22022800477014 /* BudgetViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +78,9 @@
 		A2C1A3DF2C0B8311001E976C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		A2C1A3E12C0C57BF001E976C /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTabBar.swift; sourceTree = "<group>"; };
-		A2C1A3E52C0CD9E8001E976C /* Kalimba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kalimba.swift; sourceTree = "<group>"; };
+		A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
+		A2F04ADC2C1232880014BB05 /* AddBudgetViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewX.swift; sourceTree = "<group>"; };
 		A2F170E52BE6C3750000E321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A2F170E72BE76F520000E321 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A2F170EC2BE773FE0000E321 /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
@@ -81,6 +90,11 @@
 		A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
 		A2F170FC2BE7CFE90000E321 /* ExpenseAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAssembler.swift; sourceTree = "<group>"; };
 		A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListService.swift; sourceTree = "<group>"; };
+		A2F192F02C1D871500477014 /* AddMonthlyBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonthlyBudgetView.swift; sourceTree = "<group>"; };
+		A2F193302C21E6C800477014 /* BudgetDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDB.swift; sourceTree = "<group>"; };
+		A2F193322C21E73100477014 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		A2F193342C21EA8300477014 /* BudgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetService.swift; sourceTree = "<group>"; };
+		A2F193362C22022800477014 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				A27DFEAF2BE5EDB10054D092 /* Expense.swift */,
+				A2F193322C21E73100477014 /* Budget.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,7 +183,7 @@
 		A27DFEBD2BE64DD00054D092 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A2C1A3E52C0CD9E8001E976C /* Kalimba.swift */,
+				A2C1A3E72C0CEA16001E976C /* Budget */,
 				A27DFEB32BE604E80054D092 /* ExpenseListView.swift */,
 				A27DFE9D2BE5EAB20054D092 /* ContentView.swift */,
 				A27DFEAD2BE5ED9B0054D092 /* ExpenseCategoryView.swift */,
@@ -199,6 +214,25 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		A2C1A3E72C0CEA16001E976C /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				A2F04ADE2C12329D0014BB05 /* AddBudgetOverview */,
+				A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */,
+				A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		A2F04ADE2C12329D0014BB05 /* AddBudgetOverview */ = {
+			isa = PBXGroup;
+			children = (
+				A2F04ADC2C1232880014BB05 /* AddBudgetViewX.swift */,
+				A2F192F02C1D871500477014 /* AddMonthlyBudgetView.swift */,
+			);
+			path = AddBudgetOverview;
+			sourceTree = "<group>";
+		};
 		A2F170E62BE76F4A0000E321 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +246,7 @@
 			children = (
 				A2F170EC2BE773FE0000E321 /* ExpenseService.swift */,
 				A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */,
+				A2F193342C21EA8300477014 /* BudgetService.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -228,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				A2F170F32BE775820000E321 /* ExpenseDB.swift */,
+				A2F193302C21E6C800477014 /* BudgetDB.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +280,7 @@
 		A2F170F82BE7CF970000E321 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A2F193362C22022800477014 /* BudgetViewModel.swift */,
 				A2F170F92BE7CFA40000E321 /* ExpenseListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -346,26 +383,33 @@
 				A2C1A3DE2C0B45E6001E976C /* MapView.swift in Sources */,
 				A27DFED22BE6BBFD0054D092 /* AppDelegate.swift in Sources */,
 				A27DFEC42BE677A50054D092 /* ComparisonView.swift in Sources */,
+				A2F193372C22022800477014 /* BudgetViewModel.swift in Sources */,
 				A2C1A3E22C0C57BF001E976C /* ColorExtensions.swift in Sources */,
+				A2F193312C21E6C800477014 /* BudgetDB.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,
+				A2F193332C21E73100477014 /* Budget.swift in Sources */,
+				A2C1A3E92C0CEA29001E976C /* AddBudgetView.swift in Sources */,
 				A27DFEAE2BE5ED9B0054D092 /* ExpenseCategoryView.swift in Sources */,
 				A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */,
 				A27DFEAA2BE5EADB0054D092 /* AddExpense.swift in Sources */,
 				A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */,
 				A2F170FA2BE7CFA40000E321 /* ExpenseListViewModel.swift in Sources */,
 				A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */,
+				A2F04ADD2C1232880014BB05 /* AddBudgetViewX.swift in Sources */,
 				A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */,
 				A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */,
 				A2F170FD2BE7CFE90000E321 /* ExpenseAssembler.swift in Sources */,
 				A27DFEBF2BE650620054D092 /* Readme.md in Sources */,
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,
+				A2F193352C21EA8300477014 /* BudgetService.swift in Sources */,
 				A2C1A3E42C0CD8B7001E976C /* ExpenseTabBar.swift in Sources */,
+				A2F192F12C1D871500477014 /* AddMonthlyBudgetView.swift in Sources */,
 				A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */,
 				A2F170F42BE775820000E321 /* ExpenseDB.swift in Sources */,
 				A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */,
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
 				A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */,
-				A2C1A3E62C0CD9E8001E976C /* Kalimba.swift in Sources */,
+				A2C1A3E62C0CD9E8001E976C /* BudgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

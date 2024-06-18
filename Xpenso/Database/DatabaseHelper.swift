@@ -81,6 +81,7 @@ class DatabaseHelper {
 
     func createTables() {
         createUsersTable()
+        createBudgetTable()
     }
     
     private func createUsersTable() {
@@ -97,6 +98,29 @@ class DatabaseHelper {
                 t.column(ExpenseDB.description)
                 t.column(ExpenseDB.date)
                 t.column(ExpenseDB.category)
+            })
+        }
+        catch {
+            Logger.log(.error, "Error Creating Users Table")
+        }
+    }
+    
+    private func createBudgetTable() {
+        
+
+        do {
+            guard let database else {
+                Logger.log(.info, "Database Connection found to be nil.")
+                return
+            }
+            try database.run(BudgetDB.table.create { t in
+                t.column(BudgetDB.id, primaryKey: true)
+                t.column(BudgetDB.budgetTitle)
+                t.column(BudgetDB.budgetType)
+                t.column(BudgetDB.startDate)
+                t.column(BudgetDB.endDate)
+                t.column(BudgetDB.amount)
+                
             })
         }
         catch {

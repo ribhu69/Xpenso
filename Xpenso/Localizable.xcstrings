@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%.2f" : {
+
+    },
     "Add Expense" : {
       "localizations" : {
         "hi" : {
@@ -13,6 +16,15 @@
           }
         }
       }
+    },
+    "Add Monthly Budget" : {
+
+    },
+    "Adhoc Budget" : {
+
+    },
+    "Allocated Budget" : {
+
     },
     "Amount" : {
       "localizations" : {
@@ -24,6 +36,12 @@
         }
       }
     },
+    "Budget Title" : {
+
+    },
+    "Budget View" : {
+
+    },
     "Category" : {
       "localizations" : {
         "hi" : {
@@ -33,6 +51,12 @@
           }
         }
       }
+    },
+    "Category budget" : {
+
+    },
+    "Choose a budget type" : {
+
     },
     "clothing" : {
       "extractionState" : "manual",
@@ -50,6 +74,9 @@
           }
         }
       }
+    },
+    "Daily" : {
+
     },
     "Description" : {
       "localizations" : {
@@ -94,6 +121,12 @@
           }
         }
       }
+    },
+    "Enter budget" : {
+
+    },
+    "Enter Title" : {
+
     },
     "entertainment" : {
       "extractionState" : "manual",
@@ -152,6 +185,9 @@
         }
       }
     },
+    "Getting Started" : {
+
+    },
     "Greater Than" : {
       "localizations" : {
         "hi" : {
@@ -190,6 +226,7 @@
       }
     },
     "Hang in there slick!! Our devs are working on this :)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -273,6 +310,15 @@
         }
       }
     },
+    "Month" : {
+
+    },
+    "Monthly" : {
+
+    },
+    "Monthly Budget" : {
+
+    },
     "No Expenses Found" : {
       "localizations" : {
         "hi" : {
@@ -310,6 +356,12 @@
         }
       }
     },
+    "Overall budget" : {
+
+    },
+    "Proceed" : {
+
+    },
     "Save" : {
       "localizations" : {
         "en" : {
@@ -343,12 +395,6 @@
         }
       }
     },
-    "Search" : {
-
-    },
-    "Search Something" : {
-
-    },
     "Select Expense Type" : {
       "localizations" : {
         "en" : {
@@ -364,6 +410,9 @@
           }
         }
       }
+    },
+    "Select Month" : {
+
     },
     "The following data shows category based segregation of your expenses" : {
       "localizations" : {
@@ -428,6 +477,12 @@
           }
         }
       }
+    },
+    "Weekly" : {
+
+    },
+    "Your monthly expenses and savings goals" : {
+
     }
   },
   "version" : "1.0"

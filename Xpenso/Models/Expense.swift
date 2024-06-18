@@ -15,7 +15,7 @@ struct Expense : Identifiable {
     var date: Date?
 }
 
-
+//sample data only
 extension Expense {
     static let sampleExpenses: [Expense] = [
         Expense(amount: 45.0, category: .groceries, description: "Weekly groceries", date: Date()),

@@ -12,6 +12,11 @@ class ExpenseAssembler {
         let expenseService : ExpenseListService = ExpenseListServiceImpl()
         let viewModel = ExpenseListViewModel(expenseListService: expenseService)
         let expenseListView = ExpenseListView(viewModel : viewModel)
-        return ExpenseTabBar(expenseListView: expenseListView)
+        
+        let budgetService : BudgetService = BudgetServiceImpl()
+        let budgetViewModel = BudgetViewModel(budgetService: budgetService)
+        let budgetView = BudgetView(viewModel : budgetViewModel)
+        
+        return ExpenseTabBar(expenseListView: expenseListView, budgetView: budgetView)
     }
 }
