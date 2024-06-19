@@ -13,6 +13,25 @@ enum BudgetType : String, CaseIterable, Identifiable {
     case daily
     case weekly
     case monthly
+    case none
+}
+
+enum BudgetStyle : String, CaseIterable {
+    case periodic
+    case adhoc
+}
+
+extension BudgetStyle {
+    init?(stringValue: String) {
+        switch stringValue {
+        case BudgetStyle.periodic.rawValue:
+            self = .periodic
+        case BudgetStyle.adhoc.rawValue:
+            self = .adhoc
+        default:
+            self = .periodic
+        }
+    }
 }
 
 extension BudgetType {
@@ -26,6 +45,21 @@ extension BudgetType {
             return "Weekly"
         case .monthly:
             return "Monthly"
+        case .none:
+            return "None"
+        }
+    }
+    
+    init?(stringValue: String) {
+        switch stringValue {
+        case BudgetType.weekly.rawValue:
+            self = .weekly
+        case BudgetType.monthly.rawValue:
+            self = .monthly
+        case BudgetType.daily.rawValue:
+            self = .daily
+        default:
+            self = .weekly
         }
     }
 }
@@ -36,6 +70,7 @@ class BudgetDB {
     static let budgetTitle = Expression<String>("budgetTitle")
     static let amount = Expression<Double>("amount")
     static let budgetType = Expression<String?>("budgetType")
+    static let budgetStyle = Expression<String?>("budgetStyle")
     static let startDate = Expression<String>("startDate")
     static let endDate = Expression<String>("endDate")
 

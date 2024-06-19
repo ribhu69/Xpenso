@@ -357,6 +357,7 @@ struct ExpenseRow : View {
                             .rotationEffect(.degrees(90))
                             .foregroundStyle(Color.secondary)
                         
+                        
                         Image("calender", bundle: nil)
                             .renderingMode(.template)
                             .resizable()

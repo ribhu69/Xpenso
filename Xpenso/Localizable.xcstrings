@@ -7,6 +7,12 @@
     "%.2f" : {
 
     },
+    "Add %@ Budget" : {
+
+    },
+    "Add Adhoc Budget" : {
+
+    },
     "Add Expense" : {
       "localizations" : {
         "hi" : {
@@ -16,9 +22,6 @@
           }
         }
       }
-    },
-    "Add Monthly Budget" : {
-
     },
     "Adhoc Budget" : {
 
@@ -316,9 +319,6 @@
     "Monthly" : {
 
     },
-    "Monthly Budget" : {
-
-    },
     "No Expenses Found" : {
       "localizations" : {
         "hi" : {
@@ -356,7 +356,13 @@
         }
       }
     },
+    "None" : {
+
+    },
     "Overall budget" : {
+
+    },
+    "Periodic Budget" : {
 
     },
     "Proceed" : {
@@ -479,6 +485,9 @@
       }
     },
     "Weekly" : {
+
+    },
+    "Your expenses over a period of time." : {
 
     },
     "Your monthly expenses and savings goals" : {

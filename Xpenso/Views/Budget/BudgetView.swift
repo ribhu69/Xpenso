@@ -1,174 +1,280 @@
 import SwiftUI
 
 struct BudgetView : View {
-    @State var showAddBudgetView = false
-    var viewModel : BudgetViewModel
-    @State var monthlyBudgets = [Budget]()
-    @State var adhocBudgets = [Budget]()
+    @State var showPeriodicBudgetView = false
+    @State var showAdhocBudgetView = false
+    @ObservedObject var viewModel : BudgetViewModel
+    
     @State private var addBudget = false
     var body : some View {
         
-        NavigationView(content: {
-            if monthlyBudgets.isEmpty && adhocBudgets.isEmpty {
-                VStack {
+        NavigationView {
+            
+            VStack(alignment: .leading) {
+                if viewModel.periodicBudgets.isEmpty && viewModel.adhocBudget.isEmpty {
+                    
+                    Text("Getting Started")
+                        .font(.title)
+                        .padding(.horizontal, 16)
                     ScrollView {
-                        
                         VStack(alignment: .leading) {
                             
-                            HStack {
-                                Text("Getting Started")
-                                .font(.title)
-                                .padding(.bottom, 16)
-                              
-                                   
-                            }
-                            .padding(.horizontal, 8)
+                            CardView(title: "Periodic Budget", image: Image("calender", bundle: nil), subtitle:  "Track your expenses throughout your day, week or month. See spending across various categories.")
                             
-                            CardView(title: "Monthly Budget", image: Image("calender", bundle: nil), subtitle:  "Track your monthly expenses. See spending across various categories.")
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundStyle(Color.clear)
-                                }
                                 .onTapGesture {
-                                    showAddBudgetView.toggle()
+                                    showPeriodicBudgetView.toggle()
                                 }
-                                .sheet(isPresented: $showAddBudgetView, content: {
-                                    AddMonthlyBudgetView { budget in
+                                .sheet(isPresented: $showAdhocBudgetView, content: {
+                                    AddMonthlyBudgetView(budgetStyle: .adhoc) { budget in
                                         // add further code.
                                         
                                         viewModel.addBudget(budget: budget)
-                                        monthlyBudgets.append(budget)
-                                        showAddBudgetView.toggle()
+                                        showAdhocBudgetView.toggle()
                                     }
                                 })
                             
+                            
                             CardView(title: "Adhoc Budget", image: Image("scooter", bundle: nil), subtitle: "Plan a budget for specific events or trips. Manage your expenses for special occasions.")
                                 .onTapGesture {
-                                    print("Selected 3")
+                                    showAdhocBudgetView.toggle()
                                 }
+                                .sheet(isPresented: $showPeriodicBudgetView, content: {
+                                    AddMonthlyBudgetView(budgetStyle: .periodic) { budget in
+                                        // add further code.
+                                        
+                                        viewModel.addBudget(budget: budget)
+                                        showPeriodicBudgetView.toggle()
+                                    }
+                                })
                             
                         }
                     }
+                    .navigationTitle("Budget View")
+                    .padding(.top, 1)
                 }
-                .padding(.top, 1)
-            }
-            else {
-                VStack {
+                else {
                     List {
-                        Section(header: HStack {
-                            Image("calender", bundle: nil)
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 25, height: 25)
-                                .padding(.trailing, 4)
-                            VStack(alignment: .leading) {
-                                Text("Monthly Budget")
-                                    .font(.headline)
-                                    .textCase(.none)
-                                    .foregroundColor(.primary)
-                                Text("Your monthly expenses and savings goals")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                    .textCase(.none)
-                            }
-                            .padding(.vertical, 8)
-                        }
-                        )  {
-                            ForEach(monthlyBudgets) { budget in
-                                HStack {
-                                    
-                                    VStack(alignment: .leading) {
-                                        /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
-                                            .font(.title2)
-                                            .padding(.bottom, 8)
-                                        Text("\(budget.amount, specifier: "%.2f")")
-                                            .font(.title3)
+                        if !viewModel.periodicBudgets.isEmpty {
+                            Section(header: HStack {
+                                Image("calender", bundle: nil)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.trailing, 4)
+                                VStack(alignment: .leading) {
+                                    Text("Periodic Budget")
+                                        .font(.headline)
+                                        .textCase(.none)
+                                        .foregroundColor(.primary)
+                                    Text("Your expenses over a period of time.")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                        .textCase(.none)
+                                }
+                                .padding(.vertical, 8)
+                            })  {
+                                ForEach(viewModel.periodicBudgets) { budget in
+                                    HStack {
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                Image("moneyBag", bundle:nil)
+                                                    .renderingMode(.template)
+                                                    .resizable()
+                                                    .frame(width:18, height: 18)
+                                                
+                                                    .foregroundStyle(budget.budgetType == .daily ? Color.yellow : budget.budgetType == .weekly ? Color.blue : Color.green)
+                                                /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
+                                                    .font(.title2)
+                                                    .padding(.bottom, 8)
+                                                
+                                            }
+                                            Text("\(budget.amount, specifier: "%.2f")")
+                                                .font(.title3)
+                                            
+                                        }
+                                        .padding(.vertical, 8)
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
                                     }
-                                    .padding(.vertical, 8)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                    
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            deleteBudget(budget: budget)
+                                        } label: {
+                                            Image("delete", bundle: nil)
+                                                .renderingMode(.template) // Apply rendering mode
+                                        }
+                                    }
                                 }
                             }
                         }
                         
-                        
-                        Section(header: HStack {
-                            Image("adhoc", bundle: nil)
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 25, height: 25)
-                                .padding(.trailing, 4)
-                            VStack(alignment: .leading) {
-                                Text("Adhoc Budget")
-                                    .font(.headline)
-                                    .textCase(.none)
-                                    .foregroundColor(.primary)
-                                Text("Your monthly expenses and savings goals")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                    .textCase(.none)
+                        if !viewModel.adhocBudget.isEmpty {
+                            Section(header: HStack {
+                                Image("adhoc", bundle: nil)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.trailing, 4)
+                                VStack(alignment: .leading) {
+                                    Text("Adhoc Budget")
+                                        .font(.headline)
+                                        .textCase(.none)
+                                        .foregroundColor(.primary)
+                                    Text("Your monthly expenses and savings goals")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                        .textCase(.none)
+                                }
+                                .padding(.vertical, 8)
+                                
                             }
-                            .padding(.vertical, 8)
-                        }
-                        )  {
-                            ForEach(adhocBudgets) { budget in
-                                HStack {
-                                    
-                                    VStack(alignment: .leading) {
-                                        /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
-                                            .font(.title2)
-                                            .padding(.bottom, 8)
-                                        Text("\(budget.amount, specifier: "%.2f")")
-                                            .font(.title3)
+                            )  {
+                                ForEach(viewModel.adhocBudget) { budget in
+                                    HStack {
+                                        
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                
+                                                Image("moneyBag", bundle:nil)
+                                                    .renderingMode(.template)
+                                                    .resizable()
+                                                    .frame(width:18, height: 18)
+                                                
+                                                
+                                                /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
+                                                    .font(.title2)
+                                                    .padding(.bottom, 8)
+                                                
+                                                
+                                            }
+                                            Text("\(budget.amount, specifier: "%.2f")")
+                                                .font(.title3)
+                                            
+                                        }
+                                        .padding(.vertical, 8)
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                        
                                     }
-                                    .padding(.vertical, 8)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                    
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            deleteBudget(budget: budget)
+                                        } label: {
+                                            Image("delete", bundle: nil)
+                                                .renderingMode(.template) // Apply rendering mode
+                                        }
+                                    }
                                 }
                             }
                         }
-                        
-                        
                     }
                     .listStyle(PlainListStyle())
-                }
-                .padding(.top, 1)
-                .navigationTitle("Budget View")
-                .toolbar {
                     
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            HStack {
-                                
-                                Button(action: {
-                                    addBudget = true
-                                }) {
-                                    
-                                    Image("charts")
+                    if(!viewModel.periodicBudgets.isEmpty) {
+                        HStack {
+                            Image("dot", bundle: nil)
+                                .resizable()
+                                .renderingMode(.template)
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(Color.yellow)
+                                .padding(.trailing, 4)
+                            Text("Daily")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.yellow)
+                            Spacer()
+                            
+                            Image("dot", bundle: nil)
+                                .resizable()
+                                .renderingMode(.template)
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(Color.blue)
+                                .padding(.trailing, 4)
+                            Text("Weekly")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.blue)
+                            Spacer()
+                            
+                            Image("dot", bundle: nil)
+                                .resizable()
+                                .renderingMode(.template)
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(Color.green)
+                                .padding(.trailing, 4)
+                            Text("Monthly")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.green)
+                            
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                    }
+                    
+                }
+            }
+            .padding(.top, 1)
+            .navigationTitle("Budget View")
+            .toolbar {
+                if !(viewModel.adhocBudget.isEmpty && viewModel.periodicBudgets.isEmpty) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button(action: {
+                                showPeriodicBudgetView.toggle()
+                            }) {
+                                HStack {
+                                    Image("calender")
                                         .renderingMode(.template)
-                                    
+                                    Text("Periodic Budget")
                                 }
-
+                            }
+                            
+                            Button(action: {
+                                showAdhocBudgetView.toggle()
+                            }) {
+                                HStack {
+                                    Image("scooter")
+                                        .renderingMode(.template)
+                                    Text("Adhoc Budget")
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "plus")
                         }
                     }
                 }
             }
             
-           
-        })
+            .sheet(isPresented: $showAdhocBudgetView, content: {
+                AddMonthlyBudgetView(budgetStyle: .adhoc) { budget in
+                    // add further code.
+                    
+                    viewModel.addBudget(budget: budget)
+                    showAdhocBudgetView.toggle()
+                }
+            })
+            .sheet(isPresented: $showPeriodicBudgetView, content: {
+                AddMonthlyBudgetView(budgetStyle: .periodic) { budget in
+                    // add further code.
+                    
+                    viewModel.addBudget(budget: budget)
+                    showPeriodicBudgetView.toggle()
+                }
+            })
+        }
+    }
+    
+    func deleteBudget(budget: Budget) {
+        _ = viewModel.deleteBudget(budget: budget)
     }
 }
 
-
-
-struct CardView:  View {
+struct CardView : View {
     var title: String
     var image: Image
     var subtitle: String
     var body: some View {
         HStack {
-            
             
             VStack(alignment: .leading) {
                 
@@ -184,10 +290,11 @@ struct CardView:  View {
                     .font(.title3)
                     .foregroundStyle(Color.secondary)
                     .padding(.bottom, 8)
-               
+                
             }
             
             .padding(.horizontal, 8)
+            .padding(.top, 16)
             Spacer()
             Image(systemName: "chevron.right")
         }
@@ -196,7 +303,7 @@ struct CardView:  View {
     }
 }
 
-#Preview {
-    BudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl()))
-    //    CardView(title: "Test", subtitle: "Test")
-}
+//#Preview {
+//    BudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl()))
+//    //    CardView(title: "Test", subtitle: "Test")
+//}

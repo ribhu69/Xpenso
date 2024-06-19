@@ -117,6 +117,7 @@ class DatabaseHelper {
                 t.column(BudgetDB.id, primaryKey: true)
                 t.column(BudgetDB.budgetTitle)
                 t.column(BudgetDB.budgetType)
+                t.column(BudgetDB.budgetStyle)
                 t.column(BudgetDB.startDate)
                 t.column(BudgetDB.endDate)
                 t.column(BudgetDB.amount)
