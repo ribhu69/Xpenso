@@ -7,15 +7,18 @@
 
 import Foundation
 import Combine
+import SwiftData
 
 class BudgetViewModel : ObservableObject {
     
     var budgetService: BudgetService
-    @Published var periodicBudgets : [Budget] = []
+    var context: ModelContext?
+    @Published var periodicBudgets : [Budget] = [Budget.singularBudgetSample()]
     @Published var adhocBudget : [Budget] = []
     
-    init(budgetService: BudgetService) {
+    init(budgetService: BudgetService, context: ModelContext) {
         self.budgetService = budgetService
+        self.context = context
         getBudgets()
     }
     
@@ -25,7 +28,7 @@ class BudgetViewModel : ObservableObject {
     }
     
     func addBudget(budget: Budget) {
-        if let _ = budgetService.addBudget(budget: budget) {
+        if budgetService.addBudget(budget: budget) {
             switch budget.budgetStyle {
             case .periodic:
                 periodicBudgets.append(budget)

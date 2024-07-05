@@ -1,5 +1,5 @@
 //
-//  AddMonthlyBudgetView.swift
+//  AddABudgetView.swift
 //  Xpenso
 //
 //  Created by Arkaprava Ghosh on 15/06/24.
@@ -7,17 +7,43 @@
 
 import SwiftUI
 
-struct AddMonthlyBudgetView: View {
+struct AddABudgetView: View {
     @State private var selectedMonth = Calendar.current.component(.month, from: Date()) - 1
     @State private var budgetTitle = ""
     @State private var budgetType : BudgetType = .monthly
     @State private var allocatedBudget: String = ""
     var budgetStyle : BudgetStyle
     var onSave : (Budget) -> Void
+    var editingMode = false
+    var budgetInEdit : Budget?
 
     private let months = Calendar.current.monthSymbols
+    
 
+    init(budgetStyle: BudgetStyle, onSave: @escaping (Budget) -> Void, editingMode: Bool = false, budgetInEdit: Budget? = nil) {
+           self.budgetStyle = budgetStyle
+           self.onSave = onSave
+           self.editingMode = editingMode
+           self.budgetInEdit = budgetInEdit
+           
+           // Initialize states if editing existing budget
+           if let budget = budgetInEdit {
+               _budgetTitle = State(initialValue: budget.budgetTitle)
+               _allocatedBudget = State(initialValue: String(budget.amount))
+               _budgetType = State(initialValue: budget.budgetType)
+               if budgetStyle == .periodic {
+                   _selectedMonth = State(initialValue: Calendar.current.component(.month, from: budget.startDate!))
+               }
+              
+               // Add logic for selectedMonth if necessary for periodic budgets
+           }
+       }
+    
     var body: some View {
+        
+        
+        
+       
         
         switch budgetStyle {
         case .periodic:
@@ -36,12 +62,12 @@ struct AddMonthlyBudgetView: View {
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color(UIColor.secondarySystemBackground))
-                                            .shadow(radius: 5)
+                                            .stroke(Color.gray.opacity(0.8), lineWidth: 1)
                                     )
-                                    .padding(.horizontal)
                             }
                             
-                            VStack(alignment: .leading, spacing: 15) {
+                            
+                            HStack(content: {
                                 Text("Select Month")
                                     .font(.headline)
                                     .foregroundColor(.secondary)
@@ -55,30 +81,32 @@ struct AddMonthlyBudgetView: View {
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
                                         .fill(Color(UIColor.secondarySystemBackground))
-                                        .shadow(radius: 5)
+                                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                                        
                                 )
                                 .padding(.horizontal)
-                            }
+                            })
                             
-                            VStack(alignment: .leading, spacing: 15) {
-                                Text("Select Month")
+                            HStack(content:  {
+                                Text("Select Type")
                                     .font(.headline)
                                     .foregroundColor(.secondary)
                                 
-                                Picker("Month", selection: $budgetType) {
+                                Picker("Weekly", selection: $budgetType) {
                                     ForEach(BudgetType.allCases) { item in
                                         Text(item.displayValue).tag(item)
                                     }
                                 }
                                 .pickerStyle(DefaultPickerStyle())
+                                .disabled(editingMode)
                                 
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
                                         .fill(Color(UIColor.secondarySystemBackground))
-                                        .shadow(radius: 5)
+                                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
                                 )
-                                .padding(.horizontal)
-                            }
+                            })
+                          
                             
                             VStack(alignment: .leading, spacing: 15) {
                                 Text("Allocated Budget")
@@ -90,10 +118,9 @@ struct AddMonthlyBudgetView: View {
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color(UIColor.secondarySystemBackground))
-                                            .shadow(radius: 5)
+                                            .stroke(Color.gray.opacity(0.8), lineWidth: 1)
                                     )
                                     .keyboardType(.decimalPad)
-                                    .padding(.horizontal)
                             }
                             
                             Spacer()
@@ -132,9 +159,8 @@ struct AddMonthlyBudgetView: View {
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color(UIColor.secondarySystemBackground))
-                                            .shadow(radius: 5)
+                                            .stroke(Color.gray.opacity(0.8), lineWidth: 1)
                                     )
-                                    .padding(.horizontal)
                             }
                             
                             
@@ -148,10 +174,9 @@ struct AddMonthlyBudgetView: View {
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color(UIColor.secondarySystemBackground))
-                                            .shadow(radius: 5)
+                                            .stroke(Color.gray.opacity(0.8), lineWidth: 1)
                                     )
                                     .keyboardType(.decimalPad)
-                                    .padding(.horizontal)
                             }
                             
                             Spacer()
@@ -170,7 +195,7 @@ struct AddMonthlyBudgetView: View {
                             
                             onSave(budget)
                         }
-                        .disabled(allocatedBudget.isEmpty)
+                        .disabled(allocatedBudget.isEmpty && budgetTitle.isEmpty)
                     }
                 }
             })
@@ -180,7 +205,8 @@ struct AddMonthlyBudgetView: View {
 }
 
 #Preview {
-    AddMonthlyBudgetView(budgetStyle: .adhoc, onSave: { budget in
-        
-    })
+    AddABudgetView(budgetStyle: .adhoc
+    ) { item in
+        //
+    }
 }

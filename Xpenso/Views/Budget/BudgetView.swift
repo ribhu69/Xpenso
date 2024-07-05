@@ -3,9 +3,13 @@ import SwiftUI
 struct BudgetView : View {
     @State var showPeriodicBudgetView = false
     @State var showAdhocBudgetView = false
+    @State var editPeriodicBudget = false
+    @State var editAdhocBudget = false
     @ObservedObject var viewModel : BudgetViewModel
     
     @State private var addBudget = false
+    
+
     var body : some View {
         
         NavigationView {
@@ -19,13 +23,17 @@ struct BudgetView : View {
                     ScrollView {
                         VStack(alignment: .leading) {
                             
-                            CardView(title: "Periodic Budget", image: Image("calender", bundle: nil), subtitle:  "Track your expenses throughout your day, week or month. See spending across various categories.")
-                            
+                            CardView(
+                                title: "Periodic Budget",
+                                image: Image("calender", bundle: nil),
+                                subtitle:  "Track your expenses throughout your day, week or month. See spending across various categories."
+                            )
+                            .padding(.top, 8)
                                 .onTapGesture {
                                     showPeriodicBudgetView.toggle()
                                 }
                                 .sheet(isPresented: $showAdhocBudgetView, content: {
-                                    AddMonthlyBudgetView(budgetStyle: .adhoc) { budget in
+                                    AddABudgetView(budgetStyle: .adhoc) { budget in
                                         // add further code.
                                         
                                         viewModel.addBudget(budget: budget)
@@ -33,13 +41,17 @@ struct BudgetView : View {
                                     }
                                 })
                             
-                            
-                            CardView(title: "Adhoc Budget", image: Image("scooter", bundle: nil), subtitle: "Plan a budget for specific events or trips. Manage your expenses for special occasions.")
+                            CardView(
+                                title: "Adhoc Budget",
+                                image: Image("scooter", bundle: nil),
+                                subtitle: "Plan a budget for specific events or trips. Manage your expenses for special occasions."
+                            )
+                            .padding(.top, 8)
                                 .onTapGesture {
                                     showAdhocBudgetView.toggle()
                                 }
                                 .sheet(isPresented: $showPeriodicBudgetView, content: {
-                                    AddMonthlyBudgetView(budgetStyle: .periodic) { budget in
+                                    AddABudgetView(budgetStyle: .periodic) { budget in
                                         // add further code.
                                         
                                         viewModel.addBudget(budget: budget)
@@ -53,6 +65,7 @@ struct BudgetView : View {
                     .padding(.top, 1)
                 }
                 else {
+                    
                     List {
                         if !viewModel.periodicBudgets.isEmpty {
                             Section(header: HStack {
@@ -74,36 +87,50 @@ struct BudgetView : View {
                                 .padding(.vertical, 8)
                             })  {
                                 ForEach(viewModel.periodicBudgets) { budget in
-                                    HStack {
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image("moneyBag", bundle:nil)
-                                                    .renderingMode(.template)
-                                                    .resizable()
-                                                    .frame(width:18, height: 18)
-                                                
-                                                    .foregroundStyle(budget.budgetType == .daily ? Color.yellow : budget.budgetType == .weekly ? Color.blue : Color.green)
-                                                /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
-                                                    .font(.title2)
-                                                    .padding(.bottom, 8)
+                                    NavigationLink(destination: BudgetDetailView(budget: budget)) {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Image("moneyBag", bundle:nil)
+                                                        .renderingMode(.template)
+                                                        .resizable()
+                                                        .frame(width:18, height: 18)
+                                                    
+                                                        .foregroundStyle(budget.budgetType == .daily ? Color.yellow : budget.budgetType == .weekly ? Color.blue : Color.green)
+                                                    /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
+                                                        .font(.title2)
+                                                        .padding(.bottom, 8)
+                                                    
+                                                }
+                                                Text("\(budget.amount, specifier: "%.2f")")
+                                                    .font(.title3)
                                                 
                                             }
-                                            Text("\(budget.amount, specifier: "%.2f")")
-                                                .font(.title3)
+                                            .padding(.vertical, 8)
                                             
+                                            Spacer()
                                         }
-                                        .padding(.vertical, 8)
                                         
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                    }
-                                    .swipeActions {
-                                        Button(role: .destructive) {
-                                            deleteBudget(budget: budget)
-                                        } label: {
-                                            Image("delete", bundle: nil)
-                                                .renderingMode(.template) // Apply rendering mode
+                                        .swipeActions {
+                                            Button(role: .destructive) {
+                                                deleteBudget(budget: budget)
+                                            } label: {
+                                                Image("delete", bundle: nil)
+                                                    .renderingMode(.template) // Apply rendering mode
+                                            }
+                                            Button() {
+                                                editPeriodicBudget.toggle()
+                                            } label: {
+                                                Image("edit", bundle: nil)
+                                                    .renderingMode(.template) // Apply rendering mode
+                                            }
                                         }
+                                        .sheet(isPresented: $editPeriodicBudget, content: {
+                                            AddABudgetView(budgetStyle: .periodic, onSave: { budget in
+                                                // edited budget has to be updated here.
+                                                editPeriodicBudget.toggle()
+                                            },editingMode: true, budgetInEdit: budget)
+                                        })
                                     }
                                 }
                             }
@@ -131,41 +158,62 @@ struct BudgetView : View {
                             }
                             )  {
                                 ForEach(viewModel.adhocBudget) { budget in
-                                    HStack {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                
-                                                Image("moneyBag", bundle:nil)
-                                                    .renderingMode(.template)
-                                                    .resizable()
-                                                    .frame(width:18, height: 18)
-                                                
-                                                
-                                                /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
-                                                    .font(.title2)
-                                                    .padding(.bottom, 8)
-                                                
+                                    NavigationLink(destination: BudgetDetailView(budget: budget)) {
+                                        HStack {
+                                            
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    
+                                                    Image("moneyBag", bundle:nil)
+                                                        .renderingMode(.template)
+                                                        .resizable()
+                                                        .frame(width:18, height: 18)
+                                                    
+                                                    
+                                                    /*@START_MENU_TOKEN@*/Text(budget.budgetTitle)/*@END_MENU_TOKEN@*/
+                                                        .font(.title2)
+                                                        .padding(.bottom, 8)
+                                                    
+                                                    
+                                                }
+                                                Text("\(budget.amount, specifier: "%.2f")")
+                                                    .font(.title3)
                                                 
                                             }
-                                            Text("\(budget.amount, specifier: "%.2f")")
-                                                .font(.title3)
+                                            .padding(.vertical, 8)
                                             
+                                            Spacer()
+                                           
                                         }
-                                        .padding(.vertical, 8)
                                         
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
                                         
-                                    }
-                                    .swipeActions {
-                                        Button(role: .destructive) {
-                                            deleteBudget(budget: budget)
-                                        } label: {
-                                            Image("delete", bundle: nil)
-                                                .renderingMode(.template) // Apply rendering mode
+                                        .swipeActions {
+                                            Button(role: .destructive) {
+                                                deleteBudget(budget: budget)
+                                            } label: {
+                                                Image("delete", bundle: nil)
+                                                    .renderingMode(.template) // Apply rendering mode
+                                            }
+                                            Button() {
+                                                editAdhocBudget.toggle()
+                                            } label: {
+                                                Image("edit", bundle: nil)
+                                                    .renderingMode(.template) // Apply rendering mode
+                                            }
                                         }
+                                        .sheet(isPresented: $editAdhocBudget, content: {
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            AddABudgetView(budgetStyle: .adhoc, onSave: { budget in
+                                                // edited budget has to be updated here.
+                                                editAdhocBudget.toggle()
+                                            },editingMode: true, budgetInEdit: budget)
+                                        })
                                     }
+                                   
                                 }
                             }
                         }
@@ -212,7 +260,9 @@ struct BudgetView : View {
                     }
                     
                 }
+                    
             }
+        
             .padding(.top, 1)
             .navigationTitle("Budget View")
             .toolbar {
@@ -246,7 +296,7 @@ struct BudgetView : View {
             }
             
             .sheet(isPresented: $showAdhocBudgetView, content: {
-                AddMonthlyBudgetView(budgetStyle: .adhoc) { budget in
+                AddABudgetView(budgetStyle: .adhoc) { budget in
                     // add further code.
                     
                     viewModel.addBudget(budget: budget)
@@ -254,18 +304,23 @@ struct BudgetView : View {
                 }
             })
             .sheet(isPresented: $showPeriodicBudgetView, content: {
-                AddMonthlyBudgetView(budgetStyle: .periodic) { budget in
+                AddABudgetView(budgetStyle: .periodic) { budget in
                     // add further code.
                     
                     viewModel.addBudget(budget: budget)
                     showPeriodicBudgetView.toggle()
                 }
             })
+           
         }
     }
     
     func deleteBudget(budget: Budget) {
         _ = viewModel.deleteBudget(budget: budget)
+    }
+    
+    func editBudget(budget: Budget) {
+//        editBudget.toggle()
     }
 }
 
@@ -296,9 +351,14 @@ struct CardView : View {
             .padding(.horizontal, 8)
             .padding(.top, 16)
             Spacer()
-            Image(systemName: "chevron.right")
         }
-        .padding(.horizontal, 8)
+        .padding(.horizontal, 4)
+        .overlay( /// apply a rounded border
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+        )
+        .padding(.horizontal, 4)
+        
         
     }
 }

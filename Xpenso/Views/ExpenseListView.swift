@@ -93,7 +93,7 @@ struct ExpenseListView : View {
                             NavigationView {
                                 
                                 AddExpenseView(isAddExpense: $addExpense) { newExpense in
-                                    viewModel.expenses.append(newExpense)
+                                    viewModel.addExpense(expense: newExpense)
                                 }
                                 .navigationTitle("Add Expense")
                             }
@@ -283,6 +283,7 @@ struct ExpenseListView : View {
                     }
                 }
             }
+            .navigationTitle("Xpenso")
         }
     }
     
@@ -335,7 +336,7 @@ struct ExpenseRow : View {
                 
                 Text(expense.amount, format: .currency(code: "INR"))
                     .font(.title)
-                if let description = expense.description {
+                if let description = expense.desc {
                     Text(description)
                         .font(.body)
                         .foregroundStyle(Color(uiColor: .lightGray))
@@ -377,9 +378,6 @@ struct ExpenseRow : View {
     }
 }
 
-#Preview {
-    ExpenseRow(expense: Expense.sampleExpenses[0])
-}
 
 
 

@@ -9,7 +9,7 @@ import Foundation
 import Charts
 import SwiftUI
 
-enum ExpenseCategory : String, CaseIterable, Identifiable{
+enum ExpenseCategory : String, CaseIterable, Identifiable, Codable{
     var id: String { return self.rawValue }
     var itemName : LocalizedStringResource {
         switch self {

@@ -4,7 +4,13 @@
     "" : {
 
     },
+    "-" : {
+
+    },
     "%.2f" : {
+
+    },
+    "%@" : {
 
     },
     "Add %@ Budget" : {
@@ -339,6 +345,9 @@
         }
       }
     },
+    "No expenses yet, your chair is still empty!" : {
+
+    },
     "none" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -420,6 +429,9 @@
     "Select Month" : {
 
     },
+    "Select Type" : {
+
+    },
     "The following data shows category based segregation of your expenses" : {
       "localizations" : {
         "hi" : {
@@ -485,6 +497,9 @@
       }
     },
     "Weekly" : {
+
+    },
+    "Xpenso" : {
 
     },
     "Your expenses over a period of time." : {

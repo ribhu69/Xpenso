@@ -81,8 +81,8 @@ struct ChartView: View {
     }
 }
 
-struct ChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartView(expenses: Expense.sampleExpenses)
-    }
-}
+//struct ChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChartView(expenses: Expense.sampleExpenses)
+//    }
+//}

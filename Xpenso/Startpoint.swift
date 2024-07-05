@@ -26,14 +26,12 @@ class StartPoint {
             }
         }
         else {
-            
+            //freshInstall
             AppDefaults.shared.setValue(key: "CFBundleShortVersionString", value: currentAppVersion)
             AppDefaults.shared.setColor(Color(.richTeal), forKey: AppConstants.appThemeColor.rawValue)
 
         }
-        
-        DatabaseHelper.shared.createOrUseExistingSQLiteFile()
-        return ExpenseAssembler.getTabBar()
+        return ExpenseAssembler.getTabBar(context: .init(DatabaseHelper.shared.getContainer()))
     }
     
 //    static func configureHomeNotesListPage() -> NotesListView {

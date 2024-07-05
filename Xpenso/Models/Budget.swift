@@ -6,13 +6,19 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Budget : Identifiable {
+@Model
+final class Budget : Identifiable {
     var id = UUID()
     var amount: Double
     var budgetTitle: String
-    var budgetType : BudgetType
-    var budgetStyle : BudgetStyle
+    /// used to store budgetType rawValue in Swift data
+    var budget_type: String
+    /// used to store budgetStyle rawValue in Swift data
+    var budget_style : String
+    @Transient var budgetType : BudgetType = BudgetType(rawValue: "none")!
+    @Transient var budgetStyle : BudgetStyle = BudgetStyle(rawValue: "adhoc")!
     var startDate : Date?
     
     var endDate: Date? {
@@ -29,30 +35,26 @@ struct Budget : Identifiable {
                 return nil
             }
         }
-    
-//    init(title: String, amount: Double, budgetType: BudgetType, startDate: Date = Date()) {
-//        self.budgetTitle = title
-//        self.amount = amount
-//        self.budgetType = budgetType
-//        self.startDate = startDate
-//    }
+    init(id: UUID = UUID(), amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date? = nil) {
+        self.id = id
+        self.amount = amount
+        self.budgetTitle = budgetTitle
+        self.budgetType = budgetType
+        self.budget_type = budgetType.rawValue
+        self.budgetStyle = budgetStyle
+        self.budget_style = budgetStyle.rawValue
+
+        self.startDate = startDate
+        
+    }
 }
 
 
 
 extension Budget {
-//    static func sampleBudgets() -> [Budget] {
-//        return [
-//            Budget(title: "Groceries", amount: 100.0, budgetType: .daily, startDate: Date()),
-//            Budget(title: "Transport", amount: 500.0, budgetType: .weekly, startDate: Date()),
-//            Budget(title: "Rent", amount: 2000.0, budgetType: .monthly, startDate: Date()),
-//            Budget(title: "Dining Out", amount: 150.0, budgetType: .daily, startDate: Date()),
-//            Budget(title: "Entertainment", amount: 300.0, budgetType: .weekly, startDate: Date()),
-//            Budget(title: "Savings", amount: 1000.0, budgetType: .monthly, startDate: Date()),
-//            Budget(title: "Coffee", amount: 80.0, budgetType: .daily, startDate: Date()),
-//            Budget(title: "Utilities", amount: 400.0, budgetType: .weekly, startDate: Date()),
-//            Budget(title: "Vacation Fund", amount: 2500.0, budgetType: .monthly, startDate: Date()),
-//            Budget(title: "Fitness", amount: 200.0, budgetType: .daily, startDate: Date())
-//        ]
-//    }
+   
+    static func singularBudgetSample() -> Budget {
+        Budget(amount: 100, budgetTitle: "My Sample Budget", budgetType: .weekly, budgetStyle: .periodic, startDate: Date())
+    }
+
 }
