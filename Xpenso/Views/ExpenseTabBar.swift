@@ -11,7 +11,7 @@ struct ExpenseTabBar : View {
     var expenseListView : ExpenseListView
     var budgetView : BudgetV2View
     var body: some View {
-            NavigationView {
+            
                 TabView {
                     expenseListView
                         .tabItem {
@@ -24,7 +24,7 @@ struct ExpenseTabBar : View {
                             Image("budget", bundle: nil)
                                 .renderingMode(.template)
                         }
-                }
+                
             }
     }
 }
