@@ -12,14 +12,13 @@ struct BudgetCardView: View {
     var image: Image
     var subTitle: String
     var isSelected: Bool
-    var onTap: () -> Void
     var body: some View {
         HStack {
             image.resizable()
                 .renderingMode(.template)
                 .foregroundStyle(.secondary)
-                .frame(width: 48, height: 48)
-                .padding(.leading, 8)
+                .frame(width: 34, height: 34)
+                .padding(.leading, 16)
 
             VStack(alignment: .leading) {
                 Text("\(title)")
@@ -31,18 +30,16 @@ struct BudgetCardView: View {
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)
             }
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
             .padding(.leading, 8)
             .padding(.trailing, 16)
         }
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(isSelected ? Color.blue : Color.gray.opacity(0.8), lineWidth: 2)
+                .stroke(isSelected ? Color.blue : Color.gray.opacity(0.8), lineWidth: 1)
                 .foregroundStyle(.clear)
         }
-        .padding(.horizontal, 4)
-        .onTapGesture {
-            onTap()
-        }
+        .padding(.horizontal, 16)
     }
 }
 
@@ -79,25 +76,24 @@ struct AddBudgetV2View: View {
                         title: "Periodic Budget",
                         image: Image("calender", bundle: nil),
                         subTitle: "Track your expenses throughout your day, week or month. See spending across various categories.",
-                        isSelected: selectedBudget == "Periodic",
-                        onTap: {
-                            selectedBudget = "Periodic"
-                            optionSelected = true
-                        }
-                    )
+                        isSelected: selectedBudget == "Periodic")
                     .padding(.bottom, 8)
                     .padding(.top, 16)
+                    .onTapGesture {
+                        selectedBudget = "Periodic"
+                        optionSelected = true
+                    }
 
                     BudgetCardView(
                         title: "Adhoc Budget",
                         image: Image("scooter", bundle: nil),
                         subTitle: "Plan a budget for specific events or trips. Manage your expenses for special occasions.",
-                        isSelected: selectedBudget == "Adhoc",
-                        onTap: {
-                            selectedBudget = "Adhoc"
-                            optionSelected = true
-                        }
+                        isSelected: selectedBudget == "Adhoc"
                     )
+                    .onTapGesture {
+                        selectedBudget = "Adhoc"
+                        optionSelected = true
+                    }
 
                     Spacer()
                 }
@@ -122,25 +118,34 @@ struct AddBudgetV2View: View {
                     label: {
                         HStack {
                             Text("Continue")
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.white)
                                 .setCustomFont(weight: .semibold, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
                                 .foregroundStyle(Color.primary)
-                                .frame(maxWidth: .infinity)
-                                .padding(.top, 8)
+                               
+                            Image(systemName: "arrow.right.circle")
+                                .renderingMode(.template)
+                                .foregroundStyle(.white)
                         }
+                        .padding(.top, 12)
+                        .frame(maxWidth: .infinity)
+                        .edgesIgnoringSafeArea(.all)
                         .background(Color.blue)
-                        .cornerRadius(8)
                     }
                 )
-                .padding(.horizontal)
             } else {
                 HStack {
                     Text("Continue")
                         .foregroundStyle(.secondary)
                         .setCustomFont(weight: .semibold, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 8)
+                       
+                        .padding(.vertical, 8)
+                    Image(systemName: "arrow.right.circle")
+                        .renderingMode(.template)
+                        .foregroundStyle(.secondary)
                 }
+                .padding(.top, 12)
+                .frame(maxWidth: .infinity)
+                .edgesIgnoringSafeArea(.all)
                 .background(Color.clear)
             }
         }
@@ -154,6 +159,6 @@ struct AddBudgetV2View: View {
     }
 }
 
-//#Preview {
-//    AddBudgetV2View()
-//}
+#Preview {
+    AddBudgetV2View(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
+}
