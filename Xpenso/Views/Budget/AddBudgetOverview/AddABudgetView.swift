@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddABudgetView: View {
+    
+    @State private var navBarTitle = ""
     @State private var selectedMonth = Calendar.current.component(.month, from: Date()) - 1
     @State private var budgetTitle = ""
     @State private var budgetType : BudgetType = .monthly
@@ -20,7 +22,7 @@ struct AddABudgetView: View {
     private let months = Calendar.current.monthSymbols
     
     
-    init(budgetStyle: BudgetStyle, onSave: @escaping (Budget) -> Void, editingMode: Bool = false, budgetInEdit: Budget? = nil) {
+    init(budgetStyle: BudgetStyle, editingMode: Bool = false, budgetInEdit: Budget? = nil, onSave: @escaping (Budget) -> Void) {
         self.budgetStyle = budgetStyle
         self.onSave = onSave
         self.editingMode = editingMode
@@ -126,7 +128,9 @@ struct AddABudgetView: View {
                 
                 .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
             }
-            .navigationTitle("Add \(budgetType.displayValue) Budget")
+            
+            .navigationTitle(budgetInEdit != nil ? "Edit Budget" : "Add Periodic Budget")
+            .navigationBarTitleDisplayMode(budgetInEdit != nil ? .inline : .automatic)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
@@ -195,7 +199,8 @@ struct AddABudgetView: View {
                 
                 .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
             }
-            .navigationTitle("Add Adhoc Budget")
+            .navigationTitle(budgetInEdit != nil ? "Edit Adhoc Budget" : "Add Adhoc Budget")
+            .navigationBarTitleDisplayMode(budgetInEdit != nil ? .inline : .automatic)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
