@@ -6,100 +6,27 @@
 //
 
 import SwiftUI
-struct PieSlice: Shape {
-    var startAngle: Angle
-    var endAngle: Angle
-
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let center = CGPoint(x: rect.midX, y: rect.midY)
-        path.move(to: center)
-        
-        let adjustedStartAngle = startAngle - Angle.degrees(90)
-        let adjustedEndAngle = endAngle - Angle.degrees(90)
-        
-        path.addArc(center: center, radius: rect.width / 2, startAngle: adjustedStartAngle, endAngle: adjustedEndAngle, clockwise: false)
-        
-        return path
-    }
-}
-
-struct PieChartView: View {
-    var total: Double
-    @State var spend: Double
-    @State private var endAngle = Angle(degrees: 0)
-    @State private var timer: Timer?
-
-
-    var body: some View {
-        let percentage = spend / total
-        let targetAngle = Angle(degrees: 360 * percentage)
-
-        
-        return ZStack {
-            PieSlice(startAngle: .degrees(0), endAngle: .degrees(360))
-                .fill(spend == 0 ? Color.green : Color.gray.opacity(0.3))
-            PieSlice(startAngle: .degrees(0), endAngle: spend <= total ? endAngle : Angle(degrees: 360))
-                .fill(spend < total / 2 ? .green : spend < total * 0.75 ? .yellow : .red)
-
-                .shadow(radius: 2)
-                .onAppear {
-                    withAnimation(.easeIn(duration: 5)) {
-                        startAnimation(to: targetAngle)
-                    }
-                }
-        }
-    }
-    
-    private func startAnimation(to targetAngle: Angle) {
-            let duration: TimeInterval = 1.0
-            let step: TimeInterval = 0.01
-            let steps = duration / step
-            let angleIncrement = targetAngle.degrees / steps
-            
-            timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { _ in
-                withAnimation(.easeOut(duration: step)) {
-                    if endAngle.degrees + angleIncrement >= targetAngle.degrees {
-                        endAngle = targetAngle
-                        timer?.invalidate()
-                        timer = nil
-                    } else {
-                        endAngle = Angle(degrees: endAngle.degrees + angleIncrement)
-                    }
-                }
-            }
-        }
-}
+import SwiftData
 
 struct BudgetDetailView : View {
     var budget: Budget
-    var mappedExpenses = [Expense]()
+    @State var mappedExpenses = [Expense]()
     var dateformatter = DateFormatter()
+    var viewModel : BudgetDetailViewModel
     
-    @State private var spentAmount : Double = 45
-    @State private var pieChartSize: CGFloat = 0
     @State private var chairRotation: Angle = .degrees(0)
-//        @State private var pieChartRotation: Angle = .degrees(0)
     @State var toggleValue = false
     @State private var timer: Timer?
+    @State var showAddExpense : Bool = false
 
     var body: some View {
         VStack {
             
-            if mappedExpenses.isEmpty {
+            if viewModel.relatedExpenses.isEmpty {
                 
                 VStack {
                     HStack {
-                        if spentAmount != 0 {
-                            PieChartView(total: budget.amount, spend: spentAmount)
-                                .frame(width: pieChartSize, height: pieChartSize)
-//                                .rotationEffect(pieChartRotation)
-                                .onAppear {
-                                    withAnimation(.smooth(duration: 0.8)) {
-                                                                    pieChartSize = 75
-                                                                }
-                                }
-                        }
+                        
                         
                         VStack(alignment: .leading) {
                             Text(budget.budgetTitle)
@@ -154,10 +81,10 @@ struct BudgetDetailView : View {
                     Image("emptyChair", bundle: nil)
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundStyle(Color.brown)
+                        .foregroundStyle(Color.secondary)
                         .rotationEffect(chairRotation, anchor: .bottom)
                         
-                        .frame(width: 80, height: 80)
+                        .frame(width: 50, height: 50)
                     
                         .onAppear(perform: {
                             startTimer()
@@ -168,37 +95,46 @@ struct BudgetDetailView : View {
                     Text("No expenses yet, your chair is still empty!")
                         .textCase(.none)
                         .multilineTextAlignment(.center)
-                        .font(.title2)
+                        .font(.title3)
+                        .foregroundStyle(Color.secondary)
+                        .padding(.horizontal, 8)
                         .padding(.bottom, 8)
                     
                     Button(action: {
-                                // Add your action here
+                        showAddExpense.toggle()
                             }) {
                                 Label("Add Expense", systemImage: "plus")
                                     .padding(.all, 8)
                                     .background(
                                         RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                                            .fill(Color.blue) // Change the color as needed
+                                            .fill(Color.blue)
                                     )
                             }
                             .foregroundColor(.white)
+                            .sheet(isPresented: $showAddExpense, content: {
+                                NavigationView {
+                                    
+                                    
+                                    AddExpenseView(isAddExpense: $showAddExpense, isPartOfBudget : true, selectedBudget: budget) { expense in
+                                        Task {
+                                           let result = await viewModel.addExpense(expense:expense)
+                                            if result {
+                                                mappedExpenses.append(expense)
+                                            }
+                                        }
+                                    }
+                                    .navigationTitle("Add Expense")
+                                    .navigationBarTitleDisplayMode(.inline)
+                                }
+                            })
                     
                     Spacer()
                 }
-              
-              
             }
             else {
                 List {
                     Section {
                         HStack {
-                            PieChartView(total: 10000, spend: 2345)
-                                .frame(width: pieChartSize, height: pieChartSize)
-                                .onAppear {
-                                    withAnimation(.smooth(duration: 0.8)) {
-                                                                    pieChartSize = 75
-                                                                }
-                                }
                             
                             VStack(alignment: .leading) {
                                 Text(budget.budgetTitle)
@@ -252,12 +188,22 @@ struct BudgetDetailView : View {
                     .listSectionSeparator(.hidden)
                     
                        
-                        ForEach(mappedExpenses) { expense in
+                    ForEach(viewModel.relatedExpenses) { expense in
                             ExpenseRow(expense: expense)
                                 .swipeActions {
                                     Button(role: .destructive) {
-                                      //  deleteExpense(expense)
-                                    } label: {
+                                        
+                                        Task {
+                                            if await viewModel.deleteExpense(expense: expense), 
+                                                let index = mappedExpenses.firstIndex(where: { element in
+                                                element.id == expense.id
+                                            }) {
+                                                mappedExpenses.remove(at: index)
+                                            }
+                                        }
+                                       
+                                    }
+                                    label: {
                                         Image("delete", bundle: nil)
                                             .renderingMode(.template) // Apply rendering mode
                                     }
@@ -287,6 +233,9 @@ struct BudgetDetailView : View {
         }
 }
 
-#Preview {
-    BudgetDetailView(budget: Budget.singularBudgetSample())
-}
+//#Preview {
+//    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
+//    let container = try! ModelContainer(for: Budget.self, configurations: config)
+//   
+//    return BudgetDetailView(budget: Budget.singularBudgetSample())
+//}

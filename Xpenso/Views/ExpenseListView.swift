@@ -31,6 +31,21 @@ struct ExpenseListView : View {
     
     
     @State var filteredExpenses : [Expense] = []
+    
+    init(viewModel : ExpenseListViewModel) {
+        self.viewModel = viewModel
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            .font: UIFont(name: "Quicksand-SemiBold", size: UIFont.labelFontSize)!
+        ]
+        appearance.largeTitleTextAttributes = [
+                    .font: UIFont(name: "Quicksand-Light", size: 34)!
+                ]
+        appearance.backgroundColor = UIColor.systemBackground
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
     var body: some View {
         NavigationView {
             VStack {
@@ -70,7 +85,8 @@ struct ExpenseListView : View {
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
                         Text("No Expenses Found")
-                            .font(.body)
+                            .font(.custom("Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .body).pointSize))
+                            .padding(.horizontal, 8)
                         
                         Button(action: {
                             addExpense = true
@@ -78,12 +94,14 @@ struct ExpenseListView : View {
                             HStack {
                                 Image(systemName: "plus.circle")
                                 Text("Add Expense")
+                                    .setCustomFont(fontName: "Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                                    .padding(.horizontal, 8)
                             }
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
+                                    .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1.5)
                                     .foregroundStyle(Color.clear)
                                 
                             }

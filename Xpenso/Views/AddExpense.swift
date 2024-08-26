@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MapKit
+import SwiftData
 
 struct AddExpenseView : View{
     
@@ -14,13 +14,17 @@ struct AddExpenseView : View{
     @State var amount : String = ""
     @State var description : String = ""
     @State var presentingModal = false
+    @State var presentingBudgetChooser = false
     @State var presentingDatePicker = false
     @State private var selectedDate = Date()
+    @State var isPartOfBudget : Bool = false
+    @State var selectedBudget : Budget?
+
+
     
     @State var expenseType : ExpenseCategory = .none
     var onSave: (Expense) -> Void
     var expenseService : ExpenseService = ExpenseServiceImpl()
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -89,16 +93,42 @@ struct AddExpenseView : View{
                             
                     }
                 }
+                
+                if isPartOfBudget {
+                    HStack {
+                        Image("budget", bundle: nil)
+                            .renderingMode(.template)
+                            .padding(.top)
+                        HStack {
+                            Text(selectedBudget!.budgetTitle)
+                        }
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 2)
+                        )
+                    }
+                }
               
                 Spacer()
                 
                     .navigationBarItems(trailing: Button("Save") {
                         
-                        let newExpense = Expense(amount: Double(amount) ?? 0, category: expenseType, description: description.isEmpty ? nil : description, date: selectedDate) // Assuming description is not implemented in the UI
+                        let newExpense = Expense(id: UUID().uuidString, amount: Double(amount) ?? 0, category: expenseType, description: description.isEmpty ? nil : description, date: selectedDate) // Assuming description is not implemented in the UI
+                        newExpense.associatedBudget = selectedBudget // by default this will be nil only.
                         
-                        expenseService.addExpense(expense: newExpense) { int in
-                            onSave(newExpense) // Call the closure to save the expense
-                            isAddExpense = false // Dismiss the AddExpenseView
+                        if isPartOfBudget {
+                            onSave(newExpense)
+                            isAddExpense = false
+                        }
+                        else {
+                            Task {
+                                if await expenseService.addExpense(expense:newExpense) {
+                                    onSave(newExpense)
+                                    isAddExpense = false
+                                }
+                              
+                            }
                         }
                     }
                         .disabled(amount.isEmpty)
@@ -121,12 +151,14 @@ struct AddExpenseView : View{
 struct AddExpense_PV : PreviewProvider {
     static var previews: some View
     {
-//        AddExpenseView(isAddExpense: .constant(true)) {_ in
-//            
-//        }
+
+            let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
+            let container = try! ModelContainer(for: Expense.self, configurations: config)
         
-        AddExpenseView(isAddExpense: .constant(true), presentingModal: false) { _ in
-            //
-        }
+            return AddExpenseView(isAddExpense: .constant(true), presentingModal: false) { _ in
+                //
+            }
+        
+        
     }
 }

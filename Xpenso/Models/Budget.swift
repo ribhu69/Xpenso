@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class Budget : Identifiable {
-    var id = UUID()
+    var budgetId : String
     var amount: Double
     var budgetTitle: String
     /// used to store budgetType rawValue in Swift data
@@ -35,8 +35,8 @@ final class Budget : Identifiable {
                 return nil
             }
         }
-    init(id: UUID = UUID(), amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date? = nil) {
-        self.id = id
+    init(id: String, amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date? = nil) {
+        self.budgetId = id
         self.amount = amount
         self.budgetTitle = budgetTitle
         self.budgetType = budgetType
@@ -54,7 +54,23 @@ final class Budget : Identifiable {
 extension Budget {
    
     static func singularBudgetSample() -> Budget {
-        Budget(amount: 100, budgetTitle: "My Sample Budget", budgetType: .weekly, budgetStyle: .periodic, startDate: Date())
+        Budget(id: UUID().uuidString, amount: 100, budgetTitle: "My Sample Budget", budgetType: .weekly, budgetStyle: .adhoc, startDate: Date())
+//        Budget(amount: 100, budgetTitle: , budgetType: .weekly, budgetStyle: .periodic, startDate: Date())
     }
+    
+    static func sampleBudgets() -> [Budget] {
+           return [
+            Budget(id: UUID().uuidString, amount: 100, budgetTitle: "Budget 1", budgetType: .daily, budgetStyle: .periodic, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 200, budgetTitle: "Budget 2", budgetType: .weekly, budgetStyle: .adhoc, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 300, budgetTitle: "Budget 3", budgetType: .monthly, budgetStyle: .periodic, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 150, budgetTitle: "Budget 4", budgetType: .none, budgetStyle: .adhoc, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 250, budgetTitle: "Budget 5", budgetType: .daily, budgetStyle: .periodic, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 350, budgetTitle: "Budget 6", budgetType: .weekly, budgetStyle: .adhoc, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 400, budgetTitle: "Budget 7", budgetType: .monthly, budgetStyle: .periodic, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 450, budgetTitle: "Budget 8", budgetType: .none, budgetStyle: .adhoc, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 500, budgetTitle: "Budget 9", budgetType: .daily, budgetStyle: .periodic, startDate: Date()),
+            Budget(id: UUID().uuidString, amount: 550, budgetTitle: "Budget 10", budgetType: .weekly, budgetStyle: .adhoc, startDate: Date())
+           ]
+       }
 
 }

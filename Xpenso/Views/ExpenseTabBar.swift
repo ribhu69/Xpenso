@@ -9,23 +9,23 @@ import SwiftUI
 
 struct ExpenseTabBar : View {
     var expenseListView : ExpenseListView
-    var budgetView : BudgetView
+    var budgetView : BudgetV2View
     var body: some View {
-        NavigationView {
-            TabView {
-                expenseListView
-                    .tabItem {
-                        Image("home", bundle: nil)
-                            .renderingMode(.template)
-                    }
-                
-                budgetView
-                    .tabItem {
-                        Image("budget", bundle: nil)
-                            .renderingMode(.template)
-                    }
+            NavigationView {
+                TabView {
+                    expenseListView
+                        .tabItem {
+                            Image("home", bundle: nil)
+                                .renderingMode(.template)
+                        }
+                    
+                    budgetView
+                        .tabItem {
+                            Image("budget", bundle: nil)
+                                .renderingMode(.template)
+                        }
+                }
             }
-        }
     }
 }
 

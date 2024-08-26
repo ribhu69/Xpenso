@@ -13,7 +13,7 @@ class BudgetViewModel : ObservableObject {
     
     var budgetService: BudgetService
     var context: ModelContext?
-    @Published var periodicBudgets : [Budget] = [Budget.singularBudgetSample()]
+    @Published var periodicBudgets : [Budget] = []
     @Published var adhocBudget : [Budget] = []
     
     init(budgetService: BudgetService, context: ModelContext) {
@@ -22,7 +22,9 @@ class BudgetViewModel : ObservableObject {
         getBudgets()
     }
     
+    
     func getBudgets() {
+        Logger.log(.info, #function)
         periodicBudgets = budgetService.getPeriodicBudgets()
         adhocBudget = budgetService.getAdhocBudgets()
     }
@@ -36,8 +38,8 @@ class BudgetViewModel : ObservableObject {
                 adhocBudget.append(budget)
             }
         }
-        
     }
+    
     
     func deleteBudget(budget: Budget) -> Bool {
         

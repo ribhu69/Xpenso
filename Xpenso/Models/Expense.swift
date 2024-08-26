@@ -10,14 +10,15 @@ import SwiftData
 
 @Model
 class Expense : Identifiable {
-    var id = UUID()
+    var entityId : String
     var amount: Double
     var category : ExpenseCategory
     var desc: String?
     var date: Date?
+    var associatedBudget : Budget?
     
-    init(id: UUID = UUID(), amount: Double, category: ExpenseCategory, description: String? = nil, date: Date? = nil) {
-        self.id = id
+    init(id: String, amount: Double, category: ExpenseCategory, description: String? = nil, date: Date? = nil) {
+        self.entityId = id
         self.amount = amount
         self.category = category
         self.desc = description

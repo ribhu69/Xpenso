@@ -8,8 +8,10 @@
 import Foundation
 import SwiftUI
 
+
 class StartPoint {
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     
 //    static func initialize() -> NotesListView {
     static func initialize() -> ExpenseTabBar {
@@ -33,13 +35,6 @@ class StartPoint {
         }
         return ExpenseAssembler.getTabBar(context: .init(DatabaseHelper.shared.getContainer()))
     }
-    
-//    static func configureHomeNotesListPage() -> NotesListView {
-//                let notesService = NotesServiceImpl()
-//                let viewModel = NotesViewModel(notesService: notesService)
-//                let contentView = NotesListView(viewModel: viewModel)
-//        return contentView
-//    }
 }
 
 enum AppConstants: String {

@@ -14,18 +14,60 @@ enum OperationError : Error, Equatable {
     case unknownError
 }
 protocol ExpenseService : AnyObject {
-    func addExpense(expense: Expense, completion: @escaping (Int64?) -> Void) 
+    func addExpense(expense: Expense) async -> Bool
+    func getExpenses(budget: Budget) async throws -> [Expense]
+    func deleteExpense(expense: Expense) async -> Bool
 }
 
 class ExpenseServiceImpl : ExpenseService {
 
-    func addExpense(expense: Expense, completion: @escaping (Int64?) -> Void) {
-        //
+    
+    func addExpense(expense: Expense) async -> Bool {
+        let context = DatabaseHelper.shared.getModelContext()
+        context.insert(expense)
+        return true
     }
     
     func getExpenses() async throws -> [Expense] {
         return []
     }
+    
+    func getExpenses(budget: Budget) async throws -> [Expense] {
+        let context = DatabaseHelper.shared.getModelContext()
+        
+        let budgetId = budget.budgetId
+        let predicate = #Predicate<Expense> { $0.associatedBudget?.budgetId == budgetId}
+        let fetchDesc = FetchDescriptor<Expense>(predicate: predicate)
+        do {
+            let expenses = try context.fetch(fetchDesc)
+            return expenses
+        }
+        catch {
+            throw(error)
+        }
+    }
+    
+   
+    func deleteExpense(expense: Expense) async -> Bool {
+        let context = DatabaseHelper.shared.getModelContext()
+
+        let expenseId = expense.entityId
+        let predicate = #Predicate<Expense> { $0.entityId == expenseId}
+        let fetchDesc = FetchDescriptor<Expense>(predicate: predicate)
+        do {
+            let adhocs = try context.fetch(fetchDesc)
+            for item in adhocs {
+                context.delete(item)
+            }
+            try context.save()
+            return true
+        }
+        catch {
+            Logger.log(.error, #function)
+            return false
+        }
+    }
+
     
     
 //    func addExpense(expense: Expense, completion: @escaping (Int64?) -> Void) {

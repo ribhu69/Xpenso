@@ -19,6 +19,9 @@
     "Add Adhoc Budget" : {
 
     },
+    "Add Budget" : {
+
+    },
     "Add Expense" : {
       "localizations" : {
         "hi" : {
@@ -28,6 +31,9 @@
           }
         }
       }
+    },
+    "Add Periodic Budget" : {
+
     },
     "Adhoc Budget" : {
 
@@ -45,10 +51,13 @@
         }
       }
     },
+    "Budget" : {
+
+    },
     "Budget Title" : {
 
     },
-    "Budget View" : {
+    "Cancel" : {
 
     },
     "Category" : {
@@ -83,6 +92,9 @@
           }
         }
       }
+    },
+    "Continue" : {
+
     },
     "Daily" : {
 
@@ -193,9 +205,6 @@
           }
         }
       }
-    },
-    "Getting Started" : {
-
     },
     "Greater Than" : {
       "localizations" : {
@@ -323,6 +332,9 @@
 
     },
     "Monthly" : {
+
+    },
+    "No budget? Add one to keep rolling!" : {
 
     },
     "No Expenses Found" : {
@@ -495,6 +507,9 @@
           }
         }
       }
+    },
+    "We start again" : {
+
     },
     "Weekly" : {
 
