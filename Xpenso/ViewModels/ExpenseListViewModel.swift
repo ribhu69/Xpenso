@@ -19,7 +19,7 @@ class BudgetViewModel : ObservableObject {
     init(budgetService: BudgetService, context: ModelContext) {
         self.budgetService = budgetService
         self.context = context
-//        getBudgets()
+        getBudgets()
     }
     
     

@@ -32,6 +32,7 @@ struct BudgetV2View: View {
     }
     
     var body: some View {
+        
         NavigationView {
             VStack {
                 if viewModel.budgets.isEmpty {
@@ -131,9 +132,8 @@ struct BudgetV2View: View {
                 }
             }
             .navigationTitle("Budget")
-        }
-        
-        .toolbar {
+            
+            .toolbar {
             if !(viewModel.budgets.isEmpty) {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -163,7 +163,7 @@ struct BudgetV2View: View {
                 }
             }
         }
-        .sheet(isPresented: $showAddBudgetView) {
+            .sheet(isPresented: $showAddBudgetView) {
             if let budgetStyle = showAddBudgetViewType {
                 NavigationView {
                     AddABudgetView(budgetStyle: budgetStyle) { budget in
@@ -173,6 +173,7 @@ struct BudgetV2View: View {
                     }
                 }
             }
+        }
         }
     }
     
