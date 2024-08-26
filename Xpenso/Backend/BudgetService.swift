@@ -11,6 +11,8 @@ import SwiftData
 protocol BudgetService {
     func getPeriodicBudgets() -> [Budget]
     func getAdhocBudgets() -> [Budget]
+    
+    func getBudgets() -> [Budget]
     func addBudget(budget: Budget) -> Bool
     func editBudget(budget: Budget) -> Bool
     func deleteBudget(budget: Budget) -> Bool
@@ -52,6 +54,22 @@ class BudgetServiceImpl : BudgetService {
             return []
         }
     
+    }
+    
+    func getBudgets() -> [Budget] {
+        let context = DatabaseHelper.shared.getModelContext()
+        
+        let fetchDescriptor = FetchDescriptor<Budget>()
+        do {
+            let periodics = try context.fetch(fetchDescriptor)
+            Logger.log(.info, "Periodics count : \(periodics.count)")
+            return periodics
+        }
+        catch {
+            print(error)
+//            Logger.log(.error, error)
+            return []
+        }
     }
     
     func getAdhocBudgets() -> [Budget] {

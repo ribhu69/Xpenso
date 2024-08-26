@@ -13,30 +13,26 @@ class BudgetViewModel : ObservableObject {
     
     var budgetService: BudgetService
     var context: ModelContext?
-    @Published var periodicBudgets : [Budget] = []
-    @Published var adhocBudget : [Budget] = []
+
+    @Published var budgets = [Budget]()
     
     init(budgetService: BudgetService, context: ModelContext) {
         self.budgetService = budgetService
         self.context = context
-        getBudgets()
+//        getBudgets()
     }
     
     
     func getBudgets() {
         Logger.log(.info, #function)
-        periodicBudgets = budgetService.getPeriodicBudgets()
-        adhocBudget = budgetService.getAdhocBudgets()
+        budgets = budgetService.getAdhocBudgets()
     }
     
     func addBudget(budget: Budget) {
         if budgetService.addBudget(budget: budget) {
-            switch budget.budgetStyle {
-            case .periodic:
-                periodicBudgets.append(budget)
-            case .adhoc:
-                adhocBudget.append(budget)
-            }
+            
+            budgets.append(budget)
+
         }
     }
     
@@ -44,24 +40,14 @@ class BudgetViewModel : ObservableObject {
     func deleteBudget(budget: Budget) -> Bool {
         
         if budgetService.deleteBudget(budget: budget) {
-            if let index = periodicBudgets.firstIndex(where: { temp in
+            if let index = budgets.firstIndex(where: { temp in
                 temp.id == budget.id
             }) {
-                periodicBudgets.remove(at: index)
-            }
-            
-            if let index = adhocBudget.firstIndex(where: { temp in
-                temp.id == budget.id
-            }) {
-                adhocBudget.remove(at: index)
+                budgets.remove(at: index)
             }
             return true
         }
         return false
-        
     }
     
-//    func deleteExpense(expense: Expense) -> Bool {
-//        expenseListService.deleteExpense(expense: expense)
-//    }
 }
