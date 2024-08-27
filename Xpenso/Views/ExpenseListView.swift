@@ -110,7 +110,8 @@ struct ExpenseListView : View {
                         .sheet(isPresented: $addExpense, content: {
                             NavigationView {
                                 
-                                AddExpenseView(isAddExpense: $addExpense) { newExpense in
+                                AddExpenseView() { newExpense in
+                                    addExpense.toggle()
                                     viewModel.addExpense(expense: newExpense)
                                 }
                                 .navigationTitle("Add Expense")
@@ -197,7 +198,8 @@ struct ExpenseListView : View {
             
             .sheet(isPresented: $addExpense, content: {
                 NavigationView {
-                    AddExpenseView(isAddExpense: $addExpense) { newExpense in
+                    AddExpenseView() { newExpense in
+                        addExpense.toggle()
                         viewModel.expenses.append(newExpense)
                     }
                     .navigationTitle("Add Expense")

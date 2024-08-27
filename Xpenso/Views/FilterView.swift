@@ -24,7 +24,7 @@ struct FilterView : View {
         
         ScrollView {
             
-            VStack(alignment: .leading) {
+            LazyVStack(alignment: .leading) {
                 //MARK: By Category
                 HStack(alignment: .center) {
                     RadioButton(selection: $filterByCategory)
@@ -41,6 +41,7 @@ struct FilterView : View {
                         Image(expenseType.rawValue, bundle: nil)
                             .renderingMode(.template)
                         Text(expenseType.itemName)
+                            .setCustomFont()
                     }
                     
                     .padding(.horizontal, 8)

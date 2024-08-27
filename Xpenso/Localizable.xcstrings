@@ -13,9 +13,6 @@
     "%@" : {
 
     },
-    "Add %@ Budget" : {
-
-    },
     "Add Adhoc Budget" : {
 
     },
@@ -125,6 +122,12 @@
           }
         }
       }
+    },
+    "Edit Adhoc Budget" : {
+
+    },
+    "Edit Budget" : {
+
     },
     "education" : {
       "extractionState" : "manual",
@@ -515,12 +518,6 @@
 
     },
     "Xpenso" : {
-
-    },
-    "Your expenses over a period of time." : {
-
-    },
-    "Your monthly expenses and savings goals" : {
 
     }
   },

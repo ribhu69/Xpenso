@@ -10,12 +10,12 @@ import SwiftData
 
 struct AddExpenseView : View{
     
-    @Binding var isAddExpense : Bool
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
     @State var amount : String = ""
     @State var description : String = ""
     @State var presentingModal = false
     @State var presentingBudgetChooser = false
-    @State var presentingDatePicker = false
     @State private var selectedDate = Date()
     @State var isPartOfBudget : Bool = false
     @State var selectedBudget : Budget?
@@ -23,17 +23,19 @@ struct AddExpenseView : View{
 
     
     @State var expenseType : ExpenseCategory = .none
+
     var onSave: (Expense) -> Void
     var expenseService : ExpenseService = ExpenseServiceImpl()
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            LazyVStack(alignment: .leading) {
                 HStack {
                     Image("money", bundle: nil)
                         .renderingMode(.template)
                     TextField(text: $amount, prompt: Text("Amount")) {}
                         .padding()
                         .keyboardType(.decimalPad)
+                        .setCustomFont()
                 }
                 
                 HStack {
@@ -41,6 +43,7 @@ struct AddExpenseView : View{
                         .renderingMode(.template)
                     TextField(text: $description, prompt: Text("Description")) {}
                         .padding()
+                        .setCustomFont()
                 }
                 
                 
@@ -51,7 +54,9 @@ struct AddExpenseView : View{
                     HStack {
                         Image(expenseType.rawValue, bundle: nil)
                             .renderingMode(.template)
+                            .foregroundStyle(expenseType.color(for: colorScheme))
                         Text(expenseType.itemName)
+                            .setCustomFont()
                     }
                     .padding()
                     .overlay(
@@ -74,25 +79,27 @@ struct AddExpenseView : View{
                 HStack {
                     Image("date", bundle: nil)
                         .renderingMode(.template)
-                    TextField(getFormattedDate(), text: .constant(""))
-                        .onTapGesture {
-                            self.presentingDatePicker.toggle()
+                    Text(getFormattedDate())
+                        .setCustomFont()
+                        .disabled(true)
+                        .padding()
+                    
+                        .overlay {
+                            
+                            DatePicker(
+                                "",
+                                selection: $selectedDate,
+                                displayedComponents: [.date]
+                            )
+                             .blendMode(.destinationOver)
+                            
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 2)
                         }
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
                 }
                 .padding(.vertical)
-                if presentingDatePicker {
-                    ZStack {
-                        DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                            .datePickerStyle(.graphical)
-                            .transition(.move(edge: .bottom))
-                            
-                            .onChange(of: selectedDate, { _, _ in
-                                presentingDatePicker.toggle()
-                            })
-                            
-                    }
-                }
+                
                 
                 if isPartOfBudget {
                     HStack {
@@ -101,6 +108,7 @@ struct AddExpenseView : View{
                             .padding(.top)
                         HStack {
                             Text(selectedBudget!.budgetTitle)
+                                .setCustomFont()
                         }
                         .padding()
                         .overlay(
@@ -119,13 +127,13 @@ struct AddExpenseView : View{
                         
                         if isPartOfBudget {
                             onSave(newExpense)
-                            isAddExpense = false
+                            dismiss()
                         }
                         else {
                             Task {
                                 if await expenseService.addExpense(expense:newExpense) {
                                     onSave(newExpense)
-                                    isAddExpense = false
+                                    dismiss()
                                 }
                               
                             }
@@ -155,7 +163,7 @@ struct AddExpense_PV : PreviewProvider {
             let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
             let container = try! ModelContainer(for: Expense.self, configurations: config)
         
-            return AddExpenseView(isAddExpense: .constant(true), presentingModal: false) { _ in
+            return AddExpenseView( presentingModal: false) { _ in
                 //
             }
         

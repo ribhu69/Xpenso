@@ -115,7 +115,7 @@ struct BudgetDetailView : View {
                                 NavigationView {
                                     
                                     
-                                    AddExpenseView(isAddExpense: $showAddExpense, isPartOfBudget : true, selectedBudget: budget) { expense in
+                                    AddExpenseView(isPartOfBudget : true, selectedBudget: budget) { expense in
                                         Task {
                                            let result = await viewModel.addExpense(expense:expense)
                                             if result {

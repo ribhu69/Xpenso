@@ -39,6 +39,7 @@ struct ComparisonRow : View {
             Image(comparison.rawValue, bundle: nil)
                 .renderingMode(.template)
             Text(comparison.displayValue)
+                .setCustomFont()
         }
         .padding(.vertical, 8)
     }
