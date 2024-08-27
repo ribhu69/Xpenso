@@ -1,1 +1,5 @@
-*.xcuserdatad/xcdebugger/
+*.xcworkspacedata
+*.xcuserstate
+*.xcscheme
+xcschememanagement.plist
+*.xcbkptlist
