@@ -36,10 +36,10 @@ struct ExpenseListView : View {
         self.viewModel = viewModel
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
-            .font: UIFont(name: "Quicksand-SemiBold", size: UIFont.labelFontSize)!
+            .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!
         ]
         appearance.largeTitleTextAttributes = [
-                    .font: UIFont(name: "Quicksand-Light", size: 34)!
+                    .font: UIFont(name: "Manrope-Regular", size: 34)!
                 ]
         appearance.backgroundColor = UIColor.systemBackground
         
@@ -85,7 +85,7 @@ struct ExpenseListView : View {
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
                         Text("No Expenses Found")
-                            .font(.custom("Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .body).pointSize))
+                            .setCustomFont(size: UIFont.preferredFont(forTextStyle: .body).pointSize)
                             .padding(.horizontal, 8)
                         
                         Button(action: {
@@ -94,7 +94,8 @@ struct ExpenseListView : View {
                             HStack {
                                 Image(systemName: "plus.circle")
                                 Text("Add Expense")
-                                    .setCustomFont(fontName: "Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                                    .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
                                     .padding(.horizontal, 8)
                             }
                             .padding(.horizontal, 8)

@@ -15,6 +15,11 @@
 		A22F90632C7B7B6C004AA449 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F905E2C7B346E004AA449 /* Quicksand-Regular.ttf */; };
 		A22F90642C7B7B6E004AA449 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F905F2C7B346F004AA449 /* Quicksand-SemiBold.ttf */; };
 		A22F90662C7B7F23004AA449 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90652C7B7F23004AA449 /* FontExtension.swift */; };
+		A22F906F2C7DF705004AA449 /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906C2C7DF579004AA449 /* Manrope-Light.ttf */; };
+		A22F90702C7DF708004AA449 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F90682C7DF578004AA449 /* Manrope-Medium.ttf */; };
+		A22F90712C7DF70A004AA449 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906B2C7DF579004AA449 /* Manrope-Regular.ttf */; };
+		A22F90722C7DF70C004AA449 /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */; };
+		A22F90732C7DF70E004AA449 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906A2C7DF579004AA449 /* Manrope-Bold.ttf */; };
 		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
@@ -69,6 +74,11 @@
 		A22F905E2C7B346E004AA449 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		A22F905F2C7B346F004AA449 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		A22F90652C7B7F23004AA449 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		A22F90682C7DF578004AA449 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		A22F906A2C7DF579004AA449 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		A22F906B2C7DF579004AA449 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		A22F906C2C7DF579004AA449 /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
+		A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
 		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
@@ -140,14 +150,26 @@
 		A22F905A2C7B3462004AA449 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A22F90672C7DF56F004AA449 /* Manrope */,
 				A22F905B2C7B346E004AA449 /* Quicksand-Bold.ttf */,
 				A22F905D2C7B346E004AA449 /* Quicksand-Light.ttf */,
 				A22F905C2C7B346E004AA449 /* Quicksand-Medium.ttf */,
 				A22F905E2C7B346E004AA449 /* Quicksand-Regular.ttf */,
 				A22F905F2C7B346F004AA449 /* Quicksand-SemiBold.ttf */,
-				A22F90652C7B7F23004AA449 /* FontExtension.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A22F90672C7DF56F004AA449 /* Manrope */ = {
+			isa = PBXGroup;
+			children = (
+				A22F906A2C7DF579004AA449 /* Manrope-Bold.ttf */,
+				A22F906C2C7DF579004AA449 /* Manrope-Light.ttf */,
+				A22F90682C7DF578004AA449 /* Manrope-Medium.ttf */,
+				A22F906B2C7DF579004AA449 /* Manrope-Regular.ttf */,
+				A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */,
+			);
+			path = Manrope;
 			sourceTree = "<group>";
 		};
 		A27DFE8F2BE5EAB20054D092 = {
@@ -324,6 +346,7 @@
 		A2F170F52BE7857D0000E321 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A22F90652C7B7F23004AA449 /* FontExtension.swift */,
 				A2F170F62BE785860000E321 /* DateExtensions.swift */,
 				A2C1A3E12C0C57BF001E976C /* ColorExtensions.swift */,
 			);
@@ -415,7 +438,12 @@
 				A27DFEA02BE5EAB40054D092 /* Assets.xcassets in Resources */,
 				A22F90632C7B7B6C004AA449 /* Quicksand-Regular.ttf in Resources */,
 				A27DFEB22BE5EF820054D092 /* Localizable.xcstrings in Resources */,
+				A22F90732C7DF70E004AA449 /* Manrope-Bold.ttf in Resources */,
+				A22F90722C7DF70C004AA449 /* Manrope-SemiBold.ttf in Resources */,
+				A22F906F2C7DF705004AA449 /* Manrope-Light.ttf in Resources */,
 				A22F90602C7B7B65004AA449 /* Quicksand-Bold.ttf in Resources */,
+				A22F90712C7DF70A004AA449 /* Manrope-Regular.ttf in Resources */,
+				A22F90702C7DF708004AA449 /* Manrope-Medium.ttf in Resources */,
 				A22F90612C7B7B67004AA449 /* Quicksand-Light.ttf in Resources */,
 				A22F90622C7B7B6A004AA449 /* Quicksand-Medium.ttf in Resources */,
 			);

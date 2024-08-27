@@ -22,11 +22,11 @@ struct BudgetCardView: View {
 
             VStack(alignment: .leading) {
                 Text("\(title)")
-                    .setCustomFont(fontName: "Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
                     .padding(.bottom, 8)
                     .padding(.top, 16)
                 Text("\(subTitle)")
-                    .setCustomFont(fontName: "Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)
             }
@@ -56,10 +56,10 @@ struct AddBudgetV2View: View {
         self.viewModel = viewModel
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
-            .font: UIFont(name: "Quicksand-SemiBold", size: UIFont.labelFontSize)!
+            .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!
         ]
         appearance.largeTitleTextAttributes = [
-            .font: UIFont(name: "Quicksand-SemiBold", size: 34)!
+            .font: UIFont(name: "Manrope-Regular", size: 34)!
         ]
         appearance.backgroundColor = UIColor.systemBackground
 

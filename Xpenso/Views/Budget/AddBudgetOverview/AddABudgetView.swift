@@ -14,6 +14,8 @@ struct AddABudgetView: View {
     @State private var budgetTitle = ""
     @State private var budgetType : BudgetType = .monthly
     @State private var allocatedBudget: String = ""
+    @State private var startDate = Date()
+
     var budgetStyle : BudgetStyle
     var onSave : (Budget) -> Void
     var editingMode = false
@@ -64,28 +66,35 @@ struct AddABudgetView: View {
                                 )
                         }
                         
-                        
-                        HStack(content: {
-                            Text("Select Month")
+                        VStack(alignment: .leading, spacing: 15, content: {
+                            Text("Start Date")
                                 .font(.headline)
                                 .foregroundColor(.secondary)
                             
-                            Picker("Month", selection: $selectedMonth) {
-                                ForEach(0..<months.count, id: \.self) { index in
-                                    Text(self.months[index]).tag(index)
-                                }
-                            }
-                            .pickerStyle(DefaultPickerStyle())
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(UIColor.secondarySystemBackground))
-                                    .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                            HStack {
                                 
-                            )
-                            .padding(.horizontal)
+                                Text(getFormattedDate(date: startDate))
+                                    .setCustomFont()
+                                    .disabled(true)
+                                    .padding()
+                                
+                                    .overlay {
+                                        
+                                        
+                                        DatePicker(
+                                            "",
+                                            selection: $startDate,
+                                            displayedComponents: [.date]
+                                        )
+                                         .blendMode(.destinationOver)
+                                        
+                                    }
+                                    .background(RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color(uiColor: .secondarySystemFill), lineWidth: 2))
+                            }
                         })
                         
-                        HStack(content:  {
+                        VStack(alignment: .leading, spacing: 15, content:  {
                             Text("Select Type")
                                 .font(.headline)
                                 .foregroundColor(.secondary)
@@ -139,18 +148,23 @@ struct AddABudgetView: View {
                             guard var budgetInEdit else {
                                 fatalError("Budget in Edit cannot be nil")
                             }
-                            
                             budgetInEdit.amount = Double(allocatedBudget)!
                             budgetInEdit.budgetTitle = budgetTitle
                             
                             onSave(budgetInEdit)
                         }
                         else {
-                            let budget = Budget(id: UUID().uuidString, amount: Double(allocatedBudget)!, budgetTitle: budgetTitle, budgetType: budgetType, budgetStyle: .periodic, startDate: Date())
+                            let budget = Budget(
+                                id: UUID().uuidString,
+                                amount: Double(allocatedBudget)!,
+                                budgetTitle: budgetTitle,
+                                budgetType: budgetType,
+                                budgetStyle: .periodic,
+                                startDate: startDate
+                            )
                             
                             onSave(budget)
                         }
-                        
                     }
                     .disabled(allocatedBudget.isEmpty)
                 }
@@ -217,7 +231,7 @@ struct AddABudgetView: View {
 }
 
 #Preview {
-    AddABudgetView(budgetStyle: .adhoc
+    AddABudgetView(budgetStyle: .periodic
     ) { item in
         //
     }

@@ -25,4 +25,9 @@ func dateFromString(_ dateString: String) -> Date? {
     return dateFormatter.date(from: dateString)
 }
 
+func getFormattedDate(date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter.string(from: date)
+}
 

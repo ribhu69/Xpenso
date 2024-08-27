@@ -79,7 +79,7 @@ struct AddExpenseView : View{
                 HStack {
                     Image("date", bundle: nil)
                         .renderingMode(.template)
-                    Text(getFormattedDate())
+                    Text(getFormattedDate(date: selectedDate))
                         .setCustomFont()
                         .disabled(true)
                         .padding()
@@ -149,11 +149,7 @@ struct AddExpenseView : View{
         .padding()
     }
     
-    private func getFormattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: selectedDate)
-    }
+    
 }
 
 struct AddExpense_PV : PreviewProvider {

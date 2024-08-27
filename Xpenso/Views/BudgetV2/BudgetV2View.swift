@@ -20,10 +20,10 @@ struct BudgetV2View: View {
         self.viewModel = viewModel
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
-            .font: UIFont(name: "Quicksand-SemiBold", size: UIFont.labelFontSize)!
+            .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!
         ]
         appearance.largeTitleTextAttributes = [
-            .font: UIFont(name: "Quicksand-SemiBold", size: 34)!
+            .font: UIFont(name: "Manrope-Regular", size: 34)!
         ]
         appearance.backgroundColor = UIColor.systemBackground
         

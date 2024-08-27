@@ -4,6 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Manrope-Bold.ttf</string>
+		<string>Manrope-Regular.ttf</string>
+		<string>Manrope-SemiBold.ttf</string>
+		<string>Manrope-Medium.ttf</string>
+		<string>Manrope-Light.ttf</string>
 		<string>Quicksand-Medium.ttf</string>
 		<string>Quicksand-SemiBold.ttf</string>
 		<string>Quicksand-Regular.ttf</string>
