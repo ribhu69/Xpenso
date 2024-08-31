@@ -7,6 +7,9 @@
     "-" : {
 
     },
+    "@Xpenso" : {
+
+    },
     "%.2f" : {
 
     },
@@ -48,6 +51,9 @@
         }
       }
     },
+    "App Version" : {
+
+    },
     "Budget" : {
 
     },
@@ -71,6 +77,9 @@
 
     },
     "Choose a budget type" : {
+
+    },
+    "Choose App Theme Color" : {
 
     },
     "clothing" : {
@@ -200,6 +209,7 @@
       }
     },
     "Filter By" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -348,6 +358,7 @@
       }
     },
     "No Expenses Found for Applied Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -441,6 +452,9 @@
     "Select Type" : {
 
     },
+    "Settings" : {
+
+    },
     "Start Date" : {
 
     },
@@ -455,6 +469,7 @@
       }
     },
     "Total:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -507,9 +522,6 @@
           }
         }
       }
-    },
-    "We start again" : {
-
     },
     "Weekly" : {
 

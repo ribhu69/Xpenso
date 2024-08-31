@@ -16,6 +16,8 @@ protocol BudgetService {
     func addBudget(budget: Budget) -> Bool
     func editBudget(budget: Budget) -> Bool
     func deleteBudget(budget: Budget) -> Bool
+    
+    func updateBudget(budget: Budget) -> Bool
 }
 
 class BudgetServiceImpl : BudgetService {
@@ -98,5 +100,30 @@ class BudgetServiceImpl : BudgetService {
         let context = DatabaseHelper.shared.getModelContext()
         context.delete(budget)
         return true
+    }
+    
+    func updateBudget(budget: Budget) -> Bool {
+        
+        let context = DatabaseHelper.shared.getModelContext()
+        
+        let budgetId = budget.budgetId
+        let predicate = #Predicate<Budget> { $0.budgetId == budgetId}
+        let fetchDesc = FetchDescriptor<Budget>(predicate: predicate)
+        do {
+            let expenses = try context.fetch(fetchDesc)
+            for item in expenses {
+                item.budgetTitle = budget.budgetTitle
+                item.amount = budget.amount
+                item.startDate = budget.startDate
+                item.budget_type = budget.budget_type
+                item.budget_style = budget.budget_style
+            }
+            try context.save()
+            return true
+        }
+        catch {
+            Logger.log(.error, error.localizedDescription)
+            return false
+        }
     }
 }

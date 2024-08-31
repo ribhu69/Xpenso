@@ -1,5 +1,5 @@
 //
-//  BudgetViewModel.swift
+//  ExpenseListViewModel.swift
 //  Xpenso
 //
 //  Created by Arkaprava Ghosh on 05/05/24.
@@ -9,45 +9,44 @@ import Foundation
 import Combine
 import SwiftData
 
-class BudgetViewModel : ObservableObject {
+class ExpenseListViewModel : ObservableObject {
     
-    var budgetService: BudgetService
-    var context: ModelContext?
-
-    @Published var budgets = [Budget]()
+    var expenseListService: ExpenseListService
+    var context : ModelContext?
+    @Published var expenses : [Expense] = []
     
-    init(budgetService: BudgetService, context: ModelContext) {
-        self.budgetService = budgetService
+    init(expenseListService: ExpenseListService, context: ModelContext) {
+        self.expenseListService = expenseListService
         self.context = context
-        getBudgets()
+        getExpenses()
     }
     
-    
-    func getBudgets() {
-        Logger.log(.info, #function)
-        budgets = budgetService.getAdhocBudgets()
+    func addExpense(expense: Expense) {
+        guard let context else {return}
+        if expenseListService.addExpense(expense: expense, context: context) {
+            expenses.append(expense)
+        }
+        else {
+            Logger.log(.error, "Failed to add expense")
+        }
     }
+  
     
-    func addBudget(budget: Budget) {
-        if budgetService.addBudget(budget: budget) {
-            
-            budgets.append(budget)
-
+    func getExpenses() {
+        if let expenseList = expenseListService.getExpenses() {
+           expenses = expenseList
         }
     }
     
-    
-    func deleteBudget(budget: Budget) -> Bool {
-        
-        if budgetService.deleteBudget(budget: budget) {
-            if let index = budgets.firstIndex(where: { temp in
-                temp.id == budget.id
+    func deleteExpense(expense: Expense) -> Bool {
+        if expenseListService.deleteExpense(expense: expense) {
+            if let index = expenses.firstIndex(where: {
+                $0.entityId == expense.entityId
             }) {
-                budgets.remove(at: index)
+                expenses.remove(at: index)
             }
             return true
         }
         return false
     }
-    
 }

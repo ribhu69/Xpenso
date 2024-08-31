@@ -20,6 +20,8 @@
 		A22F90712C7DF70A004AA449 /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906B2C7DF579004AA449 /* Manrope-Regular.ttf */; };
 		A22F90722C7DF70C004AA449 /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */; };
 		A22F90732C7DF70E004AA449 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906A2C7DF579004AA449 /* Manrope-Bold.ttf */; };
+		A22F90752C7E3B89004AA449 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90742C7E3B89004AA449 /* SettingsView.swift */; };
+		A22F90792C7FAE0A004AA449 /* AlignmentGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */; };
 		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
@@ -79,6 +81,8 @@
 		A22F906B2C7DF579004AA449 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
 		A22F906C2C7DF579004AA449 /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
 		A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		A22F90742C7E3B89004AA449 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentGuide.swift; sourceTree = "<group>"; };
 		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 				A2C1A3DD2C0B45E6001E976C /* MapView.swift */,
 				A2C1A3DF2C0B8311001E976C /* ChartView.swift */,
 				A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */,
+				A22F90742C7E3B89004AA449 /* SettingsView.swift */,
+				A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 			files = (
 				A2F170FF2BE7D0C50000E321 /* ExpenseListService.swift in Sources */,
 				A2F170F72BE785860000E321 /* DateExtensions.swift in Sources */,
+				A22F90792C7FAE0A004AA449 /* AlignmentGuide.swift in Sources */,
 				A2F170ED2BE773FE0000E321 /* ExpenseService.swift in Sources */,
 				A2C1A3E02C0B8311001E976C /* ChartView.swift in Sources */,
 				A2F4D7D72C3A85F6004BA528 /* BudgetDetailViewModel.swift in Sources */,
@@ -486,6 +493,7 @@
 				A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */,
 				A27DFEB82BE647E00054D092 /* FilterCategory.swift in Sources */,
 				A27DFED82BE6BC7E0054D092 /* AppDefaults.swift in Sources */,
+				A22F90752C7E3B89004AA449 /* SettingsView.swift in Sources */,
 				A2F170FD2BE7CFE90000E321 /* ExpenseAssembler.swift in Sources */,
 				A27DFEBF2BE650620054D092 /* Readme.md in Sources */,
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,

@@ -55,7 +55,8 @@ struct BudgetV2View: View {
                         HStack {
                             Image(systemName: "plus.circle")
                             Text("Add Budget")
-                                .setCustomFont(fontName: "Quicksand-SemiBold", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
                         }
                     })
                     .padding(.horizontal, 8)
@@ -104,12 +105,14 @@ struct BudgetV2View: View {
                                     Image("delete", bundle: nil)
                                         .renderingMode(.template) // Apply rendering mode
                                 }
+                                .tint(Color.red)
                                 Button() {
                                     editPeriodicBudget.toggle()
                                 } label: {
                                     Image("edit", bundle: nil)
-                                        .renderingMode(.template) // Apply rendering mode
+                                        .renderingMode(.template)
                                 }
+                                .tint(.editOption)
                             }
                             .sheet(isPresented: $editPeriodicBudget,
                                    content: {
@@ -120,12 +123,15 @@ struct BudgetV2View: View {
                                         editingMode: true,
                                         budgetInEdit: budget
                                     ) { budget in
+                                        
+                                        self.viewModel.updateBudget(budget: budget)
                                         editPeriodicBudget.toggle()
                                     }
                                 }
                                 
                             })
                         }
+                        .listRowSeparator(.hidden)
                     }
                     .listStyle(PlainListStyle())
                     

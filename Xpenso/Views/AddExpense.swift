@@ -32,6 +32,7 @@ struct AddExpenseView : View{
                 HStack {
                     Image("money", bundle: nil)
                         .renderingMode(.template)
+                        .foregroundStyle(AppTheme.shared.selectedColor)
                     TextField(text: $amount, prompt: Text("Amount")) {}
                         .padding()
                         .keyboardType(.decimalPad)
@@ -41,6 +42,7 @@ struct AddExpenseView : View{
                 HStack {
                     Image("notes", bundle: nil)
                         .renderingMode(.template)
+                        .foregroundStyle(AppTheme.shared.selectedColor)
                     TextField(text: $description, prompt: Text("Description")) {}
                         .padding()
                         .setCustomFont()
@@ -50,6 +52,7 @@ struct AddExpenseView : View{
                 HStack {
                     Image("category", bundle: nil)
                         .renderingMode(.template)
+                        .foregroundStyle(AppTheme.shared.selectedColor)
                         .padding(.top)
                     HStack {
                         Image(expenseType.rawValue, bundle: nil)
@@ -79,6 +82,7 @@ struct AddExpenseView : View{
                 HStack {
                     Image("date", bundle: nil)
                         .renderingMode(.template)
+                        .foregroundStyle(AppTheme.shared.selectedColor)
                     Text(getFormattedDate(date: selectedDate))
                         .setCustomFont()
                         .disabled(true)
@@ -105,6 +109,7 @@ struct AddExpenseView : View{
                     HStack {
                         Image("budget", bundle: nil)
                             .renderingMode(.template)
+                            .foregroundStyle(AppTheme.shared.selectedColor)
                             .padding(.top)
                         HStack {
                             Text(selectedBudget!.budgetTitle)

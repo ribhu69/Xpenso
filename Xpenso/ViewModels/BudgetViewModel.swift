@@ -1,5 +1,5 @@
 //
-//  ExpenseListViewModel.swift
+//  BudgetViewModel.swift
 //  Xpenso
 //
 //  Created by Arkaprava Ghosh on 05/05/24.
@@ -9,39 +9,52 @@ import Foundation
 import Combine
 import SwiftData
 
-class ExpenseListViewModel : ObservableObject {
+class BudgetViewModel : ObservableObject {
     
-    var expenseListService: ExpenseListService
-//    @Published var expenses : [Expense] = []
-    var context : ModelContext?
-    @Published var expenses : [Expense] = []
-    @Published var filteredExpenses : [Expense] = []
+    var budgetService: BudgetService
+    var context: ModelContext?
+
+    @Published var budgets = [Budget]()
     
-    init(expenseListService: ExpenseListService, context: ModelContext) {
-        self.expenseListService = expenseListService
+    init(budgetService: BudgetService, context: ModelContext) {
+        self.budgetService = budgetService
         self.context = context
-        getExpenses()
     }
     
-    func addExpense(expense: Expense) {
-        guard let context else {return}
-        if expenseListService.addExpense(expense: expense, context: context) {
-            expenses.append(expense)
+    
+    func getBudgets() {
+        budgets = budgetService.getBudgets()
+    }
+    
+    func addBudget(budget: Budget) {
+        
+        if budgetService.addBudget(budget: budget) {
+            budgets.append(budget)
         }
-        else {
-            Logger.log(.error, "Failed to add expense")
+    }
+    
+    func updateBudget(budget: Budget) {
+        if budgetService.updateBudget(budget: budget) {
+            if let index = budgets.firstIndex(where: { temp in
+                temp.budgetId == budget.budgetId
+            }) {
+                budgets[index] = budget
+            }
         }
     }
-  
     
-    func getExpenses() {
-//        if let expenseList = expenseListService.getExpenses() {
-//           expenses = expenseList
-//        }
-//        expenses
+    
+    func deleteBudget(budget: Budget) -> Bool {
+        
+        if budgetService.deleteBudget(budget: budget) {
+            if let index = budgets.firstIndex(where: { temp in
+                temp.budgetId == budget.budgetId
+            }) {
+                budgets.remove(at: index)
+            }
+            return true
+        }
+        return false
     }
     
-    func deleteExpense(expense: Expense) -> Bool {
-        expenseListService.deleteExpense(expense: expense)
-    }
 }

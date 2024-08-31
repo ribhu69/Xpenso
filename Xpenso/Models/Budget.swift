@@ -19,11 +19,10 @@ final class Budget : Identifiable {
     var budget_style : String
     @Transient var budgetType : BudgetType = BudgetType(rawValue: "none")!
     @Transient var budgetStyle : BudgetStyle = BudgetStyle(rawValue: "adhoc")!
-    var startDate : Date?
+    var startDate : Date
     
     var endDate: Date? {
         
-        guard let startDate else {return nil}
             switch budgetType {
             case .daily:
                 return Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
@@ -35,7 +34,7 @@ final class Budget : Identifiable {
                 return nil
             }
         }
-    init(id: String, amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date? = nil) {
+    init(id: String, amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date) {
         self.budgetId = id
         self.amount = amount
         self.budgetTitle = budgetTitle

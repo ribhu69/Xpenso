@@ -35,11 +35,13 @@ struct AddABudgetView: View {
             _budgetTitle = State(initialValue: budget.budgetTitle)
             _allocatedBudget = State(initialValue: String(budget.amount))
             _budgetType = State(initialValue: budget.budgetType)
-            if budgetStyle == .periodic {
-                _selectedMonth = State(initialValue: Calendar.current.component(.month, from: budget.startDate!))
-                _budgetType = State(initialValue: budget.budgetType)
-                _selectedMonth = State(initialValue: Calendar.current.component(.month, from: budget.startDate!))
-            }
+            _selectedMonth = State(
+                initialValue: Calendar.current.component(.month, from: budget.startDate)
+            )
+            _budgetType = State(initialValue: budget.budgetType)
+            _selectedMonth = State(
+                initialValue: Calendar.current.component(.month, from: budget.startDate))
+            _startDate = State(initialValue: budget.startDate)
         }
     }
     
@@ -143,13 +145,15 @@ struct AddABudgetView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        
+                      
+
                         if editingMode {
                             guard var budgetInEdit else {
                                 fatalError("Budget in Edit cannot be nil")
                             }
                             budgetInEdit.amount = Double(allocatedBudget)!
                             budgetInEdit.budgetTitle = budgetTitle
+                            budgetInEdit.startDate = startDate
                             
                             onSave(budgetInEdit)
                         }
@@ -219,7 +223,14 @@ struct AddABudgetView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         
-                        let budget = Budget(id: UUID().uuidString, amount: Double(allocatedBudget)!, budgetTitle: budgetTitle, budgetType: budgetType, budgetStyle: .adhoc, startDate: nil)
+                        let budget = Budget(
+                            id: UUID().uuidString,
+                            amount: Double(allocatedBudget)!,
+                            budgetTitle: budgetTitle,
+                            budgetType: budgetType,
+                            budgetStyle: .adhoc,
+                            startDate: startDate
+                        )
                         
                         onSave(budget)
                     }

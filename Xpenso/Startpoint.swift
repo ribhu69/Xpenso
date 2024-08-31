@@ -16,6 +16,8 @@ class StartPoint {
 //    static func initialize() -> NotesListView {
     static func initialize() -> ExpenseTabBar {
         
+        _ = DatabaseHelper.shared
+        
         guard let currentAppVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             fatalError("App Version or build version does not exist.")
         }
@@ -40,4 +42,5 @@ class StartPoint {
 enum AppConstants: String {
     case appThemeColor
     case appVersion = "CFBundleShortVersionString"
+    case themeColor = "AppThemeColor"
 }

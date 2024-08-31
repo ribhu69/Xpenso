@@ -16,7 +16,7 @@ struct BudgetCardView: View {
         HStack {
             image.resizable()
                 .renderingMode(.template)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.shared.selectedColor)
                 .frame(width: 34, height: 34)
                 .padding(.leading, 16)
 
@@ -36,7 +36,7 @@ struct BudgetCardView: View {
         }
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(isSelected ? Color.blue : Color.gray.opacity(0.8), lineWidth: 1)
+                .stroke(isSelected ? AppTheme.shared.selectedColor : Color.gray.opacity(0.8), lineWidth: 1)
                 .foregroundStyle(.clear)
         }
         .padding(.horizontal, 16)
@@ -120,7 +120,6 @@ struct AddBudgetV2View: View {
                             Text("Continue")
                                 .foregroundStyle(.white)
                                 .setCustomFont(weight: .semibold, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
-                                .foregroundStyle(Color.primary)
                                
                             Image(systemName: "arrow.right.circle")
                                 .renderingMode(.template)
@@ -129,7 +128,8 @@ struct AddBudgetV2View: View {
                         .padding(.top, 12)
                         .frame(maxWidth: .infinity)
                         .edgesIgnoringSafeArea(.all)
-                        .background(Color.blue)
+                        .background(AppTheme.shared.selectedColor)
+
                     }
                 )
             } else {

@@ -10,18 +10,13 @@ import SwiftUI
 struct ExpenseListView : View {
     @Environment(\.colorScheme) var colorScheme
 
-    
     @State var filterByCategory = false
     @State var isCategorySelectorVisible = false
     @State var expenseType : ExpenseCategory = .none
     
     @State var filterByExpense = false
     @State var isExpenseComparatorVisible = false
-    @State var comparisonType : Comparison = .equalTo
-    @State var comparisonValue : String = ""
-    
-    
-    
+
     @State var addExpense : Bool = false
     @State var addFilter : Bool = false
     @State var showGraph : Bool = false
@@ -29,14 +24,13 @@ struct ExpenseListView : View {
     
     @ObservedObject var viewModel : ExpenseListViewModel
     
-    
     @State var filteredExpenses : [Expense] = []
     
     init(viewModel : ExpenseListViewModel) {
         self.viewModel = viewModel
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
-            .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!
+            .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!,
         ]
         appearance.largeTitleTextAttributes = [
                     .font: UIFont(name: "Manrope-Regular", size: 34)!
@@ -45,45 +39,19 @@ struct ExpenseListView : View {
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        viewModel.getExpenses()
     }
     var body: some View {
         NavigationView {
             VStack {
                 
-                if filterCount > 0 {
-                    
-                    if filteredExpenses.isEmpty {
-                        Image("emptyView", bundle: nil)
-                            .resizable()
-                            .renderingMode(.template)
-                            .frame(width: 50, height: 50)
-                        Text("No Expenses Found for Applied Filter")
-                            .font(.body)
-                    }
-                    
-                    else {
-                        
-                        List {
-                            ForEach(filteredExpenses, id: \.id) { expense in
-                                ExpenseRow(expense: expense)
-                                    .swipeActions {
-                                        Button(role: .destructive) {
-                                            deleteExpense(expense)
-                                        } label: {
-                                            Image("delete", bundle: nil)
-                                                .renderingMode(.template) // Apply rendering mode
-                                        }
-                                    }
-                            } .listRowSeparator(.hidden)
-                        }.listStyle(.plain)
-                    }
-                }
-                else {
                     if viewModel.expenses.isEmpty {
                         Image("emptyView", bundle: nil)
                             .resizable()
                             .renderingMode(.template)
                             .frame(width: 50, height: 50)
+                            .foregroundStyle(.secondary)
                         Text("No Expenses Found")
                             .setCustomFont(size: UIFont.preferredFont(forTextStyle: .body).pointSize)
                             .padding(.horizontal, 8)
@@ -128,57 +96,21 @@ struct ExpenseListView : View {
                                             deleteExpense(expense)
                                         } label: {
                                             Image("delete", bundle: nil)
-                                                .renderingMode(.template) // Apply rendering mode
+                                                .renderingMode(.template)
+                                            
                                         }
+                                        .tint(Color.red)
                                     }
                             } .listRowSeparator(.hidden)
                         }.listStyle(.plain)
                         
-                        VStack {
-                            Divider()
-                                .background(.gray)
-                    
-                            HStack {
-                                Text("Total:")
-                                    .font(.title2)
-                                Text(viewModel.expenses.reduce(0) { $0 + $1.amount }, format: .currency(code: "INR"))
-                                    .font(.title2)
-                                    .padding(.leading, 8)
-                                
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                        }
                     }
-                }
             }
             .toolbar {
                 if !viewModel.expenses.isEmpty {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
-                            
-                            Button(action: {
-                                showGraph = true
-                            }) {
-                                
-                                    Image("charts")
-                                        .renderingMode(.template)
-                                
-                            }
-                            
-                            
-                            Button(action: {
-                                addFilter = true
-                            }) {
-                                
-                                if filterCount > 0 {
-                                    CustomLabel( badgeCount: filterCount)
-                                }
-                                else {
-                                    Image("filter")
-                                        .renderingMode(.template)
-                                }
-                            }
+
                             Button(action: {
                                 addExpense = true
                             }) {
@@ -191,12 +123,6 @@ struct ExpenseListView : View {
                 }
             }
             
-            .sheet(isPresented: $showGraph, content: {
-                NavigationView {
-                    ChartView(expenses: viewModel.expenses)
-                }
-            })
-            
             .sheet(isPresented: $addExpense, content: {
                 NavigationView {
                     AddExpenseView() { newExpense in
@@ -206,143 +132,13 @@ struct ExpenseListView : View {
                     .navigationTitle("Add Expense")
                 }
             })
-            
-            .sheet(isPresented: $addFilter,
-                   content: {
-                NavigationView {
-                    
-                    FilterView(
-                        isFilterViewVisible: $addFilter,
-                        filterByCategory: $filterByCategory,
-                        isCategorySelectorVisible: $isCategorySelectorVisible,
-                        expenseType: $expenseType,
-                        filterByExpense: $filterByExpense,
-                        isExpenseComparatorVisible: $isExpenseComparatorVisible,
-                        comparisonType: $comparisonType,
-                        comparisonValue: $comparisonValue,
-                        filterCount: $filterCount
-                    )
-                    .navigationTitle("Filter By")
-                    
-                    //                    FilterView(appliedFilters: $filterCount)
-                    //                        .navigationTitle("Filter By")
-                }
-            })
-            .onChange(of: addFilter) { oldValue, newValue in
-                if newValue == false {
-                    if filterCount == 2{
-                        var newValues = [Expense]()
-                        
-                        newValues = viewModel.expenses.filter { comparison in
-                            switch comparisonType {
-                            case .greaterThan:
-                                return comparison.amount > Double(comparisonValue)!
-                            case .greaterThanEqualTo:
-                                return comparison.amount >= Double(comparisonValue)!
-                            case .lessThan:
-                                return comparison.amount < Double(comparisonValue)!
-                            case .lessThanEqualTo:
-                                return comparison.amount <= Double(comparisonValue)!
-                            case .equalTo:
-                                return comparison.amount == Double(comparisonValue)!
-                            }
-                        }
-        
-                        
-                        if expenseType != .none {
-                            newValues = newValues.filter {
-                                item in
-                                
-                                item.category == expenseType
-                            }
-                        }
-                        
-                        filteredExpenses = newValues
-                        
-                        
-                    }
-                    else if filterCount == 1 {
-                        var newValues = [Expense]()
-                        if filterByExpense && !comparisonValue.isEmpty {
-                            
-                            
-                            newValues = viewModel.expenses.filter { comparison in
-                                switch comparisonType {
-                                case .greaterThan:
-                                    return comparison.amount > Double(comparisonValue)!
-                                case .greaterThanEqualTo:
-                                    return comparison.amount >= Double(comparisonValue)!
-                                case .lessThan:
-                                    return comparison.amount < Double(comparisonValue)!
-                                case .lessThanEqualTo:
-                                    return comparison.amount <= Double(comparisonValue)!
-                                case .equalTo:
-                                    return comparison.amount == Double(comparisonValue)!
-                                }
-                            }
-                            
-                        }
-                        else {
-                        
-                            if expenseType != .none {
-                                newValues = viewModel.expenses.filter {
-                                    item in
-                                    
-                                    item.category == expenseType
-                                }
-                            }
-                            else {
-                                newValues = viewModel.expenses
-                            }
-                            
-                            print(newValues.count)
-                        }
-                        filteredExpenses = newValues
-                    }
-                    else {
-                        filteredExpenses.removeAll()
-                    }
-                }
-            }
             .navigationTitle("Xpenso")
         }
+       
     }
     
     func deleteExpense(_ expense: Expense) {
-        withAnimation {
-            if filterCount > 0 {
-                
-                if viewModel.deleteExpense(expense: expense) {
-                    if let index = filteredExpenses.firstIndex(where: { $0.id == expense.id }) {
-                        filteredExpenses.remove(at: index)
-                    }
-                    if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
-                        viewModel.expenses.remove(at: index)
-                    }
-                    
-                    if viewModel.expenses.isEmpty {
-                        filterByCategory = false
-                        filterByExpense = false
-                        comparisonType = .equalTo
-                        comparisonValue = ""
-                    }
-                }
-                
-            }
-            else {
-                if viewModel.deleteExpense(expense: expense) {
-                    if let index = viewModel.expenses.firstIndex(where: { $0.id == expense.id }) {
-                        viewModel.expenses.remove(at: index)
-                    }
-                    if viewModel.expenses.isEmpty {
-                        filterByCategory = false
-                        filterByExpense = false
-                        comparisonType = .equalTo
-                        comparisonValue = ""
-                    }
-                }
-            }
-        }
+        _ = viewModel.deleteExpense(expense: expense)
     }
 }
 
@@ -422,3 +218,13 @@ struct CustomLabel: View {
     }
   }
 }
+
+
+#Preview(body: {
+    ExpenseListView(
+        viewModel: ExpenseListViewModel(
+            expenseListService: ExpenseListServiceImpl(),
+            context: DatabaseHelper.shared.getModelContext()
+        )
+    )
+})
