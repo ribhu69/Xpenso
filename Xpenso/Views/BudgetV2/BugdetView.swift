@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct BudgetView: View {
     
@@ -37,11 +38,13 @@ struct BudgetView: View {
             VStack {
                 if viewModel.budgets.isEmpty {
                     Spacer()
-                    Image("adhoc", bundle: nil)
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(.secondary)
-                        .frame(width: 50, height: 50)
+                    LottieView(animation: .named("hamster"))
+                        .playing()
+                        .looping()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        
+                    
                     
                     Text("No budget? Add one to keep rolling!")
                         .setCustomFont()

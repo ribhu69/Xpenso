@@ -24,6 +24,9 @@
 		A22F90792C7FAE0A004AA449 /* AlignmentGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */; };
 		A22F90802C83C1D1004AA449 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A22F907F2C83C1D1004AA449 /* Lottie */; };
 		A22F90822C83C209004AA449 /* LottieHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90812C83C209004AA449 /* LottieHandler.swift */; };
+		A22F90882C83C691004AA449 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F90872C83C691004AA449 /* wallet.json */; };
+		A22F908B2C83C815004AA449 /* rabbit.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F90892C83C814004AA449 /* rabbit.json */; };
+		A22F908C2C83C815004AA449 /* hamster.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F908A2C83C815004AA449 /* hamster.json */; };
 		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
@@ -84,6 +87,9 @@
 		A22F90742C7E3B89004AA449 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentGuide.swift; sourceTree = "<group>"; };
 		A22F90812C83C209004AA449 /* LottieHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieHandler.swift; sourceTree = "<group>"; };
+		A22F90872C83C691004AA449 /* wallet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
+		A22F90892C83C814004AA449 /* rabbit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rabbit.json; sourceTree = "<group>"; };
+		A22F908A2C83C815004AA449 /* hamster.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hamster.json; sourceTree = "<group>"; };
 		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 		A22F90842C83C22B004AA449 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				A22F908A2C83C815004AA449 /* hamster.json */,
+				A22F90892C83C814004AA449 /* rabbit.json */,
+				A22F90872C83C691004AA449 /* wallet.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -460,13 +469,16 @@
 				A22F90642C7B7B6E004AA449 /* Quicksand-SemiBold.ttf in Resources */,
 				A27DFEA02BE5EAB40054D092 /* Assets.xcassets in Resources */,
 				A22F90632C7B7B6C004AA449 /* Quicksand-Regular.ttf in Resources */,
+				A22F90882C83C691004AA449 /* wallet.json in Resources */,
 				A27DFEB22BE5EF820054D092 /* Localizable.xcstrings in Resources */,
 				A22F90732C7DF70E004AA449 /* Manrope-Bold.ttf in Resources */,
+				A22F908C2C83C815004AA449 /* hamster.json in Resources */,
 				A22F90722C7DF70C004AA449 /* Manrope-SemiBold.ttf in Resources */,
 				A22F906F2C7DF705004AA449 /* Manrope-Light.ttf in Resources */,
 				A22F90602C7B7B65004AA449 /* Quicksand-Bold.ttf in Resources */,
 				A22F90712C7DF70A004AA449 /* Manrope-Regular.ttf in Resources */,
 				A22F90702C7DF708004AA449 /* Manrope-Medium.ttf in Resources */,
+				A22F908B2C83C815004AA449 /* rabbit.json in Resources */,
 				A22F90612C7B7B67004AA449 /* Quicksand-Light.ttf in Resources */,
 				A22F90622C7B7B6A004AA449 /* Quicksand-Medium.ttf in Resources */,
 			);

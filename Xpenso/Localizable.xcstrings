@@ -73,9 +73,6 @@
         }
       }
     },
-    "Category budget" : {
-
-    },
     "Choose a budget type" : {
 
     },
@@ -391,13 +388,7 @@
     "None" : {
 
     },
-    "Overall budget" : {
-
-    },
     "Periodic Budget" : {
-
-    },
-    "Proceed" : {
 
     },
     "Save" : {

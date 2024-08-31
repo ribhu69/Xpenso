@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Lottie
 
 struct BudgetDetailView : View {
     var budget: Budget
@@ -77,24 +78,28 @@ struct BudgetDetailView : View {
                     }
                     Spacer()
                     
-                    Image("emptyChair", bundle: nil)
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(Color.secondary)
-                        .rotationEffect(chairRotation, anchor: .bottom)
+//                    Image("emptyChair", bundle: nil)
+//                        .resizable()
+//                        .renderingMode(.template)
+//                        .foregroundStyle(Color.secondary)
+//                        .rotationEffect(chairRotation, anchor: .bottom)
+//                    
+//                        .frame(width: 50, height: 50)
+//                    
+//                        .onAppear(perform: {
+//                            startTimer()
+//                        })
                     
-                        .frame(width: 50, height: 50)
-                    
-                        .onAppear(perform: {
-                            startTimer()
-                        })
-                    
+                    LottieView(animation: .named("rabbit"))
+                        .playing()
+                        .looping()
+                        .frame(width: 80, height: 80)
                     
                     
                     Text("No expenses yet, your chair is still empty!")
                         .textCase(.none)
                         .multilineTextAlignment(.center)
-                        .font(.title3)
+                        .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
                         .foregroundStyle(Color.secondary)
                         .padding(.horizontal, 8)
                         .padding(.bottom, 8)
@@ -102,14 +107,23 @@ struct BudgetDetailView : View {
                     Button(action: {
                         showAddExpense.toggle()
                     }) {
-                        Label("Add Expense", systemImage: "plus")
-                            .padding(.all, 8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                                    .fill(Color.blue)
-                            )
+                        HStack {
+                            Image(systemName: "plus.circle")
+                            Text("Add Expense")
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
+                                .padding(.horizontal, 8)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1.5)
+                                .foregroundStyle(Color.clear)
+                            
+                        }
                     }
-                    .foregroundColor(.white)
+                  
                     .sheet(isPresented: $showAddExpense, content: {
                         NavigationView {
                             

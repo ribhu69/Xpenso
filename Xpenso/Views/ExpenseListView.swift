@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct ExpenseListView : View {
     @Environment(\.colorScheme) var colorScheme
@@ -47,11 +48,13 @@ struct ExpenseListView : View {
             VStack {
                 
                     if viewModel.expenses.isEmpty {
-                        Image("emptyView", bundle: nil)
-                            .resizable()
-                            .renderingMode(.template)
-                            .frame(width: 50, height: 50)
-                            .foregroundStyle(.secondary)
+                        LottieView(animation: .named("wallet"))
+                            .playing()
+                            .looping()
+                            .frame(width: 80, height: 80)
+                        
+                        
+
                         Text("No Expenses Found")
                             .setCustomFont(size: UIFont.preferredFont(forTextStyle: .body).pointSize)
                             .padding(.horizontal, 8)
