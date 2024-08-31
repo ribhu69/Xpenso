@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpenseTabBar : View {
     var expenseListView : ExpenseListView
-    var budgetView : BudgetV2View
+    var budgetView : BudgetView
     var settingsView = SettingsView()
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 

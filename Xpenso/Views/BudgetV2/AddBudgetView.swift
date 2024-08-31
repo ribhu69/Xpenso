@@ -17,16 +17,16 @@ struct BudgetCardView: View {
             image.resizable()
                 .renderingMode(.template)
                 .foregroundStyle(AppTheme.shared.selectedColor)
-                .frame(width: 34, height: 34)
+                .frame(width: 24, height: 24)
                 .padding(.leading, 16)
 
             VStack(alignment: .leading) {
                 Text("\(title)")
-                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
                     .padding(.bottom, 8)
                     .padding(.top, 16)
                 Text("\(subTitle)")
-                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                    .setCustomFont(fontName: "Manrope-Regular", size: UIFont.preferredFont(forTextStyle: .body).pointSize)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 16)
             }
@@ -45,7 +45,7 @@ struct BudgetCardView: View {
 
 import SwiftUI
 
-struct AddBudgetV2View: View {
+struct AddBudgetView: View {
     @State private var selectedBudget: String?
     @State var optionSelected = false
     @Environment(\.dismiss) var dismiss
@@ -125,10 +125,10 @@ struct AddBudgetV2View: View {
                                 .renderingMode(.template)
                                 .foregroundStyle(.white)
                         }
-                        .padding(.top, 12)
-                        .frame(maxWidth: .infinity)
-                        .edgesIgnoringSafeArea(.all)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity, alignment: .bottom)
                         .background(AppTheme.shared.selectedColor)
+
 
                     }
                 )
@@ -160,5 +160,5 @@ struct AddBudgetV2View: View {
 }
 
 #Preview {
-    AddBudgetV2View(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
+    AddBudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
 }

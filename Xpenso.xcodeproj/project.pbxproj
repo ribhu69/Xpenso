@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A22F90572C7A6ED9004AA449 /* BudgetV2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90562C7A6ED9004AA449 /* BudgetV2View.swift */; };
-		A22F90592C7A6F31004AA449 /* AddBudgetV2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90582C7A6F31004AA449 /* AddBudgetV2View.swift */; };
+		A22F90572C7A6ED9004AA449 /* BugdetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90562C7A6ED9004AA449 /* BugdetView.swift */; };
+		A22F90592C7A6F31004AA449 /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90582C7A6F31004AA449 /* AddBudgetView.swift */; };
 		A22F90602C7B7B65004AA449 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F905B2C7B346E004AA449 /* Quicksand-Bold.ttf */; };
 		A22F90612C7B7B67004AA449 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F905D2C7B346E004AA449 /* Quicksand-Light.ttf */; };
 		A22F90622C7B7B6A004AA449 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F905C2C7B346E004AA449 /* Quicksand-Medium.ttf */; };
@@ -22,6 +22,8 @@
 		A22F90732C7DF70E004AA449 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F906A2C7DF579004AA449 /* Manrope-Bold.ttf */; };
 		A22F90752C7E3B89004AA449 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90742C7E3B89004AA449 /* SettingsView.swift */; };
 		A22F90792C7FAE0A004AA449 /* AlignmentGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */; };
+		A22F90802C83C1D1004AA449 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A22F907F2C83C1D1004AA449 /* Lottie */; };
+		A22F90822C83C209004AA449 /* LottieHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90812C83C209004AA449 /* LottieHandler.swift */; };
 		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
@@ -49,8 +51,6 @@
 		A2C1A3E02C0B8311001E976C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3DF2C0B8311001E976C /* ChartView.swift */; };
 		A2C1A3E22C0C57BF001E976C /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E12C0C57BF001E976C /* ColorExtensions.swift */; };
 		A2C1A3E42C0CD8B7001E976C /* ExpenseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */; };
-		A2C1A3E62C0CD9E8001E976C /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */; };
-		A2C1A3E92C0CEA29001E976C /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */; };
 		A2F170E82BE76F520000E321 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170E72BE76F520000E321 /* Logger.swift */; };
 		A2F170ED2BE773FE0000E321 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EC2BE773FE0000E321 /* ExpenseService.swift */; };
 		A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F170EF2BE774790000E321 /* AddExpensePresenter.swift */; };
@@ -68,8 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A22F90562C7A6ED9004AA449 /* BudgetV2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetV2View.swift; sourceTree = "<group>"; };
-		A22F90582C7A6F31004AA449 /* AddBudgetV2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetV2View.swift; sourceTree = "<group>"; };
+		A22F90562C7A6ED9004AA449 /* BugdetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugdetView.swift; sourceTree = "<group>"; };
+		A22F90582C7A6F31004AA449 /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
 		A22F905B2C7B346E004AA449 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		A22F905C2C7B346E004AA449 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		A22F905D2C7B346E004AA449 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -83,6 +83,7 @@
 		A22F906D2C7DF579004AA449 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
 		A22F90742C7E3B89004AA449 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentGuide.swift; sourceTree = "<group>"; };
+		A22F90812C83C209004AA449 /* LottieHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieHandler.swift; sourceTree = "<group>"; };
 		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
@@ -112,8 +113,6 @@
 		A2C1A3DF2C0B8311001E976C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		A2C1A3E12C0C57BF001E976C /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTabBar.swift; sourceTree = "<group>"; };
-		A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
-		A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
 		A2F170E52BE6C3750000E321 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A2F170E72BE76F520000E321 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A2F170EC2BE773FE0000E321 /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A22F90802C83C1D1004AA449 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,8 +145,8 @@
 		A22F90552C7A6EC3004AA449 /* BudgetV2 */ = {
 			isa = PBXGroup;
 			children = (
-				A22F90562C7A6ED9004AA449 /* BudgetV2View.swift */,
-				A22F90582C7A6F31004AA449 /* AddBudgetV2View.swift */,
+				A22F90562C7A6ED9004AA449 /* BugdetView.swift */,
+				A22F90582C7A6F31004AA449 /* AddBudgetView.swift */,
 			);
 			path = BudgetV2;
 			sourceTree = "<group>";
@@ -176,6 +176,21 @@
 			path = Manrope;
 			sourceTree = "<group>";
 		};
+		A22F90832C83C223004AA449 /* JSONContent */ = {
+			isa = PBXGroup;
+			children = (
+				A22F90842C83C22B004AA449 /* Lottie */,
+			);
+			path = JSONContent;
+			sourceTree = "<group>";
+		};
+		A22F90842C83C22B004AA449 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		A27DFE8F2BE5EAB20054D092 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +212,7 @@
 		A27DFE9A2BE5EAB20054D092 /* Xpenso */ = {
 			isa = PBXGroup;
 			children = (
+				A22F90832C83C223004AA449 /* JSONContent */,
 				A22F905A2C7B3462004AA449 /* Fonts */,
 				A2F170FB2BE7CFD90000E321 /* Assemblers */,
 				A2F170F82BE7CF970000E321 /* ViewModels */,
@@ -266,6 +282,7 @@
 				A2C1A3E32C0CD8B7001E976C /* ExpenseTabBar.swift */,
 				A22F90742C7E3B89004AA449 /* SettingsView.swift */,
 				A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */,
+				A22F90812C83C209004AA449 /* LottieHandler.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,8 +325,6 @@
 				A2F4D7D22C3A6F5E004BA528 /* BudgetDetailViewX.swift */,
 				A24113D82C241F30007F5500 /* BudgetDetailView.swift */,
 				A2F04ADE2C12329D0014BB05 /* AddBudgetOverview */,
-				A2C1A3E52C0CD9E8001E976C /* BudgetView.swift */,
-				A2C1A3E82C0CEA29001E976C /* AddBudgetView.swift */,
 				A2F4D7D42C3A720E004BA528 /* BudgetSelector.swift */,
 			);
 			path = Budget;
@@ -394,6 +409,7 @@
 			);
 			name = Xpenso;
 			packageProductDependencies = (
+				A22F907F2C83C1D1004AA449 /* Lottie */,
 			);
 			productName = Xpenso;
 			productReference = A27DFE982BE5EAB20054D092 /* Xpenso.app */;
@@ -425,6 +441,7 @@
 			);
 			mainGroup = A27DFE8F2BE5EAB20054D092;
 			packageReferences = (
+				A22F907E2C83C1D1004AA449 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A27DFE992BE5EAB20054D092 /* Products */;
 			projectDirPath = "";
@@ -470,6 +487,7 @@
 				A2F4D7D72C3A85F6004BA528 /* BudgetDetailViewModel.swift in Sources */,
 				A2F170E82BE76F520000E321 /* Logger.swift in Sources */,
 				A27DFEC22BE65F6C0054D092 /* RadioButton.swift in Sources */,
+				A22F90822C83C209004AA449 /* LottieHandler.swift in Sources */,
 				A2B8A4522C2C3AE400E7E096 /* BudgetStyle.swift in Sources */,
 				A27DFED02BE6BA440054D092 /* DatabaseHelper.swift in Sources */,
 				A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */,
@@ -482,10 +500,9 @@
 				A2F4D7D32C3A6F5E004BA528 /* BudgetDetailViewX.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,
 				A2F193332C21E73100477014 /* Budget.swift in Sources */,
-				A2C1A3E92C0CEA29001E976C /* AddBudgetView.swift in Sources */,
 				A27DFEAE2BE5ED9B0054D092 /* ExpenseCategoryView.swift in Sources */,
-				A22F90592C7A6F31004AA449 /* AddBudgetV2View.swift in Sources */,
-				A22F90572C7A6ED9004AA449 /* BudgetV2View.swift in Sources */,
+				A22F90592C7A6F31004AA449 /* AddBudgetView.swift in Sources */,
+				A22F90572C7A6ED9004AA449 /* BugdetView.swift in Sources */,
 				A27DFED42BE6BC160054D092 /* SceneDelegate.swift in Sources */,
 				A27DFEAA2BE5EADB0054D092 /* AddExpense.swift in Sources */,
 				A2F170F02BE774790000E321 /* AddExpensePresenter.swift in Sources */,
@@ -507,7 +524,6 @@
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
 				A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */,
 				A22F90662C7B7F23004AA449 /* FontExtension.swift in Sources */,
-				A2C1A3E62C0CD9E8001E976C /* BudgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +729,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A22F907E2C83C1D1004AA449 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A22F907F2C83C1D1004AA449 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A22F907E2C83C1D1004AA449 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A27DFE902BE5EAB20054D092 /* Project object */;
 }

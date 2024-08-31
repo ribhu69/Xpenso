@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BudgetV2View: View {
+struct BudgetView: View {
     
     @State var showCommonAddBudgetView = false
     @State var showAddBudgetView = false
@@ -69,7 +69,7 @@ struct BudgetV2View: View {
                     Spacer()
                         .sheet(isPresented: $showCommonAddBudgetView, content: {
                             NavigationView {
-                                AddBudgetV2View(viewModel: viewModel)
+                                AddBudgetView(viewModel: viewModel)
                             }
                         })
                     
@@ -112,7 +112,7 @@ struct BudgetV2View: View {
                                     Image("edit", bundle: nil)
                                         .renderingMode(.template)
                                 }
-                                .tint(.editOption)
+                                .tint(Color.gray)
                             }
                             .sheet(isPresented: $editPeriodicBudget,
                                    content: {
@@ -191,7 +191,7 @@ struct BudgetV2View: View {
 
 
 #Preview {
-    BudgetV2View(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
+    BudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
 }
 //    func editBudget(budget: Budget) {
 //        editBudget.toggle()

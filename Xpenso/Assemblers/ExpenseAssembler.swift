@@ -18,7 +18,7 @@ class ExpenseAssembler {
         let budgetViewModel = BudgetViewModel(budgetService: budgetService, context: context)
 //        let budgetView = BudgetView(viewModel : budgetViewModel)
         
-        let budgetView = BudgetV2View(viewModel : budgetViewModel)
+        let budgetView = BudgetView(viewModel : budgetViewModel)
         
         return ExpenseTabBar(expenseListView: expenseListView, budgetView: budgetView)
     }
