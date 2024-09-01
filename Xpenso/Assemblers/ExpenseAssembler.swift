@@ -22,4 +22,5 @@ class ExpenseAssembler {
         
         return ExpenseTabBar(expenseListView: expenseListView, budgetView: budgetView)
     }
+    
 }

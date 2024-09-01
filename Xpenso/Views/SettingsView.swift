@@ -103,9 +103,6 @@ struct SettingsView: View {
             .navigationTitle("Settings")
         }
     }
-    
- 
-    
 }
 
 enum ColorOption: String, CaseIterable {

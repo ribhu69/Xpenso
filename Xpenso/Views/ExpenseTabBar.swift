@@ -12,31 +12,36 @@ struct ExpenseTabBar : View {
     var budgetView : BudgetView
     var settingsView = SettingsView()
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-
+    
+    
+    
     @ObservedObject private var appSettings = AppTheme.shared
     var body: some View {
-            
-                TabView {
-                    expenseListView
-                        .tabItem {
-                            Image("home", bundle: nil)
-                                .renderingMode(.template)
-                        }
-                    
-                    budgetView
-                        .tabItem {
-                            Image("budget", bundle: nil)
-                                .renderingMode(.template)
-                        }
-                    
-                    settingsView
-                        .tabItem {
-                            Image("setttingGear", bundle: nil)
-                                .renderingMode(.template)
-                        }
-                    
+        NavigationStack {
+            TabView {
+                expenseListView
+                    .tabItem {
+                        Image("home", bundle: nil)
+                            .renderingMode(.template)
+                    }
+                
+                budgetView
+                    .tabItem {
+                        Image("budget", bundle: nil)
+                            .renderingMode(.template)
+                    }
+                
+                settingsView
+                    .tabItem {
+                        Image("setttingGear", bundle: nil)
+                            .renderingMode(.template)
+                    }
+                
             }
-                .tint(appSettings.selectedColor)
+            .tint(appSettings.selectedColor)
+        }
+        
     }
+    
 }
 

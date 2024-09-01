@@ -27,6 +27,11 @@
 		A22F90882C83C691004AA449 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F90872C83C691004AA449 /* wallet.json */; };
 		A22F908B2C83C815004AA449 /* rabbit.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F90892C83C814004AA449 /* rabbit.json */; };
 		A22F908C2C83C815004AA449 /* hamster.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F908A2C83C815004AA449 /* hamster.json */; };
+		A22F908E2C841FC1004AA449 /* randomAnimal.json in Resources */ = {isa = PBXBuildFile; fileRef = A22F908D2C841FC1004AA449 /* randomAnimal.json */; };
+		A22F90902C8460D7004AA449 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F908F2C8460D7004AA449 /* ExpenseDetailView.swift */; };
+		A22F90922C849F14004AA449 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90912C849F14004AA449 /* AddCommentView.swift */; };
+		A22F90992C84E410004AA449 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90982C84E410004AA449 /* Comment.swift */; };
+		A22F909B2C84E4AC004AA449 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F909A2C84E4AC004AA449 /* CommentService.swift */; };
 		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
@@ -90,6 +95,11 @@
 		A22F90872C83C691004AA449 /* wallet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		A22F90892C83C814004AA449 /* rabbit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rabbit.json; sourceTree = "<group>"; };
 		A22F908A2C83C815004AA449 /* hamster.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hamster.json; sourceTree = "<group>"; };
+		A22F908D2C841FC1004AA449 /* randomAnimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = randomAnimal.json; sourceTree = "<group>"; };
+		A22F908F2C8460D7004AA449 /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
+		A22F90912C849F14004AA449 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
+		A22F90982C84E410004AA449 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		A22F909A2C84E4AC004AA449 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
@@ -193,11 +203,19 @@
 		A22F90842C83C22B004AA449 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				A22F908D2C841FC1004AA449 /* randomAnimal.json */,
 				A22F908A2C83C815004AA449 /* hamster.json */,
 				A22F90892C83C814004AA449 /* rabbit.json */,
 				A22F90872C83C691004AA449 /* wallet.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A22F90932C84B564004AA449 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabView;
 			sourceTree = "<group>";
 		};
 		A27DFE8F2BE5EAB20054D092 = {
@@ -221,6 +239,7 @@
 		A27DFE9A2BE5EAB20054D092 /* Xpenso */ = {
 			isa = PBXGroup;
 			children = (
+				A22F90932C84B564004AA449 /* TabView */,
 				A22F90832C83C223004AA449 /* JSONContent */,
 				A22F905A2C7B3462004AA449 /* Fonts */,
 				A2F170FB2BE7CFD90000E321 /* Assemblers */,
@@ -261,6 +280,7 @@
 				A2B8A4502C2C3ADA00E7E096 /* Enums */,
 				A27DFEAF2BE5EDB10054D092 /* Expense.swift */,
 				A2F193322C21E73100477014 /* Budget.swift */,
+				A22F90982C84E410004AA449 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +312,8 @@
 				A22F90742C7E3B89004AA449 /* SettingsView.swift */,
 				A22F90782C7FAE0A004AA449 /* AlignmentGuide.swift */,
 				A22F90812C83C209004AA449 /* LottieHandler.swift */,
+				A22F908F2C8460D7004AA449 /* ExpenseDetailView.swift */,
+				A22F90912C849F14004AA449 /* AddCommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +383,7 @@
 				A2F170EC2BE773FE0000E321 /* ExpenseService.swift */,
 				A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */,
 				A2F193342C21EA8300477014 /* BudgetService.swift */,
+				A22F909A2C84E4AC004AA449 /* CommentService.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -475,6 +498,7 @@
 				A22F908C2C83C815004AA449 /* hamster.json in Resources */,
 				A22F90722C7DF70C004AA449 /* Manrope-SemiBold.ttf in Resources */,
 				A22F906F2C7DF705004AA449 /* Manrope-Light.ttf in Resources */,
+				A22F908E2C841FC1004AA449 /* randomAnimal.json in Resources */,
 				A22F90602C7B7B65004AA449 /* Quicksand-Bold.ttf in Resources */,
 				A22F90712C7DF70A004AA449 /* Manrope-Regular.ttf in Resources */,
 				A22F90702C7DF708004AA449 /* Manrope-Medium.ttf in Resources */,
@@ -501,6 +525,7 @@
 				A27DFEC22BE65F6C0054D092 /* RadioButton.swift in Sources */,
 				A22F90822C83C209004AA449 /* LottieHandler.swift in Sources */,
 				A2B8A4522C2C3AE400E7E096 /* BudgetStyle.swift in Sources */,
+				A22F90902C8460D7004AA449 /* ExpenseDetailView.swift in Sources */,
 				A27DFED02BE6BA440054D092 /* DatabaseHelper.swift in Sources */,
 				A27DFEC62BE677C50054D092 /* Comparison.swift in Sources */,
 				A2C1A3DE2C0B45E6001E976C /* MapView.swift in Sources */,
@@ -512,6 +537,7 @@
 				A2F4D7D32C3A6F5E004BA528 /* BudgetDetailViewX.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,
 				A2F193332C21E73100477014 /* Budget.swift in Sources */,
+				A22F90922C849F14004AA449 /* AddCommentView.swift in Sources */,
 				A27DFEAE2BE5ED9B0054D092 /* ExpenseCategoryView.swift in Sources */,
 				A22F90592C7A6F31004AA449 /* AddBudgetView.swift in Sources */,
 				A22F90572C7A6ED9004AA449 /* BugdetView.swift in Sources */,
@@ -530,8 +556,10 @@
 				A2C1A3E42C0CD8B7001E976C /* ExpenseTabBar.swift in Sources */,
 				A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */,
 				A2F192F12C1D871500477014 /* AddABudgetView.swift in Sources */,
+				A22F909B2C84E4AC004AA449 /* CommentService.swift in Sources */,
 				A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */,
 				A2F4D7D52C3A720E004BA528 /* BudgetSelector.swift in Sources */,
+				A22F90992C84E410004AA449 /* Comment.swift in Sources */,
 				A27DFEB42BE604E80054D092 /* ExpenseListView.swift in Sources */,
 				A27DFEAC2BE5EAE90054D092 /* ExpenseCategory.swift in Sources */,
 				A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */,

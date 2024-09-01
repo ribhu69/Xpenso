@@ -31,7 +31,7 @@ struct BudgetDetailView : View {
                         
                         VStack(alignment: .leading) {
                             Text(budget.budgetTitle)
-                                .font(.title2)
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
                                 .padding(.bottom, 8)
                             Text("\(budget.amount, specifier: "%.2f")")
                                 .font(.title3)
@@ -47,10 +47,11 @@ struct BudgetDetailView : View {
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                                 
-                                Text("-")
-                                    .foregroundStyle(.secondary)
-                                
+                               
                                 if budget.budgetStyle == .periodic, let endDate = budget.endDate {
+                                    Text("-")
+                                        .foregroundStyle(.secondary)
+                                    
                                     switch budget.budgetType {
                                     case .daily:
                                         Text("\(formattedDate(date: endDate))")
@@ -90,7 +91,7 @@ struct BudgetDetailView : View {
 //                            startTimer()
 //                        })
                     
-                    LottieView(animation: .named("rabbit"))
+                    LottieView(animation: .named("randomAnimal"))
                         .playing()
                         .looping()
                         .frame(width: 80, height: 80)
@@ -130,10 +131,7 @@ struct BudgetDetailView : View {
                             
                             AddExpenseView(isPartOfBudget : true, selectedBudget: budget) { expense in
                                 Task {
-                                    let result = await viewModel.addExpense(expense:expense)
-                                    if result {
-                                        mappedExpenses.append(expense)
-                                    }
+                                    _ = await viewModel.addExpense(expense:expense)
                                 }
                             }
                             .navigationTitle("Add Expense")
@@ -246,9 +244,9 @@ struct BudgetDetailView : View {
     }
 }
 
-//#Preview {
-//    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
-//    let container = try! ModelContainer(for: Budget.self, configurations: config)
-//
-//    return BudgetDetailView(budget: Budget.singularBudgetSample())
-//}
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
+    let container = try! ModelContainer(for: Budget.self, configurations: config)
+
+    return BudgetDetailView(budget: Budget.singularBudgetSample(), viewModel: BudgetDetailViewModel(budget: Budget.singularBudgetSample(), context: DatabaseHelper.shared.getModelContext()))
+}

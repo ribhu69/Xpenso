@@ -37,7 +37,10 @@ class BudgetDetailViewModel {
     }
     
     func addExpense(expense: Expense) async -> Bool {
-        return await self.expenseService.addExpense(expense: expense)
+        if await self.expenseService.addExpense(expense: expense) {
+            relatedExpenses.append(expense)
+        }
+        return true
     }
     
     func deleteExpense(expense: Expense) async -> Bool {

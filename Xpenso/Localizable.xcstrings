@@ -16,10 +16,16 @@
     "%@" : {
 
     },
+    "%lld" : {
+
+    },
     "Add Adhoc Budget" : {
 
     },
     "Add Budget" : {
+
+    },
+    "Add Comment" : {
 
     },
     "Add Expense" : {
@@ -204,6 +210,9 @@
           }
         }
       }
+    },
+    "Expense Details" : {
+
     },
     "Filter By" : {
       "extractionState" : "stale",

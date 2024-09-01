@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Expense : Identifiable {
+final class Expense : Identifiable {
     var entityId : String
     var amount: Double
     var category : ExpenseCategory
@@ -24,4 +24,8 @@ class Expense : Identifiable {
         self.desc = description
         self.date = date
     }
+}
+
+extension Expense {
+    static var singleExpense = Expense(id: UUID().uuidString, amount: 2500, category: .clothing, description: "This is a sample description", date: Date())
 }

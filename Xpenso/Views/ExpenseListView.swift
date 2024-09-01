@@ -10,7 +10,6 @@ import Lottie
 
 struct ExpenseListView : View {
     @Environment(\.colorScheme) var colorScheme
-
     @State var filterByCategory = false
     @State var isCategorySelectorVisible = false
     @State var expenseType : ExpenseCategory = .none
@@ -93,7 +92,12 @@ struct ExpenseListView : View {
                     else {
                         List {
                             ForEach(viewModel.expenses, id: \.id) { expense in
-                                ExpenseRow(expense: expense)
+                                
+                                NavigationLink(destination: ExpenseDetailView(expense: expense)) {
+                                    ExpenseRow(expense: expense)
+                                    
+                                }
+
                                     .swipeActions {
                                         Button(role: .destructive) {
                                             deleteExpense(expense)
@@ -104,6 +108,7 @@ struct ExpenseListView : View {
                                         }
                                         .tint(Color.red)
                                     }
+                                  
                             } .listRowSeparator(.hidden)
                         }.listStyle(.plain)
                         
@@ -155,7 +160,7 @@ struct ExpenseRow : View {
             VStack(alignment: .leading) {
                 
                 Text(expense.amount, format: .currency(code: "INR"))
-                    .font(.title)
+                    .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title1).pointSize)
                 if let description = expense.desc {
                     Text(description)
                         .font(.body)
@@ -186,7 +191,7 @@ struct ExpenseRow : View {
                             .foregroundStyle(Color.secondary)
                         
                         Text(formattedDate(date: date))
-                            .font(.body)
+                            .setCustomFont(size: UIFont.preferredFont(forTextStyle: .body).pointSize)
                             .foregroundStyle(Color.secondary)
                       
 
@@ -198,29 +203,6 @@ struct ExpenseRow : View {
     }
 }
 
-
-
-
-struct CustomLabel: View {
-  let badgeCount: Int? // Optional badge count
-
-  var body: some View {
-    ZStack {
-      Image("filter") // Adjust for system or custom image
-            .renderingMode(.template)
-      
-      if let count = badgeCount {
-        Text(String(count))
-          .font(.system(size: 10))
-          .foregroundColor(.white)
-          .frame(minWidth: 15, minHeight: 15)
-          .background(Color.red)
-          .clipShape(Circle())
-          .offset(x: 15, y: -5) // Adjust badge position as needed
-      }
-    }
-  }
-}
 
 
 #Preview(body: {
