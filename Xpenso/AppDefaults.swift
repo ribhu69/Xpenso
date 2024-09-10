@@ -41,7 +41,12 @@ extension AppDefaults {
     func setColor(_ color: Color, forKey key: String) {
         
         appThemeColor = color
-        let components = UIColor(color).cgColor.components
+        
+        #if os(iOS)
+       let components = UIColor(color).cgColor.components
+       #elseif os(macOS)
+       let components = NSColor(color).cgColor.components
+       #endif
         userDefaults.set(components, forKey: key)
     }
     

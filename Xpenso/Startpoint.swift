@@ -39,8 +39,4 @@ class StartPoint {
     }
 }
 
-enum AppConstants: String {
-    case appThemeColor
-    case appVersion = "CFBundleShortVersionString"
-    case themeColor = "AppThemeColor"
-}
+

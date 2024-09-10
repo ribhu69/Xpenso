@@ -32,7 +32,7 @@ struct ExpenseDetailOptionView : View {
 
 struct ExpenseDetailView: View {
     @State var showAddComment = false
-    
+    @State var showAttachmentVC = false
     @State var comments = [Comment]()
 //    @State var attachments = [Attachment]()
     
@@ -200,7 +200,7 @@ struct ExpenseDetailView: View {
 //                            
 //                        }
 //                        .padding(.vertical, 8)
-//                        
+//
 //                    }
 //                }
     
@@ -209,7 +209,10 @@ struct ExpenseDetailView: View {
             
             HStack {
                 ExpenseDetailOptionView(title: "Add Attachment", image: Image("attachment", bundle: nil)) {
-                    
+                    showAttachmentVC.toggle()
+                }
+                .sheet(isPresented: $showAttachmentVC) {
+                    AddAttachmentView(entityId: expense.entityId, entityType: "expense") //enumize it.
                 }
                 ExpenseDetailOptionView(title: "Add Comment", image: Image("comment", bundle: nil)) {
                     showAddComment.toggle()

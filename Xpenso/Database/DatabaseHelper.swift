@@ -13,9 +13,14 @@ class DatabaseHelper {
     static let shared = DatabaseHelper()
     var context : ModelContext
     var sharedContainer: ModelContainer = {
-        let schema = Schema([
-            Expense.self, Budget.self, Comment.self
-        ])
+        let schema = Schema(
+            [
+                Expense.self,
+                Budget.self,
+                Comment.self,
+                Attachment.self
+            ]
+        )
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
