@@ -37,7 +37,30 @@ final class ExpenseListServiceImpl : ExpenseListService  {
     
     func deleteExpense(expense: Expense) -> Bool {
         let context = DatabaseHelper.shared.getModelContext()
-        context.delete(expense)
-        return true
+        
+        let expenseId = expense.entityId
+        let attachmentPredicate = #Predicate<Attachment> { $0.parentId == expenseId  && $0.parentType == "expense"}
+        let attachmentFD = FetchDescriptor(predicate: attachmentPredicate)
+        let commentPredicae = #Predicate<Comment> { $0.commentParentId == expenseId && $0.commentParentType == "expense"}
+        let commentFD = FetchDescriptor(predicate: commentPredicae)
+        
+        do {
+            let comments = try context.fetch(commentFD)
+            let attachments = try context.fetch(attachmentFD)
+            
+            for comment in comments {
+                context.delete(comment)
+            }
+            for attachment in attachments {
+                context.delete(attachment)
+            }
+            
+            return true
+
+        }
+        catch {
+            Logger.log(.error, error.localizedDescription)
+            return false
+        }
     }
 }

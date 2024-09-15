@@ -238,32 +238,27 @@ struct ExpenseDetailView: View {
             .padding(.top, 8)
             .padding(.vertical, 8)
         }
-        .alert("Delete Comment", isPresented: $showDeleteCommentAlert, presenting: commentToDelete) { item in
+        .alert("Delete Comment?", isPresented: $showDeleteCommentAlert, presenting: commentToDelete) { item in
             Button("Cancel", role: .cancel) {
                 commentToDelete = nil
             }
             Button("Delete", role: .destructive) {
-                if let commentToDelete {
-                    deleteComment(comment: commentToDelete)
-
-                }
+                guard let commentToDelete else {return}
+                deleteComment(comment: commentToDelete)
             }
-        } message: { item in
-            Text("Are you sure you want to this comment?")
         }
         
         
-        .alert("Delete Attachment", isPresented: $showDeleteAttachmentAlert, presenting: attachmentToDelete) { item in
+        .alert("Delete Attachment?", isPresented: $showDeleteAttachmentAlert, presenting: attachmentToDelete) { item in
             Button("Cancel", role: .cancel) {
                 attachmentToDelete = nil
             }
             Button("Delete", role: .destructive) {
-                if let attachmentToDelete {
-                    deleteAttachment(attachment: attachmentToDelete)
+                guard let attachmentToDelete else {
+                   return
                 }
+                deleteAttachment(attachment: attachmentToDelete)
             }
-        } message: { item in
-            Text("Are you sure you want this attachment?")
         }
 
         .onAppear {
@@ -271,7 +266,7 @@ struct ExpenseDetailView: View {
             self.comments = self.commentViewModel.getExpenseComments(expense: expense)
             self.attachments = attachmentViewModel.getAttachments(expense: expense)
         }
-        .navigationTitle("Expense Detail")
+        .navigationTitle("Expense Details")
     }
     
     func deleteComment(comment: Comment) {

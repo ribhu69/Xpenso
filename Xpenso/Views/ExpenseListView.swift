@@ -22,6 +22,9 @@ struct ExpenseListView : View {
     @State var showGraph : Bool = false
     @State var filterCount : Int = 0
     
+    
+    @State var showDeleteExpenseAlert = false
+    @State private var expenseToDelete : Expense?
     @ObservedObject var viewModel : ExpenseListViewModel
     
     @State var filteredExpenses : [Expense] = []
@@ -100,7 +103,8 @@ struct ExpenseListView : View {
 
                                     .swipeActions {
                                         Button(role: .destructive) {
-                                            deleteExpense(expense)
+                                            expenseToDelete = expense
+                                            showDeleteExpenseAlert.toggle()
                                         } label: {
                                             Image("delete", bundle: nil)
                                                 .renderingMode(.template)
@@ -129,6 +133,18 @@ struct ExpenseListView : View {
                         }
                     }
                 }
+            }
+            .alert("Delete Expense", isPresented: $showDeleteExpenseAlert, presenting: expenseToDelete) { item in
+                Button("No", role: .cancel) {
+                    expenseToDelete = nil
+                }
+                Button("Yes", role: .destructive) {
+                    guard let expenseToDelete else {return}
+                        deleteExpense(expenseToDelete)
+                    
+                }
+            } message: { item in
+                Text("Deleting this expense will also remove its comments and attachments. Continue?")
             }
             
             .sheet(isPresented: $addExpense, content: {
@@ -202,9 +218,6 @@ struct ExpenseRow : View {
         }
     }
 }
-
-
-
 #Preview(body: {
     ExpenseListView(
         viewModel: ExpenseListViewModel(

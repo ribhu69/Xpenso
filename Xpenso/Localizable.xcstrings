@@ -60,12 +60,6 @@
     "App Version" : {
 
     },
-    "Are you sure you want this attachment?" : {
-
-    },
-    "Are you sure you want to this comment?" : {
-
-    },
     "Attachments" : {
 
     },
@@ -126,10 +120,22 @@
     "Delete" : {
 
     },
-    "Delete Attachment" : {
+    "Delete Attachment?" : {
 
     },
-    "Delete Comment" : {
+    "Delete Budget" : {
+
+    },
+    "Delete Comment?" : {
+
+    },
+    "Delete Expense" : {
+
+    },
+    "Deleting this budget will remove all related expenses. Continue?" : {
+
+    },
+    "Deleting this expense will also remove its comments and attachments. Continue?" : {
 
     },
     "Description" : {
@@ -236,7 +242,7 @@
         }
       }
     },
-    "Expense Detail" : {
+    "Expense Details" : {
 
     },
     "Files" : {
@@ -379,6 +385,9 @@
       }
     },
     "Monthly" : {
+
+    },
+    "No" : {
 
     },
     "No Attachments" : {
@@ -583,6 +592,9 @@
 
     },
     "Xpenso" : {
+
+    },
+    "Yes" : {
 
     }
   },

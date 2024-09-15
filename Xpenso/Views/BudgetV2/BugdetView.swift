@@ -17,6 +17,9 @@ struct BudgetView: View {
     @State var editPeriodicBudget =  false
     @State var editAdhocBudget =  false
     
+    
+    @State var budgetToDelete : Budget?
+    @State var showDeleteBudgetAlert = false
     init(viewModel: BudgetViewModel) {
         self.viewModel = viewModel
         let appearance = UINavigationBarAppearance()
@@ -103,7 +106,8 @@ struct BudgetView: View {
                             }
                             .swipeActions {
                                 Button(role: .destructive) {
-                                    deleteBudget(budget: budget)
+                                    budgetToDelete = budget
+                                    showDeleteBudgetAlert.toggle()
                                 } label: {
                                     Image("delete", bundle: nil)
                                         .renderingMode(.template) // Apply rendering mode
@@ -172,6 +176,20 @@ struct BudgetView: View {
                 }
             }
         }
+            .alert("Delete Budget", isPresented: $showDeleteBudgetAlert, presenting: budgetToDelete) { item in
+                Button("No", role: .cancel) {
+                    budgetToDelete = nil
+                }
+                Button("Yes", role: .destructive) {
+                    guard let budgetToDelete else {return}
+                        deleteBudget(budget: budgetToDelete)
+                    
+                }
+            } message: { item in
+                Text("Deleting this budget will remove all related expenses. Continue?")
+            }
+            
+            
             .sheet(isPresented: $showAddBudgetView) {
             if let budgetStyle = showAddBudgetViewType {
                 NavigationView {
