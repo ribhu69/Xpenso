@@ -11,7 +11,8 @@ struct ExpenseDetailOptionView : View {
             Button(action: action, label: {
                 HStack {
                     image
-                        .foregroundStyle(AppTheme.shared.selectedColor)
+                        .renderingMode(.template)
+                        .foregroundStyle(AppTheme.shared.selectedColor.secondary)
                     Text(title)
                         .setCustomFont(weight: .medium)
                         .foregroundStyle(AppTheme.shared.selectedColor)
@@ -20,21 +21,25 @@ struct ExpenseDetailOptionView : View {
             .padding(12)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 1)
-                    .foregroundStyle(AppTheme.shared.selectedColor)
-                
+                    .stroke(style: StrokeStyle(lineWidth: 0.8, dash: [5]))
+                    .foregroundStyle(Color.gray)
             }
-            
         }
-        .navigationTitle("Expense Details")
     }
 }
 
 struct ExpenseDetailView: View {
     @State var showAddComment = false
     @State var showAttachmentVC = false
+    
     @State var comments = [Comment]()
     @State var attachments = [Attachment]()
+    
+    @State var showDeleteCommentAlert = false
+    @State private var commentToDelete : Comment?
+    
+    @State var showDeleteAttachmentAlert = false
+    @State private var attachmentToDelete : Attachment?
     
     var expense: Expense
     @State private var selectedSegment: Int = 0
@@ -44,9 +49,6 @@ struct ExpenseDetailView: View {
     
     init(expense: Expense) {
         self.expense = expense
-        
-        self.comments = self.commentViewModel.getExpenseComments(expense: expense)
-        self.attachments = attachmentViewModel.getAttachments(expense: expense)
     }
     
     var body: some View {
@@ -100,13 +102,13 @@ struct ExpenseDetailView: View {
                         .padding(.horizontal, 8)
                         
                         Picker("Select an option", selection: $selectedSegment) {
-                                        ForEach(0..<segments.count) { index in
-                                            Text(segments[index])
-                                                .tag(index)
-                                        }
-                                    }
-                                    .pickerStyle(SegmentedPickerStyle())
-                 
+                            ForEach(0..<segments.count) { index in
+                                Text(segments[index])
+                                    .tag(index)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        
                     }
                 }
                 
@@ -132,7 +134,9 @@ struct ExpenseDetailView: View {
                             }
                             .swipeActions {
                                 Button(role: .destructive) {
-                                    deleteComment(comment: comment)
+//                                    deleteComment(comment: comment)
+                                    commentToDelete = comment
+                                    showDeleteCommentAlert.toggle()
                                 } label: {
                                     Image("delete", bundle: nil)
                                         .renderingMode(.template)
@@ -158,30 +162,25 @@ struct ExpenseDetailView: View {
                     }
                 }
                 else {
-                   
+                    
                     if !attachments.isEmpty {
                         
                         ForEach(attachments) {
                             attachment in
-                            HStack {
-                                Image("attachment", bundle: nil)
-                                    .resizable()
-                                    .frame(width: 18, height: 18)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.trailing, 8)
-                                Text("\(attachment.attachmentType)")
-                                    .setCustomFont()
-                                    .padding(.bottom, 4)
-                            }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                   deleteAttachment(attachment: attachment)
-                                } label: {
-                                    Image("delete", bundle: nil)
-                                        .renderingMode(.template)
+                            AttachmentCell(attachment: attachment)
+                                .listRowSeparator(.hidden)
+                                .listStyle(.plain)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+//                                        deleteAttachment(attachment: attachment)
+                                        attachmentToDelete = attachment
+                                        showDeleteAttachmentAlert.toggle()
+                                    } label: {
+                                        Image("delete", bundle: nil)
+                                            .renderingMode(.template)
+                                    }
+                                    .tint(Color.red)
                                 }
-                                .tint(Color.red)
-                            }
                         }
                     }
                     else {
@@ -197,48 +196,82 @@ struct ExpenseDetailView: View {
                             
                         }
                         .padding(.vertical, 8)
-
+                        
                     }
                 }
-    
-                
             }
             
             HStack {
-                ExpenseDetailOptionView(title: "Add Attachment", image: Image("attachment", bundle: nil)) {
-                    showAttachmentVC.toggle()
-                }
-                .sheet(isPresented: $showAttachmentVC) {
-                    AddAttachmentView(
-                        entityId: expense.entityId,
-                        entityType: "expense") {
-                            attachments in
-                            self.attachments = attachments
-                        }
-                   
-                }
-                ExpenseDetailOptionView(title: "Add Comment", image: Image("comment", bundle: nil)) {
-                    showAddComment.toggle()
-                }
-                
-                .sheet(isPresented: $showAddComment) {
-                    AddCommentView { comment in
+                if selectedSegment == 0 {
+                    ExpenseDetailOptionView(title: "Add Attachment", image: Image("attachment", bundle: nil)) {
+                        showAttachmentVC.toggle()
+                    }
+                    
+                    .sheet(isPresented: $showAttachmentVC) {
+                        AddAttachmentView(
+                            entityId: expense.entityId,
+                            entityType: "expense") {
+                                attachments in
+                                self.attachments = attachments
+                            }
                         
-                        let comment = Comment(commentId: UUID().uuidString, commentParentId: expense.entityId, commentParentType: "expense", comment: comment, createdTime: Date())
-                        if commentViewModel.addComment(comment: comment) {
-                            comments.append(comment)
-                        }
+                    }
+                }
+                else {
+                    ExpenseDetailOptionView(title: "Add Comment", image: Image("comment", bundle: nil)) {
                         showAddComment.toggle()
+                    }
+                  
+                    .sheet(isPresented: $showAddComment) {
+                        AddCommentView { comment in
+                            
+                            let comment = Comment(commentId: UUID().uuidString, commentParentId: expense.entityId, commentParentType: "expense", comment: comment, createdTime: Date())
+                            if commentViewModel.addComment(comment: comment) {
+                                comments.append(comment)
+                            }
+                            showAddComment.toggle()
+                        }
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 8)
-            
             .padding(.vertical, 8)
-            
-            
         }
+        .alert("Delete Comment", isPresented: $showDeleteCommentAlert, presenting: commentToDelete) { item in
+            Button("Cancel", role: .cancel) {
+                commentToDelete = nil
+            }
+            Button("Delete", role: .destructive) {
+                if let commentToDelete {
+                    deleteComment(comment: commentToDelete)
+
+                }
+            }
+        } message: { item in
+            Text("Are you sure you want to this comment?")
+        }
+        
+        
+        .alert("Delete Attachment", isPresented: $showDeleteAttachmentAlert, presenting: attachmentToDelete) { item in
+            Button("Cancel", role: .cancel) {
+                attachmentToDelete = nil
+            }
+            Button("Delete", role: .destructive) {
+                if let attachmentToDelete {
+                    deleteAttachment(attachment: attachmentToDelete)
+                }
+            }
+        } message: { item in
+            Text("Are you sure you want this attachment?")
+        }
+
+        .onAppear {
+            // Fetch comments and attachments when the view appears
+            self.comments = self.commentViewModel.getExpenseComments(expense: expense)
+            self.attachments = attachmentViewModel.getAttachments(expense: expense)
+        }
+        .navigationTitle("Expense Detail")
     }
     
     func deleteComment(comment: Comment) {

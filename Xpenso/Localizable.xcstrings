@@ -60,6 +60,12 @@
     "App Version" : {
 
     },
+    "Are you sure you want this attachment?" : {
+
+    },
+    "Are you sure you want to this comment?" : {
+
+    },
     "Attachments" : {
 
     },
@@ -115,6 +121,15 @@
 
     },
     "Daily" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete Attachment" : {
+
+    },
+    "Delete Comment" : {
 
     },
     "Description" : {
@@ -221,7 +236,7 @@
         }
       }
     },
-    "Expense Details" : {
+    "Expense Detail" : {
 
     },
     "Files" : {
