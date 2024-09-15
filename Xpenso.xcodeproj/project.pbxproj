@@ -78,6 +78,7 @@
 		A2AF33DB2C906C9A004487F1 /* BudgetStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B8A4512C2C3AE400E7E096 /* BudgetStyle.swift */; };
 		A2AF33DE2C906D0A004487F1 /* AttachmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AF33DD2C906D0A004487F1 /* AttachmentType.swift */; };
 		A2AF33DF2C906D0D004487F1 /* AttachmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AF33DD2C906D0A004487F1 /* AttachmentType.swift */; };
+		A2AF33E12C913A7E004487F1 /* AttachmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AF33E02C913A7E004487F1 /* AttachmentService.swift */; };
 		A2B8A44F2C2C3AD100E7E096 /* BudgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B8A44E2C2C3AD100E7E096 /* BudgetType.swift */; };
 		A2B8A4522C2C3AE400E7E096 /* BudgetStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B8A4512C2C3AE400E7E096 /* BudgetStyle.swift */; };
 		A2C1A3DE2C0B45E6001E976C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3DD2C0B45E6001E976C /* MapView.swift */; };
@@ -182,6 +183,7 @@
 		A2AF33CA2C9069F8004487F1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		A2AF33CD2C906A0C004487F1 /* MacStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStartPoint.swift; sourceTree = "<group>"; };
 		A2AF33DD2C906D0A004487F1 /* AttachmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentType.swift; sourceTree = "<group>"; };
+		A2AF33E02C913A7E004487F1 /* AttachmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentService.swift; sourceTree = "<group>"; };
 		A2B8A44E2C2C3AD100E7E096 /* BudgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetType.swift; sourceTree = "<group>"; };
 		A2B8A4512C2C3AE400E7E096 /* BudgetStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BudgetStyle.swift; path = ../BudgetStyle.swift; sourceTree = "<group>"; };
 		A2C1A3DD2C0B45E6001E976C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				A2F170FE2BE7D0C50000E321 /* ExpenseListService.swift */,
 				A2F193342C21EA8300477014 /* BudgetService.swift */,
 				A22F909A2C84E4AC004AA449 /* CommentService.swift */,
+				A2AF33E02C913A7E004487F1 /* AttachmentService.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				A2F193372C22022800477014 /* BudgetViewModel.swift in Sources */,
 				A2B8A44F2C2C3AD100E7E096 /* BudgetType.swift in Sources */,
 				A2E20BA22C87751800D16B19 /* AddAttachmentView.swift in Sources */,
+				A2AF33E12C913A7E004487F1 /* AttachmentService.swift in Sources */,
 				A2C1A3E22C0C57BF001E976C /* ColorExtensions.swift in Sources */,
 				A2F4D7D32C3A6F5E004BA528 /* BudgetDetailViewX.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,

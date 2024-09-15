@@ -34,17 +34,19 @@ struct ExpenseDetailView: View {
     @State var showAddComment = false
     @State var showAttachmentVC = false
     @State var comments = [Comment]()
-//    @State var attachments = [Attachment]()
+    @State var attachments = [Attachment]()
     
     var expense: Expense
     @State private var selectedSegment: Int = 0
     let segments = ["Attachments", "Comments"]
     var commentViewModel : CommentService = CommentServiceImpl()
+    var attachmentViewModel : AttachmentService = AttachmentServiceImpl()
     
     init(expense: Expense) {
         self.expense = expense
         
         self.comments = self.commentViewModel.getExpenseComments(expense: expense)
+        self.attachments = attachmentViewModel.getAttachments(expense: expense)
     }
     
     var body: some View {
@@ -155,54 +157,49 @@ struct ExpenseDetailView: View {
                         
                     }
                 }
-//                else {
-//                   
-//                    if !attachments.isEmpty {
-//                        
-//                        ForEach(comments) {
-//                            comment in
-//                            HStack {
-//                                Image("comments", bundle: nil)
-//                                    .resizable()
-//                                    .frame(width: 18, height: 18)
-//                                    .foregroundStyle(.secondary)
-//                                    .padding(.trailing, 8)
-//                                VStack(alignment: .leading) {
-//                                    Text("\(comment.comment)")
-//                                        .setCustomFont()
-//                                        .padding(.bottom, 4)
-//                                    Text("\(getFormattedDate(date: comment.createdTime))")
-//                                        .setCustomFont()
-//                                        .foregroundStyle(.secondary)
-//                                }
-//                            }
-//                            .swipeActions {
-//                                Button(role: .destructive) {
-//                                    deleteComment(comment: comment)
-//                                } label: {
-//                                    Image("delete", bundle: nil)
-//                                        .renderingMode(.template)
-//                                }
-//                                .tint(Color.red)
-//                            }
-//                        }
-//                    }
-//                    else {
-//                        HStack {
-//                            
-//                            Spacer()
-//                            Image("attachmens", bundle: nil)
-//                                .resizable()
-//                                .frame(width: 18, height: 18)
-//                            Text("No Attachments")
-//                                .setCustomFont()
-//                            Spacer()
-//                            
-//                        }
-//                        .padding(.vertical, 8)
-//
-//                    }
-//                }
+                else {
+                   
+                    if !attachments.isEmpty {
+                        
+                        ForEach(attachments) {
+                            attachment in
+                            HStack {
+                                Image("attachment", bundle: nil)
+                                    .resizable()
+                                    .frame(width: 18, height: 18)
+                                    .foregroundStyle(.secondary)
+                                    .padding(.trailing, 8)
+                                Text("\(attachment.attachmentType)")
+                                    .setCustomFont()
+                                    .padding(.bottom, 4)
+                            }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                   deleteAttachment(attachment: attachment)
+                                } label: {
+                                    Image("delete", bundle: nil)
+                                        .renderingMode(.template)
+                                }
+                                .tint(Color.red)
+                            }
+                        }
+                    }
+                    else {
+                        HStack {
+                            
+                            Spacer()
+                            Image("attachmens", bundle: nil)
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                            Text("No Attachments")
+                                .setCustomFont()
+                            Spacer()
+                            
+                        }
+                        .padding(.vertical, 8)
+
+                    }
+                }
     
                 
             }
@@ -212,7 +209,13 @@ struct ExpenseDetailView: View {
                     showAttachmentVC.toggle()
                 }
                 .sheet(isPresented: $showAttachmentVC) {
-                    AddAttachmentView(entityId: expense.entityId, entityType: "expense") //enumize it.
+                    AddAttachmentView(
+                        entityId: expense.entityId,
+                        entityType: "expense") {
+                            attachments in
+                            self.attachments = attachments
+                        }
+                   
                 }
                 ExpenseDetailOptionView(title: "Add Comment", image: Image("comment", bundle: nil)) {
                     showAddComment.toggle()
@@ -243,6 +246,16 @@ struct ExpenseDetailView: View {
             if let commentIndex = comments.firstIndex(where: { $0.commentId == comment.commentId}) {
                 comments.remove(at: commentIndex)
             }
+        }
+    }
+    
+    func deleteAttachment(attachment: Attachment) {
+        
+        if let attachmentIndex = attachments.firstIndex(where: { $0.attachmentId == attachment.attachmentId }) {
+            attachments.remove(at: attachmentIndex)
+        }
+        Task {
+            _ = await attachmentViewModel.deleteAttachment(attachment:attachment)
         }
     }
 }

@@ -160,5 +160,5 @@ struct AddBudgetView: View {
 }
 
 #Preview {
-    AddBudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
+    AddBudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl()))
 }

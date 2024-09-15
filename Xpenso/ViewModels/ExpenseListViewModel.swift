@@ -12,18 +12,15 @@ import SwiftData
 class ExpenseListViewModel : ObservableObject {
     
     var expenseListService: ExpenseListService
-    var context : ModelContext?
     @Published var expenses : [Expense] = []
     
-    init(expenseListService: ExpenseListService, context: ModelContext) {
+    init(expenseListService: ExpenseListService) {
         self.expenseListService = expenseListService
-        self.context = context
         getExpenses()
     }
     
     func addExpense(expense: Expense) {
-        guard let context else {return}
-        if expenseListService.addExpense(expense: expense, context: context) {
+        if expenseListService.addExpense(expense: expense) {
             expenses.append(expense)
         }
         else {
@@ -39,14 +36,13 @@ class ExpenseListViewModel : ObservableObject {
     }
     
     func deleteExpense(expense: Expense) -> Bool {
-        if expenseListService.deleteExpense(expense: expense) {
-            if let index = expenses.firstIndex(where: {
+        if expenseListService.deleteExpense(expense: expense),
+           let index = expenses.firstIndex(where: {
                 $0.entityId == expense.entityId
             }) {
                 expenses.remove(at: index)
-            }
             return true
-        }
+            }
         return false
     }
 }

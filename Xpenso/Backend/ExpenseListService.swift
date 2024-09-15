@@ -9,13 +9,14 @@ import Foundation
 import SwiftData
 
 protocol ExpenseListService : AnyObject {
-    func addExpense(expense: Expense, context: ModelContext) -> Bool
+    func addExpense(expense: Expense) -> Bool
     func getExpenses() -> [Expense]?
     func deleteExpense(expense: Expense) -> Bool
 }
 
 final class ExpenseListServiceImpl : ExpenseListService  {
-    func addExpense(expense: Expense, context: ModelContext) -> Bool {
+    func addExpense(expense: Expense) -> Bool {
+        let context = DatabaseHelper.shared.getModelContext()
         context.insert(expense)
         return true
         

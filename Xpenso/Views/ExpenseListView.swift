@@ -208,8 +208,7 @@ struct ExpenseRow : View {
 #Preview(body: {
     ExpenseListView(
         viewModel: ExpenseListViewModel(
-            expenseListService: ExpenseListServiceImpl(),
-            context: DatabaseHelper.shared.getModelContext()
-        )
-    )
+            expenseListService: ExpenseListServiceImpl()
+        ))
+    
 })

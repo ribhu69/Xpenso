@@ -63,6 +63,9 @@
     "Attachments" : {
 
     },
+    "Audio file" : {
+
+    },
     "Budget" : {
 
     },
@@ -208,6 +211,7 @@
       }
     },
     "Expense Chart" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -319,6 +323,9 @@
         }
       }
     },
+    "Image file" : {
+
+    },
     "Less Than" : {
       "localizations" : {
         "hi" : {
@@ -357,6 +364,9 @@
       }
     },
     "Monthly" : {
+
+    },
+    "No Attachments" : {
 
     },
     "No budget? Add one to keep rolling!" : {
@@ -412,6 +422,9 @@
     "Paw-lease, can you attach those files for me?" : {
 
     },
+    "PDF document" : {
+
+    },
     "Periodic Budget" : {
 
     },
@@ -433,6 +446,9 @@
           }
         }
       }
+    },
+    "Save Attachments" : {
+
     },
     "savings" : {
       "extractionState" : "manual",
@@ -480,6 +496,7 @@
 
     },
     "The following data shows category based segregation of your expenses" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -543,6 +560,9 @@
           }
         }
       }
+    },
+    "Video file" : {
+
     },
     "Weekly" : {
 

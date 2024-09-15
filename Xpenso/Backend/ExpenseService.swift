@@ -56,6 +56,7 @@ class ExpenseServiceImpl : ExpenseService {
         let fetchDesc = FetchDescriptor<Expense>(predicate: predicate)
         do {
             let adhocs = try context.fetch(fetchDesc)
+            print("Adhocs count: \(adhocs.count)")
             for item in adhocs {
                 context.delete(item)
             }

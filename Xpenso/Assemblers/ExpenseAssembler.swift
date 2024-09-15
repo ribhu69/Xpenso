@@ -9,13 +9,13 @@ import Foundation
 import SwiftData
 
 class ExpenseAssembler {
-    static func getTabBar(context: ModelContext) -> ExpenseTabBar {
+    static func getTabBar() -> ExpenseTabBar {
         let expenseService : ExpenseListService = ExpenseListServiceImpl()
-        let expenseViewModel = ExpenseListViewModel(expenseListService: expenseService, context: context)
+        let expenseViewModel = ExpenseListViewModel(expenseListService: expenseService)
         let expenseListView = ExpenseListView(viewModel : expenseViewModel)
         
         let budgetService : BudgetService = BudgetServiceImpl()
-        let budgetViewModel = BudgetViewModel(budgetService: budgetService, context: context)
+        let budgetViewModel = BudgetViewModel(budgetService: budgetService)
 //        let budgetView = BudgetView(viewModel : budgetViewModel)
         
         let budgetView = BudgetView(viewModel : budgetViewModel)

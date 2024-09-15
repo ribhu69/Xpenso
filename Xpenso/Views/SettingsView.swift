@@ -13,7 +13,7 @@ class AppTheme: ObservableObject {
     @Published var selectedColor : Color!
     var selectedColorString = AppDefaults.shared.getValue(for: AppConstants.appThemeColor.rawValue) as? String ?? "blue"
     private init() {
-        selectedColor = ColorOption(stringValue: selectedColorString)!.color
+        selectedColor = ColorOption(stringValue: selectedColorString)?.color ?? .blue
     }
 
 }

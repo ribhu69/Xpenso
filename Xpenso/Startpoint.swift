@@ -18,6 +18,7 @@ class StartPoint {
         
         _ = DatabaseHelper.shared
         
+        
         guard let currentAppVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             fatalError("App Version or build version does not exist.")
         }
@@ -35,7 +36,7 @@ class StartPoint {
             AppDefaults.shared.setColor(Color(.richTeal), forKey: AppConstants.appThemeColor.rawValue)
 
         }
-        return ExpenseAssembler.getTabBar(context: .init(DatabaseHelper.shared.getContainer()))
+        return ExpenseAssembler.getTabBar()
     }
 }
 

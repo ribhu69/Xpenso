@@ -194,7 +194,7 @@ struct BudgetView: View {
 
 
 #Preview {
-    BudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl(), context: DatabaseHelper.shared.getModelContext()))
+    BudgetView(viewModel: BudgetViewModel(budgetService: BudgetServiceImpl()))
 }
 //    func editBudget(budget: Budget) {
 //        editBudget.toggle()

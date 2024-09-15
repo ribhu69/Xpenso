@@ -12,14 +12,61 @@ import PhotosUI
 import Lottie
 
 
+struct AttachmentCell : View {
+    var attachment: Attachment
+    var attachmentType: AttachmentType {
+            return AttachmentType(rawValue: attachment.attachmentType)!
+        }
+    var body: some View {
+        HStack {
+            switch attachmentType {
+            case .jpeg, .heic, .jpg, .png:
+                let uiImage = UIImage(data: attachment.attachmentData)!
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                Text("Image file")
+                
+                
+                
+            case .mp4, .mov:
+                Text("Video file")
+                    .foregroundColor(.blue)
+                    .frame(width: 100, height: 100)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(8)
+                
+            case .mp3:
+                Text("Audio file")
+                    .foregroundColor(.orange)
+                    .frame(width: 100, height: 100)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(8)
+                
+            case .pdf:
+                Text("PDF document")
+                    .foregroundColor(.green)
+                    .frame(width: 100, height: 100)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(8)
+            }
+
+        }
+    }
+}
+
+
+
 
 struct AddAttachmentView: View {
     
     var entityId: String
     var entityType: String
     @Environment(\.dismiss) var dismiss
- 
-    @ObservedObject private var viewModel : AttachmentViewModel
+    
+    var onsave : ([Attachment]) -> ()
+    @StateObject private var viewModel : AttachmentViewModel
     @State private var audioPlayer: AVAudioPlayer?
     @State private var selectedPhotoItem : PhotosPickerItem?
     @State private var fileContent: String? = nil
@@ -34,11 +81,13 @@ struct AddAttachmentView: View {
     
     init(
         entityId: String,
-        entityType: String
+        entityType: String,
+        onsave: @escaping ([Attachment]) -> ()
     ) {
         self.entityId = entityId
         self.entityType = entityType
-        self.viewModel = AttachmentViewModel(entityId: entityId, entityType: entityType)
+        _viewModel = StateObject(wrappedValue: AttachmentViewModel(entityId: entityId, entityType: entityType, attachmentService:  AttachmentServiceImpl()))
+        self.onsave = onsave
     }
     
     var body: some View {
@@ -47,61 +96,33 @@ struct AddAttachmentView: View {
                 if !viewModel.selectedAttachments.isEmpty {
                     List {
                         ForEach(viewModel.selectedAttachments) { attachment in
-                            let attachmentImage = getImageName(for: attachment.attachmentType)
-                            HStack {
-                                Image(attachmentImage, bundle: nil)
-                                    .resizable()
-                                    .frame(width: 18, height: 18)
-                                    .padding(.trailing, 8)
-                                    .padding(.leading, 8)
-                                Text("\(attachment.attachmentType)")
-                                    .padding(.trailing, 8)
-                                    .padding(.vertical, 8)
-                            }
-                            .listRowSeparator(.hidden)
-                            .listStyle(.plain)
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    deleteAttachment(attachment: attachment)
-                                } label: {
-                                    Image("delete", bundle: nil)
-                                        .renderingMode(.template)
-                                       
-                                    
+                            AttachmentCell(attachment: attachment)
+                                .listRowSeparator(.hidden)
+                                .listStyle(.plain)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        deleteAttachment(attachment: attachment)
+                                    } label: {
+                                        Image("delete", bundle: nil)
+                                            .renderingMode(.template)
+                                    }
+                                    .tint(Color.red)
                                 }
-                                .tint(Color.red)
-                            }
                         }
                     }
-                    Menu {
-                        Button(action: {
-                            // Action for Photos
-                            showPhotoPicker.toggle()
-                        }) {
-                            Label("Photos", systemImage: "photo")
-                            
-                        }
-                        
-                        Button(action: {
-                            // Action for Camera
-                            showCamera.toggle()
-                        }) {
-                            Label("Camera", systemImage: "camera")
-                        }
-                        
-                        Button(action: {
-                            // Action for Files
-                            showFilePicker.toggle()
-                        }) {
-                            Label("Files", systemImage: "doc")
-                        }
-                    } label: {
-                        Text("Attachments")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
+                    Spacer()
+                    
+                    Button(action:  {
+                        saveSelectedAttachments()
+                    }, label: {
+                        Text("Save Attachments")
+                            .foregroundStyle(Color.primary)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 4)
+                    })
+                    .background(AppTheme.shared.selectedColor)
+                    .ignoresSafeArea()
                 }
                 else {
                     VStack {
@@ -195,11 +216,41 @@ struct AddAttachmentView: View {
                             dismiss()
                         }
                     }
+                    if !(viewModel.selectedAttachments.isEmpty) {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Menu {
+                                Button(action: {
+                                    // Action for Photos
+                                    showPhotoPicker.toggle()
+                                }) {
+                                    Label("Photos", systemImage: "photo")
+                                    
+                                }
+                                
+                                Button(action: {
+                                    // Action for Camera
+                                    showCamera.toggle()
+                                }) {
+                                    Label("Camera", systemImage: "camera")
+                                }
+                                
+                                Button(action: {
+                                    // Action for Files
+                                    showFilePicker.toggle()
+                                }) {
+                                    Label("Files", systemImage: "doc")
+                                }
+                            } label: {
+                                Image(systemName: "plus")
+                            }
+                        }
+                    }
                 }
             .navigationTitle("Attachments")
             .navigationBarTitleDisplayMode(.inline)
 
         }
+       
     }
     
     
@@ -267,7 +318,15 @@ struct AddAttachmentView: View {
         }
     }
     
-    
+    private func saveSelectedAttachments() {
+        Task {
+            let status = await viewModel.saveAttachments()
+            if status {
+                onsave(viewModel.selectedAttachments)
+                dismiss()
+            }
+        }
+    }
 }
 //
 //#Preview {

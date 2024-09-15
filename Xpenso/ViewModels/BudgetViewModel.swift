@@ -12,13 +12,11 @@ import SwiftData
 class BudgetViewModel : ObservableObject {
     
     var budgetService: BudgetService
-    var context: ModelContext?
 
     @Published var budgets = [Budget]()
     
-    init(budgetService: BudgetService, context: ModelContext) {
+    init(budgetService: BudgetService) {
         self.budgetService = budgetService
-        self.context = context
     }
     
     

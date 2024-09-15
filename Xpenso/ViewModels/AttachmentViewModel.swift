@@ -9,19 +9,22 @@ import Foundation
 import PDFKit
 
 
-
-
 class AttachmentViewModel : ObservableObject  {
     
     private var entityId: String
     private var entityType: String
+    private var attachmentService : AttachmentService
+    
     
     init(
         entityId: String,
-        entityType: String
+        entityType: String,
+        attachmentService: AttachmentService
     ) {
         self.entityId = entityId
         self.entityType = entityType
+        self.attachmentService = attachmentService
+        
     }
     
     @Published private(set) var selectedAttachments = [Attachment]()
@@ -31,6 +34,7 @@ class AttachmentViewModel : ObservableObject  {
         attachmentData: Data,
         attachmentType: AttachmentType
     ) {
+      
         let attachment = Attachment(
             attachmentId: UUID().uuidString,
             parentId: entityId,
@@ -42,9 +46,14 @@ class AttachmentViewModel : ObservableObject  {
     }
     
     func deleteAttachment(attachment: Attachment) {
+        
         if let index = selectedAttachments.firstIndex(where: { $0.attachmentId == attachment.attachmentId }) {
             selectedAttachments.remove(at: index)
         }
+        Task {
+            _ = await attachmentService.deleteAttachment(attachmentId: attachment.attachmentId, parentId: entityId, parentType: entityType)
+        }
+        
     }
     
     func getFileMetadata(from url: URL) throws -> [FileAttributeKey: Any] {
@@ -98,4 +107,14 @@ class AttachmentViewModel : ObservableObject  {
                 Logger.log(.error, "Unable to access this file type or this file type might be unsupported")
             }
         }
+    
+    func saveAttachments() async -> Bool {
+        selectedAttachments.forEach { attachment in
+                attachment.parentId = entityId
+                attachment.parentType = entityType
+            }
+    
+       let status = await attachmentService.saveAttachments(attachments: selectedAttachments)
+       return status
+    }
 }
