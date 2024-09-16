@@ -1,297 +1,232 @@
-////
-////  BudgetDetailView.swift
-////  Xpenso
-////
-////  Created by Arkaprava Ghosh on 20/06/24.
-////
 //
-//import SwiftUI
-//import SwiftData
+//  BudgetDetailView.swift
+//  Xpenso
 //
-//struct PieSlice: Shape {
-//    var startAngle: Angle
-//    var endAngle: Angle
+//  Created by Arkaprava Ghosh on 20/06/24.
 //
-//    func path(in rect: CGRect) -> Path {
-//        var path = Path()
-//        let center = CGPoint(x: rect.midX, y: rect.midY)
-//        path.move(to: center)
-//        
-//        let adjustedStartAngle = startAngle - Angle.degrees(90)
-//        let adjustedEndAngle = endAngle - Angle.degrees(90)
-//        
-//        path.addArc(center: center, radius: rect.width / 2, startAngle: adjustedStartAngle, endAngle: adjustedEndAngle, clockwise: false)
-//        
-//        return path
-//    }
-//}
-//
-//struct PieChartView: View {
-//    var total: Double
-//    @State var spend: Double
-//    @State private var endAngle = Angle(degrees: 0)
-//    @State private var timer: Timer?
-//
-//
-//    var body: some View {
-//        let percentage = spend / total
-//        let targetAngle = Angle(degrees: 360 * percentage)
-//
-//        
-//        return ZStack {
-//            PieSlice(startAngle: .degrees(0), endAngle: .degrees(360))
-//                .fill(spend == 0 ? Color.green : Color.gray.opacity(0.3))
-//            PieSlice(startAngle: .degrees(0), endAngle: spend <= total ? endAngle : Angle(degrees: 360))
-//                .fill(spend < total / 2 ? .green : spend < total * 0.75 ? .yellow : .red)
-//
-//                .shadow(radius: 2)
-//                .onAppear {
-//                    withAnimation(.easeIn(duration: 5)) {
-//                        startAnimation(to: targetAngle)
-//                    }
-//                }
-//        }
-//    }
-//    
-//    private func startAnimation(to targetAngle: Angle) {
-//            let duration: TimeInterval = 1.0
-//            let step: TimeInterval = 0.01
-//            let steps = duration / step
-//            let angleIncrement = targetAngle.degrees / steps
-//            
-//            timer = Timer.scheduledTimer(withTimeInterval: step, repeats: true) { _ in
-//                withAnimation(.easeOut(duration: step)) {
-//                    if endAngle.degrees + angleIncrement >= targetAngle.degrees {
-//                        endAngle = targetAngle
-//                        timer?.invalidate()
-//                        timer = nil
-//                    } else {
-//                        endAngle = Angle(degrees: endAngle.degrees + angleIncrement)
-//                    }
-//                }
-//            }
-//        }
-//}
-//
-////struct BudgetDetailView : View {
-////    var budget: Budget
-////    var mappedExpenses = [Expense]()
-////    var dateformatter = DateFormatter()
-////    
-////    @State private var spentAmount : Double = 45
-////    @State private var pieChartSize: CGFloat = 0
-////    @State private var chairRotation: Angle = .degrees(0)
-//////        @State private var pieChartRotation: Angle = .degrees(0)
-////    @State var toggleValue = false
-////    @State private var timer: Timer?
-////
-////    var body: some View {
-////        VStack {
-////            
-////            if mappedExpenses.isEmpty {
-////                
-////                VStack {
-////                    HStack {
-////                        if spentAmount != 0 {
-////                            PieChartView(total: budget.amount, spend: spentAmount)
-////                                .frame(width: pieChartSize, height: pieChartSize)
-//////                                .rotationEffect(pieChartRotation)
-////                                .onAppear {
-////                                    withAnimation(.smooth(duration: 0.8)) {
-////                                                                    pieChartSize = 75
-////                                                                }
-////                                }
-////                        }
-////                        
-////                        VStack(alignment: .leading) {
-////                            Text(budget.budgetTitle)
-////                                .font(.title2)
-////                                .padding(.bottom, 8)
-////                            Text("\(budget.amount, specifier: "%.2f")")
-////                                .font(.title3)
-////                            
-////                            if let startDate = budget.startDate {
-////                                HStack {
-////                                    Image("calender", bundle: nil)
-////                                        .resizable()
-////                                        .renderingMode(.template)
-////                                        .frame(width: 20, height: 20)
-////                                        .foregroundStyle(.secondary)
-////                                    Text("\(formattedDate(date: startDate))")
-////                                        .font(.subheadline)
-////                                        .foregroundStyle(.secondary)
-////                                    
-////                                    Text("-")
-////                                        .foregroundStyle(.secondary)
-////                                    
-////                                    if budget.budgetStyle == .periodic, let endDate = budget.endDate {
-////                                        switch budget.budgetType {
-////                                        case .daily:
-////                                            Text("\(formattedDate(date: endDate))")
-////                                                .font(.subheadline)
-////                                                .foregroundStyle(.secondary)
-////                                        case .weekly:
-////                                            Text("\(formattedDate(date: endDate))")
-////                                                .font(.subheadline)
-////                                                .foregroundStyle(.secondary)
-////                                        case .monthly:
-////                                            Text("\(formattedDate(date: endDate))")
-////                                                .font(.subheadline)
-////                                                .foregroundStyle(.secondary)
-////                                        case .none:
-////                                            Text("")
-////                                                .font(.subheadline)
-////                                                .foregroundStyle(.secondary)
-////                                        }
-////                                    }
-////                                }
-////                            }
-////
-////                        }
-////                        .padding(.leading, 8)
-////                        Spacer()
-////                    }
-////                    Spacer()
-////                    
-////                    Image("emptyChair", bundle: nil)
-////                        .resizable()
-////                        .renderingMode(.template)
-////                        .foregroundStyle(Color.brown)
-////                        .rotationEffect(chairRotation, anchor: .bottom)
-////                        
-////                        .frame(width: 80, height: 80)
-////                    
-////                        .onAppear(perform: {
-////                            startTimer()
-////                        })
-////                    
-////                        
-////                        
-////                    Text("No expenses yet, your chair is still empty!")
-////                        .textCase(.none)
-////                        .multilineTextAlignment(.center)
-////                        .font(.title2)
-////                        .padding(.bottom, 8)
-////                    
-////                    Button(action: {
-////                                // Add your action here
-////                            }) {
-////                                Label("Add Expense", systemImage: "plus")
-////                                    .padding(.all, 8)
-////                                    .background(
-////                                        RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-////                                            .fill(Color.blue) // Change the color as needed
-////                                    )
-////                            }
-////                            .foregroundColor(.white)
-////                    
-////                    Spacer()
-////                }
-////              
-////              
-////            }
-////            else {
-////                List {
-////                    Section {
-////                        HStack {
-////                            PieChartView(total: 10000, spend: 2345)
-////                                .frame(width: pieChartSize, height: pieChartSize)
-////                                .onAppear {
-////                                    withAnimation(.smooth(duration: 0.8)) {
-////                                                                    pieChartSize = 75
-////                                                                }
-////                                }
-////                            
-////                            VStack(alignment: .leading) {
-////                                Text(budget.budgetTitle)
-////                                    .font(.title2)
-////                                    .padding(.bottom, 8)
-////                                Text("\(budget.amount, specifier: "%.2f")")
-////                                    .font(.title3)
-////                                
-////                                if let startDate = budget.startDate {
-////                                    HStack {
-////                                        Image("calender", bundle: nil)
-////                                            .resizable()
-////                                            .renderingMode(.template)
-////                                            .frame(width: 20, height: 20)
-////                                            .foregroundStyle(.secondary)
-////                                        Text("\(formattedDate(date: startDate))")
-////                                            .font(.subheadline)
-////                                            .foregroundStyle(.secondary)
-////                                        
-////                                        Text("-")
-////                                            .foregroundStyle(.secondary)
-////                                        
-////                                        if budget.budgetStyle == .periodic, let endDate = budget.endDate {
-////                                            switch budget.budgetType {
-////                                            case .daily:
-////                                                Text("\(formattedDate(date: endDate))")
-////                                                    .font(.subheadline)
-////                                                    .foregroundStyle(.secondary)
-////                                            case .weekly:
-////                                                Text("\(formattedDate(date: endDate))")
-////                                                    .font(.subheadline)
-////                                                    .foregroundStyle(.secondary)
-////                                            case .monthly:
-////                                                Text("\(formattedDate(date: endDate))")
-////                                                    .font(.subheadline)
-////                                                    .foregroundStyle(.secondary)
-////                                            case .none:
-////                                                Text("")
-////                                                    .font(.subheadline)
-////                                                    .foregroundStyle(.secondary)
-////                                            }
-////                                        }
-////                                    }
-////                                }
-////
-////                            }
-////                            .padding(.leading, 8)
-////                            Spacer()
-////                        }
-////                    }
-////                    .listSectionSeparator(.hidden)
-////                    
-////                       
-////                        ForEach(mappedExpenses) { expense in
-////                            ExpenseRow(expense: expense)
-////                                .swipeActions {
-////                                    Button(role: .destructive) {
-////                                      //  deleteExpense(expense)
-////                                    } label: {
-////                                        Image("delete", bundle: nil)
-////                                            .renderingMode(.template) // Apply rendering mode
-////                                    }
-////                                }
-////                        } .listRowSeparator(.hidden)
-////
-////                    
-////                }.listStyle(.plain)
-////            }
-////        
-////            
-////               
-////            
-////        }
-////        .padding(.horizontal, 8)
-////        .navigationBarTitleDisplayMode(.inline)
-////        
-////    }
-////    
-////    private func startTimer() {
-////            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-////                withAnimation(.easeInOut(duration: 1)) {
-////                    toggleValue.toggle()
-////                    chairRotation = toggleValue ? Angle(degrees: 10) : Angle(degrees: -10)
-////                }
-////            }
-////        }
-////}
-////
-////#Preview {
-////    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
-////    let container = try! ModelContainer(for: Budget.self, configurations: config)
-////   
-////    return BudgetDetailView(budget: Budget.singularBudgetSample())
-////}
+
+import SwiftUI
+import SwiftData
+import Lottie
+
+struct BudgetDetailView : View {
+    var budget: Budget
+    @State var mappedExpenses = [Expense]()
+    var dateformatter = DateFormatter()
+    @StateObject var viewModel : BudgetDetailViewModel
+    @State var toggleValue = false
+    @State var showAddExpense : Bool = false
+    
+    var body: some View {
+        VStack {
+            
+            if viewModel.relatedExpenses.isEmpty {
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(budget.budgetTitle)
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+                                .padding(.bottom, 8)
+                            Text("\(budget.amount, specifier: "%.2f")")
+                                .font(.title3)
+                            
+                            
+                            HStack {
+                                Image("calender", bundle: nil)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 20, height: 20)
+                                    .foregroundStyle(.secondary)
+                                Text("\(formattedDate(date: budget.startDate))")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                
+                               
+                                if budget.budgetStyle == .periodic, let endDate = budget.endDate {
+                                    Text("-")
+                                        .foregroundStyle(.secondary)
+                                    
+                                    switch budget.budgetType {
+                                    case .daily:
+                                        Text("\(formattedDate(date: endDate))")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    case .weekly:
+                                        Text("\(formattedDate(date: endDate))")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    case .monthly:
+                                        Text("\(formattedDate(date: endDate))")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    case .none:
+                                        Text("")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                            }
+                            
+                        }
+                        .padding(.leading, 8)
+                        Spacer()
+                    }
+                    Spacer()
+                    
+                    
+                    LottieView(animation: .named("randomAnimal"))
+                        .playing()
+                        .looping()
+                        .frame(width: 80, height: 80)
+                    
+                    
+                    Text("No expenses yet, your chair is still empty!")
+                        .textCase(.none)
+                        .multilineTextAlignment(.center)
+                        .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                        .foregroundStyle(Color.secondary)
+                        .padding(.horizontal, 8)
+                        .padding(.bottom, 8)
+                    
+                    Button(action: {
+                        showAddExpense.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle")
+                            Text("Add Expense")
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+
+                                .padding(.horizontal, 8)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1.5)
+                                .foregroundStyle(Color.clear)
+                            
+                        }
+                    }
+                  
+                    Spacer()
+                }
+            }
+            else {
+                List {
+                    Section {
+                        HStack {
+                            
+                            VStack(alignment: .leading) {
+                                Text(budget.budgetTitle)
+                                    .font(.title2)
+                                    .padding(.bottom, 8)
+                                Text("\(budget.amount, specifier: "%.2f")")
+                                    .font(.title3)
+                                
+                                
+                                HStack {
+                                    Image("calender", bundle: nil)
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 20, height: 20)
+                                        .foregroundStyle(.secondary)
+                                    Text("\(formattedDate(date: budget.startDate))")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    Text("-")
+                                        .foregroundStyle(.secondary)
+                                    
+                                    if budget.budgetStyle == .periodic, let endDate = budget.endDate {
+                                        switch budget.budgetType {
+                                        case .daily:
+                                            Text("\(formattedDate(date: endDate))")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        case .weekly:
+                                            Text("\(formattedDate(date: endDate))")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        case .monthly:
+                                            Text("\(formattedDate(date: endDate))")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        case .none:
+                                            Text("")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
+                                }
+                                
+                                
+                            }
+                            .padding(.leading, 8)
+                            Spacer()
+                        }
+                    }
+                    .listSectionSeparator(.hidden)
+                    
+                    ForEach(viewModel.relatedExpenses) { expense in
+                        ExpenseRow(expense: expense)
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    
+                                    Task {
+                                        if await viewModel.deleteExpense(expense: expense),
+                                            let index = mappedExpenses.firstIndex(where: { element in
+                                                element.id == expense.id
+                                            }) {
+                                            mappedExpenses.remove(at: index)
+                                        }
+                                    }
+                                    
+                                }
+                            label: {
+                                Image("delete", bundle: nil)
+                                    .renderingMode(.template) // Apply rendering mode
+                            }
+                            }
+                    } .listRowSeparator(.hidden)
+                    
+                    
+                }.listStyle(.plain)
+            }
+        }
+        .sheet(isPresented: $showAddExpense, content: {
+            NavigationView {
+                
+                
+                AddExpenseView(isPartOfBudget : true, selectedBudget: budget) { expense in
+                    Task {
+                        _ = await viewModel.addExpense(expense:expense)
+                    }
+                }
+                .navigationTitle("Add Expense")
+                .navigationBarTitleDisplayMode(.inline)
+            }
+        })
+        .toolbar {
+            if !viewModel.relatedExpenses.isEmpty {
+                ToolbarItem(placement: .topBarTrailing) {
+                    
+                    Button(action: {
+                        showAddExpense.toggle()
+                    } , label: {
+                        Image(systemName: "plus")
+                            .renderingMode(.template)
+                    })
+                }
+            }
+        }
+        .padding(.horizontal, 8)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true) // Store the container in memory since we don't actually want to save the preview data
+    let container = try! ModelContainer(for: Budget.self, configurations: config)
+
+    return BudgetDetailView(budget: Budget.singularBudgetSample(), viewModel: BudgetDetailViewModel(budget: Budget.singularBudgetSample(), context: DatabaseHelper.shared.getModelContext()))
+}

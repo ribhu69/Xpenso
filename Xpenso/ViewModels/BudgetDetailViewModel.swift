@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-class BudgetDetailViewModel {
+class BudgetDetailViewModel : ObservableObject {
     
     private var expenseService: ExpenseService
     private var budgetService: BudgetService
@@ -38,7 +38,10 @@ class BudgetDetailViewModel {
     
     func addExpense(expense: Expense) async -> Bool {
         if await self.expenseService.addExpense(expense: expense) {
-            relatedExpenses.append(expense)
+            DispatchQueue.main.async { [weak self] in
+                guard let self else {return}
+                self.relatedExpenses.append(expense)
+            }
         }
         return true
     }

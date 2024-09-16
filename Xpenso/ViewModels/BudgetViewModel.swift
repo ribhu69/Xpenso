@@ -18,7 +18,7 @@ class BudgetViewModel : ObservableObject {
     init(budgetService: BudgetService) {
         self.budgetService = budgetService
     }
-    
+
     
     func getBudgets() {
         budgets = budgetService.getBudgets()

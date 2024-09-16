@@ -32,7 +32,6 @@
 		A22F90922C849F14004AA449 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90912C849F14004AA449 /* AddCommentView.swift */; };
 		A22F90992C84E410004AA449 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F90982C84E410004AA449 /* Comment.swift */; };
 		A22F909B2C84E4AC004AA449 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22F909A2C84E4AC004AA449 /* CommentService.swift */; };
-		A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24113D82C241F30007F5500 /* BudgetDetailView.swift */; };
 		A27DFE9C2BE5EAB20054D092 /* XpensoAppX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */; };
 		A27DFE9E2BE5EAB20054D092 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DFE9D2BE5EAB20054D092 /* ContentView.swift */; };
 		A27DFEA02BE5EAB40054D092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27DFE9F2BE5EAB40054D092 /* Assets.xcassets */; };
@@ -99,7 +98,7 @@
 		A2F193332C21E73100477014 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193322C21E73100477014 /* Budget.swift */; };
 		A2F193352C21EA8300477014 /* BudgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193342C21EA8300477014 /* BudgetService.swift */; };
 		A2F193372C22022800477014 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F193362C22022800477014 /* BudgetViewModel.swift */; };
-		A2F4D7D32C3A6F5E004BA528 /* BudgetDetailViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D7D22C3A6F5E004BA528 /* BudgetDetailViewX.swift */; };
+		A2F4D7D32C3A6F5E004BA528 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D7D22C3A6F5E004BA528 /* BudgetDetailView.swift */; };
 		A2F4D7D52C3A720E004BA528 /* BudgetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D7D42C3A720E004BA528 /* BudgetSelector.swift */; };
 		A2F4D7D72C3A85F6004BA528 /* BudgetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4D7D62C3A85F6004BA528 /* BudgetDetailViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -146,7 +145,6 @@
 		A22F90912C849F14004AA449 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		A22F90982C84E410004AA449 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A22F909A2C84E4AC004AA449 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
-		A24113D82C241F30007F5500 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A27DFE982BE5EAB20054D092 /* Xpenso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xpenso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27DFE9B2BE5EAB20054D092 /* XpensoAppX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpensoAppX.swift; sourceTree = "<group>"; };
 		A27DFE9D2BE5EAB20054D092 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -205,7 +203,7 @@
 		A2F193322C21E73100477014 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
 		A2F193342C21EA8300477014 /* BudgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetService.swift; sourceTree = "<group>"; };
 		A2F193362C22022800477014 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
-		A2F4D7D22C3A6F5E004BA528 /* BudgetDetailViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailViewX.swift; sourceTree = "<group>"; };
+		A2F4D7D22C3A6F5E004BA528 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
 		A2F4D7D42C3A720E004BA528 /* BudgetSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSelector.swift; sourceTree = "<group>"; };
 		A2F4D7D62C3A85F6004BA528 /* BudgetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -494,8 +492,7 @@
 		A2C1A3E72C0CEA16001E976C /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				A2F4D7D22C3A6F5E004BA528 /* BudgetDetailViewX.swift */,
-				A24113D82C241F30007F5500 /* BudgetDetailView.swift */,
+				A2F4D7D22C3A6F5E004BA528 /* BudgetDetailView.swift */,
 				A2F04ADE2C12329D0014BB05 /* AddBudgetOverview */,
 				A2F4D7D42C3A720E004BA528 /* BudgetSelector.swift */,
 			);
@@ -773,7 +770,7 @@
 				A2E20BA22C87751800D16B19 /* AddAttachmentView.swift in Sources */,
 				A2AF33E12C913A7E004487F1 /* AttachmentService.swift in Sources */,
 				A2C1A3E22C0C57BF001E976C /* ColorExtensions.swift in Sources */,
-				A2F4D7D32C3A6F5E004BA528 /* BudgetDetailViewX.swift in Sources */,
+				A2F4D7D32C3A6F5E004BA528 /* BudgetDetailView.swift in Sources */,
 				A27DFEB02BE5EDB10054D092 /* Expense.swift in Sources */,
 				A2F193332C21E73100477014 /* Budget.swift in Sources */,
 				A22F90922C849F14004AA449 /* AddCommentView.swift in Sources */,
@@ -794,7 +791,6 @@
 				A27DFEB62BE6478D0054D092 /* FilterView.swift in Sources */,
 				A2F193352C21EA8300477014 /* BudgetService.swift in Sources */,
 				A2C1A3E42C0CD8B7001E976C /* ExpenseTabBar.swift in Sources */,
-				A24113D92C241F30007F5500 /* BudgetDetailView.swift in Sources */,
 				A2F192F12C1D871500477014 /* AddABudgetView.swift in Sources */,
 				A22F909B2C84E4AC004AA449 /* CommentService.swift in Sources */,
 				A27DFED62BE6BC530054D092 /* Startpoint.swift in Sources */,

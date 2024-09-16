@@ -145,10 +145,8 @@ struct AddABudgetView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                      
-
                         if editingMode {
-                            guard var budgetInEdit else {
+                            guard let budgetInEdit else {
                                 fatalError("Budget in Edit cannot be nil")
                             }
                             budgetInEdit.amount = Double(allocatedBudget)!

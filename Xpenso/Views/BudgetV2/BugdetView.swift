@@ -13,7 +13,7 @@ struct BudgetView: View {
     @State var showCommonAddBudgetView = false
     @State var showAddBudgetView = false
     @State var showAddBudgetViewType: BudgetStyle?
-    @ObservedObject var viewModel: BudgetViewModel
+    @StateObject var viewModel: BudgetViewModel
     @State var editPeriodicBudget =  false
     @State var editAdhocBudget =  false
     
@@ -21,7 +21,7 @@ struct BudgetView: View {
     @State var budgetToDelete : Budget?
     @State var showDeleteBudgetAlert = false
     init(viewModel: BudgetViewModel) {
-        self.viewModel = viewModel
+        _viewModel = StateObject(wrappedValue: viewModel)
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             .font: UIFont(name: "Manrope-Regular", size: UIFont.labelFontSize)!
@@ -33,6 +33,7 @@ struct BudgetView: View {
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        viewModel.getBudgets()
     }
     
     var body: some View {
