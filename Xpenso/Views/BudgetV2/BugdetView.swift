@@ -8,6 +8,26 @@
 import SwiftUI
 import Lottie
 
+
+struct BudgetRow : View {
+    var budget: Budget
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(budget.budgetTitle)
+                .foregroundStyle(budget.budgetStyle == .adhoc ? Color.green : Color.blue)
+                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title1).pointSize)
+            
+            Text(budget.budgetDescription ?? "No Description")
+                .foregroundStyle(budget.budgetDescription != nil ? Color.gray : Color.secondary)
+                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+            
+            .padding(.bottom , 4)
+            Text(budget.amount, format: .currency(code: "INR"))
+                .setCustomFont(weight: FontWeight.medium, size: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+        }
+    }
+}
+
 struct BudgetView: View {
     
     @State var showCommonAddBudgetView = false
@@ -88,21 +108,7 @@ struct BudgetView: View {
                                 context: DatabaseHelper.shared.getModelContext()
                             )
                             NavigationLink(destination: BudgetDetailView(budget: budget, viewModel: viewModel)) {
-                                VStack(alignment: .leading) {
-                                    HStack(alignment: .center) {
-                                        
-                                        Text(budget.budgetTitle)
-                                            .setCustomFont()
-                                        Image(systemName: budget.budgetStyle == .periodic ? "p.square" : "a.square")
-                                            .resizable()
-                                            .frame(width: 12, height: 12)
-                                            .foregroundStyle(budget.budgetStyle == .periodic ? Color.blue : Color.green)
-
-                                    }
-                                    .padding(.bottom , 4)
-                                    Text("\(budget.amount, specifier: "%.2f")")
-                                        .setCustomFont(weight: FontWeight.medium, size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
-                                }
+                                BudgetRow(budget: budget)
                                 .padding(.vertical, 4)
                             }
                             .swipeActions {

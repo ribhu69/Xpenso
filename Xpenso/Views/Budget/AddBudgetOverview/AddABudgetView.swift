@@ -12,6 +12,7 @@ struct AddABudgetView: View {
     @State private var navBarTitle = ""
     @State private var selectedMonth = Calendar.current.component(.month, from: Date()) - 1
     @State private var budgetTitle = ""
+    @State private var budgetDescription = ""
     @State private var budgetType : BudgetType = .monthly
     @State private var allocatedBudget: String = ""
     @State private var startDate = Date()
@@ -33,6 +34,7 @@ struct AddABudgetView: View {
         // Initialize states if editing existing budget
         if let budget = budgetInEdit {
             _budgetTitle = State(initialValue: budget.budgetTitle)
+            _budgetDescription = State(initialValue: budget.budgetDescription ?? "")
             _allocatedBudget = State(initialValue: String(budget.amount))
             _budgetType = State(initialValue: budget.budgetType)
             _selectedMonth = State(
@@ -60,6 +62,20 @@ struct AddABudgetView: View {
                                 .foregroundColor(.secondary)
                             
                             TextField("Enter Title", text: $budgetTitle)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color(UIColor.secondarySystemBackground))
+                                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                                )
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text("Budget Description")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                            
+                            TextField("Enter Description (Optional)", text: $budgetDescription)
                                 .padding()
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
@@ -152,7 +168,7 @@ struct AddABudgetView: View {
                             budgetInEdit.amount = Double(allocatedBudget)!
                             budgetInEdit.budgetTitle = budgetTitle
                             budgetInEdit.startDate = startDate
-                            
+                            budgetInEdit.budgetDescription = budgetDescription
                             onSave(budgetInEdit)
                         }
                         else {
@@ -160,6 +176,7 @@ struct AddABudgetView: View {
                                 id: UUID().uuidString,
                                 amount: Double(allocatedBudget)!,
                                 budgetTitle: budgetTitle,
+                                budgetDescription: budgetDescription,
                                 budgetType: budgetType,
                                 budgetStyle: .periodic,
                                 startDate: startDate
@@ -184,6 +201,20 @@ struct AddABudgetView: View {
                                 .foregroundColor(.secondary)
                             
                             TextField("Enter Title", text: $budgetTitle)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color(UIColor.secondarySystemBackground))
+                                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                                )
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text("Budget Description")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                            
+                            TextField("Enter Description (Optional)", text: $budgetDescription)
                                 .padding()
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)

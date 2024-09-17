@@ -177,11 +177,9 @@ struct ExpenseRow : View {
                 
                 Text(expense.amount, format: .currency(code: "INR"))
                     .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title1).pointSize)
-                if let description = expense.desc {
-                    Text(description)
-                        .font(.body)
-                        .foregroundStyle(Color(uiColor: .lightGray))
-                }
+                Text(expense.desc ?? "No Description")
+                    .setCustomFont(size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+                    .foregroundStyle(expense.desc != nil ? Color(uiColor: .lightGray) : .secondary)
                 if let date = expense.date {
             
                     HStack {

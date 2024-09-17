@@ -17,6 +17,7 @@ final class Budget : Identifiable {
     var budget_type: String
     /// used to store budgetStyle rawValue in Swift data
     var budget_style : String
+    var budgetDescription: String?
     @Transient var budgetType : BudgetType = BudgetType(rawValue: "none")!
     @Transient var budgetStyle : BudgetStyle = BudgetStyle(rawValue: "adhoc")!
     var startDate : Date
@@ -34,10 +35,11 @@ final class Budget : Identifiable {
                 return nil
             }
         }
-    init(id: String, amount: Double, budgetTitle: String, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date) {
+    init(id: String, amount: Double, budgetTitle: String, budgetDescription: String? = nil, budgetType: BudgetType, budgetStyle: BudgetStyle, startDate: Date) {
         self.budgetId = id
         self.amount = amount
         self.budgetTitle = budgetTitle
+        self.budgetDescription = budgetDescription
         self.budgetType = budgetType
         self.budget_type = budgetType.rawValue
         self.budgetStyle = budgetStyle

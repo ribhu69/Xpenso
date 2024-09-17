@@ -69,6 +69,9 @@
     "Budget" : {
 
     },
+    "Budget Description" : {
+
+    },
     "Budget Title" : {
 
     },
@@ -189,6 +192,9 @@
       }
     },
     "Enter budget" : {
+
+    },
+    "Enter Description (Optional)" : {
 
     },
     "Enter Title" : {

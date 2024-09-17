@@ -42,6 +42,7 @@ struct AddCommentView: View {
             }
             .padding(.top, 16) // Adjust padding to avoid overlap
             .navigationTitle("Add Comment")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

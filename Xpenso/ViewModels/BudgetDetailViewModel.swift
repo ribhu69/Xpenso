@@ -47,6 +47,13 @@ class BudgetDetailViewModel : ObservableObject {
     }
     
     func deleteExpense(expense: Expense) async -> Bool {
-        return await self.expenseService.deleteExpense(expense: expense)
+        let result = await self.expenseService.deleteExpense(expense: expense)
+        if result, let index = relatedExpenses.firstIndex(where: { element in
+                element.id == expense.id
+            }) {
+            relatedExpenses.remove(at: index)
+            return true
+        }
+        return false
     }
 }
