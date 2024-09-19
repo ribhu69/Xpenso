@@ -5,8 +5,7 @@ A Swift UI based Personal Expense Tracker Application
 
 ## Features
 
-- Category Based Expense addition
-- Filtering expenses based on keywords, categories and created time
+- Currently under major revamp. Please check after sometime.
 
 
 
