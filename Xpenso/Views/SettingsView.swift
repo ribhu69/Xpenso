@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 class AppTheme: ObservableObject {
     static let shared = AppTheme()
@@ -27,6 +28,7 @@ struct SettingsView: View {
     }
     
     @State var selectedColor = AppTheme.shared.selectedColor
+    @State var showClearAllDataAlert = false
     init() {
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
@@ -78,6 +80,8 @@ struct SettingsView: View {
                                 
                             }.padding(.vertical, 8)
                         }
+                        
+                       
                       
                         Text("App Version")
                             .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
@@ -86,11 +90,23 @@ struct SettingsView: View {
                             .setCustomFont()
                             .foregroundStyle(.secondary)
                         
+                        Button(action: {
+                            showClearAllDataAlert.toggle()
+                        }, label: {
+                            Text("Clear All Data")
+                                .foregroundStyle(.red)
+                                .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+                            .padding(.vertical, 8)
+                            
+                        })
+                        
                         Link(destination: URL(string: "https://github.com/ribhu69/Xpenso")!) {
                             Text("@Xpenso")
                                 .setCustomFont(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
                         }
                         .padding(.top, 16)
+                        
+                        
                         
                         Spacer()
                     }
@@ -102,6 +118,51 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
         }
+        .alert("Clear All Data", isPresented: $showClearAllDataAlert, actions: {
+            Button("Cancel", role: .cancel) {
+                showClearAllDataAlert.toggle()
+            }
+            Button("Yes", role: .destructive) {
+                clearAllData()
+                showClearAllDataAlert.toggle()
+            }
+        }, message: {
+            Text("This action will remove all files and data from the device and cannot be reversed. Continue?")
+        })
+    }
+    
+    //MARK: Move this code to a viewModel kind of place.
+    private func clearAllData() {
+        
+        let context = DatabaseHelper.shared.context
+        
+        let fetchDesc = FetchDescriptor<Expense>()
+        do {
+            let adhocs = try context.fetch(fetchDesc)
+            for item in adhocs {
+                context.delete(item)
+            }
+            try context.save()
+            
+        }
+        catch {
+            Logger.log(.error, #function)
+        }
+        
+        let budgetDesc = FetchDescriptor<Budget>()
+        do {
+            let adhocs = try context.fetch(budgetDesc)
+            for item in adhocs {
+                context.delete(item)
+            }
+            try context.save()
+            
+        }
+        catch {
+            Logger.log(.error, #function)
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("allFilesCleared"), object: nil)
     }
 }
 

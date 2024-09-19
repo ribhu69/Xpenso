@@ -152,6 +152,10 @@ struct BudgetView: View {
                 }
             }
             .navigationTitle("Budget")
+            .onReceive(NotificationCenter.default
+                .publisher(for: NSNotification.Name("allFilesCleared")), perform: { _ in
+                    viewModel.removeAllBudgets()
+            })
             
             .toolbar {
             if !(viewModel.budgets.isEmpty) {

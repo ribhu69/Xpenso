@@ -19,6 +19,9 @@ class ExpenseListViewModel : ObservableObject {
         getExpenses()
     }
     
+    func removeAllExpenses() {
+        expenses.removeAll()
+    }
     func addExpense(expense: Expense) {
         if expenseListService.addExpense(expense: expense) {
             expenses.append(expense)

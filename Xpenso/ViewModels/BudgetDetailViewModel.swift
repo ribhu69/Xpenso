@@ -51,7 +51,13 @@ class BudgetDetailViewModel : ObservableObject {
         if result, let index = relatedExpenses.firstIndex(where: { element in
                 element.id == expense.id
             }) {
-            relatedExpenses.remove(at: index)
+            
+            DispatchQueue.main.async {
+                [weak self] in
+                guard let self else {return}
+                    relatedExpenses.remove(at: index)
+            }
+           
             return true
         }
         return false

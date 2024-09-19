@@ -19,6 +19,9 @@ class BudgetViewModel : ObservableObject {
         self.budgetService = budgetService
     }
 
+    func removeAllBudgets() {
+        budgets.removeAll()
+    }
     
     func getBudgets() {
         budgets = budgetService.getBudgets()

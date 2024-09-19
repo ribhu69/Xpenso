@@ -118,6 +118,10 @@ struct ExpenseListView : View {
                         
                     }
             }
+            .onReceive(NotificationCenter.default
+                .publisher(for: NSNotification.Name("allFilesCleared")), perform: { _ in
+                    viewModel.removeAllExpenses()
+            })
             .toolbar {
                 if !viewModel.expenses.isEmpty {
                     ToolbarItem(placement: .navigationBarTrailing) {

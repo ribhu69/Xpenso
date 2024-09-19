@@ -86,7 +86,6 @@ struct BudgetDetailView : View {
     var body: some View {
         VStack {
             
-            
             List {
                 
                 Section {
